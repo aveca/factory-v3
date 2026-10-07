@@ -13,14 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Verify marker file exists
-        run: |
-          if [ -f FACTORY_E2E_MARKER_*.txt ]; then
-            echo "✓ Marker file found"
-            exit 0
-          else
-            echo "✗ No marker file found"
-            exit 1
-          fi
+        run: test -f FACTORY_E2E_MARKER_factory-full-e2e-20261007-002.txt
       
       - name: Print JOB_ID
         run: echo "JOB_ID: $JOB_ID"
