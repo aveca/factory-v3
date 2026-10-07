@@ -1,0 +1,4 @@
+FACTORY V3 E2E TEST
+JOB_ID: factory-test-001
+TIMESTAMP: 2026-10-07T20:30:00Z
+PURPOSE: Verify PR -> CI -> Merge -> Deploy pipeline
