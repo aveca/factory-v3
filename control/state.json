@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "factory": "factory-v3",
+  "status": "BOOTSTRAP",
+  "mode": "UNKNOWN",
+  "job_id": null,
+  "active_project": null,
+  "active_task": null,
+  "last_command_id": null,
+  "last_command_status": null,
+  "last_result_id": null,
+  "last_report_at": null,
+  "heartbeat_at": null,
+  "worker_pid": null,
+  "queue_depth": null,
+  "updated_at": null,
+  "blockers": [],
+  "gates": {},
+  "provenance": {
+    "branch": null,
+    "commit_sha": null,
+    "pr_number": null,
+    "ci_run_id": null,
+    "deploy_id": null,
+    "live_check": null
+  }
+}
