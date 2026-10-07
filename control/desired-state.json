@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "enabled": true,
+  "mode": "CONTINUOUS",
+  "allowed_projects": ["Sargagame", "Casinobabe", "Drone Martinique"],
+  "auto_repair": true,
+  "auto_test": true,
+  "auto_commit": true,
+  "auto_push": true,
+  "auto_pr": true,
+  "auto_ci": true,
+  "auto_deploy": true,
+  "require_human_approval_for_production": false,
+  "updated_at": null,
+  "updated_by": "external-operator"
+}
