@@ -1,0 +1,42 @@
+{
+  "session_id": "e08c3d8153729a51",
+  "task_id": "casinobae-1791336732486-klo7s0",
+  "incident_id": null,
+  "repo": "aveca/Casinobabe",
+  "branch": "factory/casinobabe-1791341613394-ift2",
+  "worktree": "C:\\factory\\worktrees\\casinobabe\\casinobabe-1791341612239-3n2gst",
+  "worker_id": "worker-73",
+  "pid": 14388,
+  "model": "ollama/qwen3-coder:30b",
+  "phase": "initializing",
+  "status": "recovering",
+  "started_at": "2026-10-07T02:53:33.612Z",
+  "updated_at": "2026-10-07T03:15:05.853Z",
+  "heartbeat": "2026-10-07T03:15:05.853Z",
+  "retry_count": 1,
+  "metadata": {
+    "project": "casinobabe",
+    "source": "casinobae_live_error",
+    "payload": {
+      "description": "attempt to index nil value (global x)",
+      "factory_event": {
+        "event_id": "evt-a86e0e5ceded2df6",
+        "error_signature": "a86e0e5ceded2df6",
+        "file": "Casinobabe.lua",
+        "line": "6733",
+        "stack": "stack trace here",
+        "phase": "WOW_ERROR",
+        "dealer_state": "",
+        "game": ""
+      },
+      "requirements": [
+        "Analyze the WoW error and identify root cause",
+        "Implement minimal fix in runtime-addon/Casinobabe",
+        "Run Lua syntax validation",
+        "Run static analysis",
+        "Commit and push fix",
+        "Create PR and wait for CI"
+      ]
+    }
+  }
+}

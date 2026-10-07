@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "task_id": "crash-recovery-test-1791319508980",
+  "session_id": "c03e77c348be2621",
+  "commit_sha": null,
+  "branch": null,
+  "model_used": "ollama/qwen2.5-coder:7b",
+  "agent_used": "ollama",
+  "gateway": "none",
+  "phases_completed": [
+    "tool",
+    "tests"
+  ]
+}

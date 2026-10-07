@@ -1,0 +1,50 @@
+{
+  "session_id": "5b0e0bac0f45846c",
+  "task_id": "e2e-sargagame-1791402000000",
+  "incident_id": null,
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791401735554-xbrp",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791401714902-o8819n",
+  "worker_id": "worker-125",
+  "pid": 7672,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "waiting_ci",
+  "status": "completed",
+  "started_at": "2026-10-07T19:35:35.718Z",
+  "updated_at": "2026-10-07T19:36:27.026Z",
+  "heartbeat": "2026-10-07T19:35:35.718Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "sargagame",
+    "source": "factory-e2e-real",
+    "payload": {
+      "description": "Add input validation to imageResize.js",
+      "requirements": [
+        "Add export function validateImageOptions(options) at the end of imageResize.js",
+        "The function must check that options.maxDim is a positive number",
+        "The function must check that options.quality is a number between 0 and 1",
+        "The function must return true if validation passes, false otherwise",
+        "Do not modify any existing exports or function signatures",
+        "The modification must be deterministic and verifiable on disk"
+      ],
+      "dedup_key": "e2e-sargagame-imageResize-validation",
+      "evidence": "factory-e2e-real-modification"
+    }
+  },
+  "result": {
+    "success": true,
+    "task_id": "e2e-sargagame-1791402000000",
+    "session_id": "5b0e0bac0f45846c",
+    "commit_sha": "5e197e5994571f70fa14e833ae84bf9a81bba50f",
+    "branch": "factory/sargagame-1791401735554-xbrp",
+    "model_used": "ollama/qwen2.5-coder:7b",
+    "phases_completed": [
+      "tool",
+      "tests",
+      "git",
+      "pr",
+      "ci"
+    ]
+  },
+  "ended_at": "2026-10-07T19:36:27.026Z"
+}

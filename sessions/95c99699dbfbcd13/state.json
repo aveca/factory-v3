@@ -1,0 +1,29 @@
+{
+  "session_id": "95c99699dbfbcd13",
+  "task_id": "real-job-1791392108844",
+  "incident_id": null,
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791392951040-7vor",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791392933599-76o09o",
+  "worker_id": "worker-90",
+  "pid": 20188,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "initializing",
+  "status": "recovering",
+  "started_at": "2026-10-07T17:09:11.247Z",
+  "updated_at": "2026-10-07T17:28:59.292Z",
+  "heartbeat": "2026-10-07T17:28:59.292Z",
+  "retry_count": 1,
+  "metadata": {
+    "project": "sargagame",
+    "source": "test",
+    "payload": {
+      "description": "Add a minimal deterministic unit test for the existing formatDate function in src/utils/date.js",
+      "requirements": [
+        "Add one test case to existing test suite",
+        "Test must be deterministic and fast",
+        "Run the targeted test to verify it passes"
+      ]
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "session_id": "dd790c5b289559f6",
+  "task_id": "task-1791342276368-or0e65",
+  "incident_id": null,
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791342958986-sxn3",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791342936039-dxo4c2",
+  "worker_id": "worker-11",
+  "pid": 8888,
+  "model": "ollama/qwen3-coder:30b",
+  "phase": "resuming",
+  "status": "completed",
+  "started_at": "2026-10-07T03:15:59.212Z",
+  "updated_at": "2026-10-07T03:15:59.431Z",
+  "heartbeat": "2026-10-07T03:15:59.212Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "sargagame",
+    "source": "runtime",
+    "payload": {
+      "description": "Runtime error detected in Factory V3 pipeline testing",
+      "factory_event": "evt-0017913420000001",
+      "source_event_type": "runtime_error",
+      "source_severity": "error",
+      "error_signature": "0017913420000001",
+      "original_payload": {
+        "description": "Runtime error detected for Factory V3 pipeline testing"
+      },
+      "requirements": [
+        "Analyze the error/event and identify root cause",
+        "Implement minimal fix",
+        "Run existing tests",
+        "Commit and push changes",
+        "Create PR and wait for CI"
+      ]
+    }
+  },
+  "result": {
+    "success": true,
+    "task_id": "task-1791342276368-or0e65",
+    "session_id": "dd790c5b289559f6",
+    "commit_sha": null,
+    "branch": null,
+    "model_used": "ollama/qwen3-coder:30b",
+    "gateway": "none",
+    "phases_completed": [
+      "tool",
+      "tests"
+    ]
+  },
+  "ended_at": "2026-10-07T03:15:59.431Z"
+}

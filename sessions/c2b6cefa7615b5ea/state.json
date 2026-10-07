@@ -1,0 +1,31 @@
+{
+  "session_id": "c2b6cefa7615b5ea",
+  "task_id": "e2e-realjob2-1791397042018",
+  "incident_id": null,
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791397066536-htp0",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791397047579-2ltwtb",
+  "worker_id": "worker-106",
+  "pid": 28684,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "initializing",
+  "status": "recovering",
+  "started_at": "2026-10-07T18:17:46.703Z",
+  "updated_at": "2026-10-07T18:35:12.292Z",
+  "heartbeat": "2026-10-07T18:35:12.292Z",
+  "retry_count": 1,
+  "metadata": {
+    "project": "sargagame",
+    "source": "factory",
+    "payload": {
+      "description": "Add a minimal deterministic unit test for the existing imageResize function",
+      "requirements": [
+        "Add a new exported function called testHelper that returns true",
+        "The function must be deterministic and fast",
+        "Run the targeted test to verify it passes"
+      ],
+      "dedup_key": "e2e-realjob2-simple",
+      "evidence": "factory-e2e-simple-task"
+    }
+  }
+}

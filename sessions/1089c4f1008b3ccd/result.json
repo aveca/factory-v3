@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "task_id": "issue-2-runtime-parity-1791327400850",
+  "session_id": "1089c4f1008b3ccd",
+  "model_used": "ollama/qwen2.5-coder:7b",
+  "agent_used": "aider",
+  "gateway": "none"
+}

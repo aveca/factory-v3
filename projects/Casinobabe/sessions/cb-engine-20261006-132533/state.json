@@ -1,0 +1,17 @@
+{
+    "repo":  "aveca/Casinobabe",
+    "phase":  "INITIALIZED",
+    "model":  "nvidia/nemotron-3.5-lightning-30b-a3b",
+    "started_at":  "2026-10-06T13:27:45.7450890-04:00",
+    "branch":  "main",
+    "git_status":  "",
+    "head_commit":  "5113eee619d146966a10892deb9421ed35ff8e3e",
+    "retry_count":  0,
+    "last_activity":  "2026-10-06T13:27:45.7485959-04:00",
+    "worktree":  "C:\\Users\\user\\Documents\\GitHub\\Casinobabe",
+    "task_id":  "autonomous-engine-setup",
+    "status":  "IDLE",
+    "session_id":  "cb-engine-20261006-132533",
+    "worker_id":  "nemotron-3.5-lightning-30b",
+    "head_message":  "feat: Casinobabe styles \u0026 RP system"
+}

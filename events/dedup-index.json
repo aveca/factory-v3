@@ -1,0 +1,539 @@
+{
+  "events": {
+    "e54eecdbb96b438f54ecce88637269b5": {
+      "event_id": "evt-1e93266de57859d8",
+      "detected_at": "2026-10-07T01:47:11.716Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-1e93266de57859d8",
+        "source": "runtime",
+        "project": "casinobabe",
+        "repository": "aveca/Casinobabe",
+        "severity": "error",
+        "type": "runtime_error",
+        "title": "WoW Error: Casinobabe",
+        "message": "Test error",
+        "error_signature": "1e93266de57859d8",
+        "commit_sha": null,
+        "pr_number": null,
+        "pr_url": null,
+        "head_sha": null,
+        "ci": "pending",
+        "workflow": "Factory V3 Casinobae Pipeline",
+        "run_id": null,
+        "ci_conclusion": "pending",
+        "ci_url": null,
+        "merge": false,
+        "deploy": false,
+        "live_verify": false,
+        "repair": 0,
+        "duration": 0,
+        "result": "pending",
+        "repo": "aveca/Casinobabe",
+        "priority": 2,
+        "status": "new",
+        "start_time": "2026-10-07T01:47:11.712Z",
+        "end_time": null,
+        "timestamp": "1234567890",
+        "stack": "stack",
+        "file": "spell.lua",
+        "line": "10",
+        "phase": "PHASE",
+        "dealer_state": "DealerState",
+        "game": "Game",
+        "metadata": {
+          "dealer_state": "DealerState",
+          "game": "Game",
+          "project": "casinobabe",
+          "repository": "aveca/Casinobabe",
+          "captured_at": "2026-10-07T01:47:11.712Z"
+        },
+        "detected_at": "2026-10-07T01:47:11.716Z",
+        "dedup_key": "e54eecdbb96b438f54ecce88637269b5",
+        "payload": {},
+        "logs": ""
+      }
+    },
+    "test-dedup": {
+      "event_id": "evt-bcb98671590ee196",
+      "detected_at": "2026-10-07T01:58:28.598Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-bcb98671590ee196",
+        "source": "runtime",
+        "project": "casinobabe",
+        "repository": "aveca/Casinobabe",
+        "severity": "error",
+        "type": "runtime_error",
+        "title": "WoW Error: Casinobabe",
+        "message": "attempt to index nil",
+        "error_signature": "bcb98671590ee196",
+        "detected_at": "2026-10-07T01:58:28.598Z",
+        "dedup_key": "test-dedup",
+        "payload": {
+          "workflow": "Factory V3 Casinobae Pipeline"
+        },
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "e2e-test": {
+      "event_id": "evt-bcb98671590ee196",
+      "detected_at": "2026-10-07T01:59:06.966Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-bcb98671590ee196",
+        "source": "runtime",
+        "project": "casinobabe",
+        "repository": "aveca/Casinobabe",
+        "severity": "error",
+        "type": "runtime_error",
+        "title": "WoW Error: Casinobabe",
+        "message": "attempt to index nil",
+        "error_signature": "bcb98671590ee196",
+        "detected_at": "2026-10-07T01:59:06.966Z",
+        "dedup_key": "e2e-test",
+        "payload": {
+          "workflow": "Factory V3 Casinobae Pipeline"
+        },
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "e2e-test-1791338874387": {
+      "event_id": "evt-1bbcef8769474dde",
+      "detected_at": "2026-10-07T02:07:54.387Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-1bbcef8769474dde",
+        "source": "runtime",
+        "project": "casinobabe",
+        "repository": "aveca/Casinobabe",
+        "severity": "error",
+        "type": "runtime_error",
+        "title": "WoW Error: Casinobabe",
+        "message": "attempt to index nil value (global x)",
+        "error_signature": "1bbcef8769474dde",
+        "detected_at": "2026-10-07T02:07:54.387Z",
+        "dedup_key": "e2e-test-1791338874387",
+        "payload": {
+          "workflow": "Factory V3 Casinobae Pipeline"
+        },
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "test-dedup-key": {
+      "event_id": "evt-abcdef0123456789",
+      "detected_at": "2026-10-07T02:08:13.267Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-abcdef0123456789",
+        "source": "runtime",
+        "project": "casinobabe",
+        "repository": "aveca/Casinobabe",
+        "severity": "error",
+        "type": "runtime_error",
+        "title": "WoW Runtime Error",
+        "message": "Lua error in dealer module",
+        "error_signature": "test-sig-123",
+        "detected_at": "2026-10-07T02:08:13.267Z",
+        "dedup_key": "test-dedup-key",
+        "payload": {
+          "file": "dealer.lua",
+          "line": 42,
+          "message": "test error"
+        },
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "aab15b34d027dce79fc3f34ad0bb2cbf": {
+      "event_id": "evt-abcdef0123456789",
+      "detected_at": "2026-10-07T02:09:05.864Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-abcdef0123456789",
+        "source": "github",
+        "project": "sargagame",
+        "repository": "aveca/sargagame",
+        "severity": "error",
+        "type": "ci_failure",
+        "title": "CI failure on PR #42",
+        "message": "Tests failed in GitHub Actions",
+        "error_signature": "test-sig-456",
+        "detected_at": "2026-10-07T02:09:05.864Z",
+        "payload": {
+          "workflow": "Factory CI",
+          "run_id": 12345
+        },
+        "dedup_key": "aab15b34d027dce79fc3f34ad0bb2cbf",
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "new-dedup-key-1791339182470": {
+      "event_id": "evt-fedcba9876543210",
+      "detected_at": "2026-10-07T02:13:02.469Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-fedcba9876543210",
+        "source": "runtime",
+        "project": "casinobabe",
+        "repository": "aveca/Casinobabe",
+        "severity": "error",
+        "type": "runtime_error",
+        "title": "WoW Runtime Error 2",
+        "message": "Second Lua error test",
+        "error_signature": "sig-456",
+        "detected_at": "2026-10-07T02:13:02.469Z",
+        "dedup_key": "new-dedup-key-1791339182470",
+        "payload": {
+          "file": "dealer.lua",
+          "line": 42,
+          "message": "second test error"
+        },
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "new-dedup-key-1791339189622": {
+      "event_id": "evt-0987654321fedcba",
+      "detected_at": "2026-10-07T02:13:09.621Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-0987654321fedcba",
+        "source": "github",
+        "project": "sargagame",
+        "repository": "aveca/sargagame",
+        "severity": "error",
+        "type": "ci_failure",
+        "title": "CI failure PR #43",
+        "message": "Tests failed on pull request",
+        "error_signature": "sig-789",
+        "detected_at": "2026-10-07T02:13:09.621Z",
+        "dedup_key": "new-dedup-key-1791339189622",
+        "payload": {
+          "workflow": "Factory CI",
+          "run_id": 12346
+        },
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "d1": {
+      "event_id": "evt-1ca2cc35127eb89c",
+      "detected_at": "2026-10-07T02:27:14.336Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-1ca2cc35127eb89c",
+        "source": "runtime",
+        "project": "casinobabe",
+        "repository": "aveca/Casinobabe",
+        "severity": "error",
+        "type": "runtime_error",
+        "title": "Test",
+        "message": "Test",
+        "error_signature": "sig1",
+        "detected_at": "2026-10-07T02:27:14.336Z",
+        "dedup_key": "d1",
+        "payload": {},
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "d2": {
+      "event_id": "evt-92f70b31bec4b185",
+      "detected_at": "2026-10-07T02:27:14.339Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-92f70b31bec4b185",
+        "source": "github",
+        "project": "sargagame",
+        "repository": "aveca/sargagame",
+        "severity": "error",
+        "type": "ci_failure",
+        "title": "Test",
+        "message": "Test",
+        "error_signature": "sig2",
+        "detected_at": "2026-10-07T02:27:14.339Z",
+        "dedup_key": "d2",
+        "payload": {},
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "d4": {
+      "event_id": "evt-bd416be3dee4d8fc",
+      "detected_at": "2026-10-07T02:27:14.341Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-bd416be3dee4d8fc",
+        "source": "runtime",
+        "project": "ai-factory",
+        "repository": "aveca/ai-factory",
+        "severity": "warning",
+        "type": "test_failure",
+        "title": "Test",
+        "message": "Test",
+        "error_signature": "sig4",
+        "detected_at": "2026-10-07T02:27:14.341Z",
+        "dedup_key": "d4",
+        "payload": {},
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "d5": {
+      "event_id": "evt-e1bacf732b361189",
+      "detected_at": "2026-10-07T02:27:14.342Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-e1bacf732b361189",
+        "source": "gmail",
+        "project": "trading-bot",
+        "repository": "aveca/trading-bot",
+        "severity": "error",
+        "type": "deployment_error",
+        "title": "Test",
+        "message": "Test",
+        "error_signature": "sig5",
+        "detected_at": "2026-10-07T02:27:14.342Z",
+        "dedup_key": "d5",
+        "payload": {},
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "sargagame-1791340769481": {
+      "event_id": "evt-1791302555924000",
+      "detected_at": "2026-10-07T02:45:29.685Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-1791302555924000",
+        "source": "runtime",
+        "project": "sargagame",
+        "repository": "aveca/sargagame",
+        "severity": "info",
+        "type": "runtime_error",
+        "title": "Synthetic task queued for Factory V3 pipeline testing",
+        "message": "Synthetic task queued for Factory V3 pipeline testing",
+        "error_signature": "1791302555924000",
+        "detected_at": "2026-10-07T02:45:29.685Z",
+        "dedup_key": "sargagame-1791340769481",
+        "payload": {
+          "description": "Synthetic task queued for Factory V3 pipeline testing",
+          "factory_event": "evt-1791302555924000",
+          "source_event_type": "runtime_error",
+          "source_severity": "info"
+        },
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "sargagame-runtime-1791342276366": {
+      "event_id": "evt-0017913420000001",
+      "detected_at": "2026-10-07T03:04:36.366Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-0017913420000001",
+        "source": "runtime",
+        "project": "sargagame",
+        "repository": "aveca/sargagame",
+        "severity": "error",
+        "type": "runtime_error",
+        "title": "Runtime error detected in Factory V3 pipeline",
+        "message": "Runtime error detected in Factory V3 pipeline testing",
+        "error_signature": "0017913420000001",
+        "detected_at": "2026-10-07T03:04:36.366Z",
+        "dedup_key": "sargagame-runtime-1791342276366",
+        "payload": {
+          "description": "Runtime error detected for Factory V3 pipeline testing"
+        },
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "sargagame-runtime-1791342736918": {
+      "event_id": "evt-0017913420000001",
+      "detected_at": "2026-10-07T03:12:16.918Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-0017913420000001",
+        "source": "runtime",
+        "project": "sargagame",
+        "repository": "aveca/sargagame",
+        "severity": "error",
+        "type": "runtime_error",
+        "title": "Runtime error detected in Factory V3 pipeline",
+        "message": "Runtime error detected in Factory V3 pipeline testing",
+        "error_signature": "0017913420000001",
+        "detected_at": "2026-10-07T03:12:16.918Z",
+        "dedup_key": "sargagame-runtime-1791342736918",
+        "payload": {
+          "description": "Runtime error detected for Factory V3 pipeline testing"
+        },
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "sargagame-repair-1791343040190": {
+      "event_id": "evt-0017913430000001",
+      "detected_at": "2026-10-07T03:17:20.189Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-0017913430000001",
+        "source": "runtime",
+        "project": "sargagame",
+        "repository": "aveca/sargagame",
+        "severity": "error",
+        "type": "runtime_error",
+        "title": "Fix runtime error - missing configuration",
+        "message": "Fix runtime error - add missing configuration to Core.lua",
+        "error_signature": "0017913430000001",
+        "detected_at": "2026-10-07T03:17:20.189Z",
+        "dedup_key": "sargagame-repair-1791343040190",
+        "payload": {
+          "description": "Fix runtime error - add missing configuration to Core.lua",
+          "requirements": [
+            "Add missing configuration parameter to Core.lua",
+            "Run Lua validation",
+            "Commit and push changes",
+            "Create PR and wait for CI"
+          ],
+          "factory_event": "evt-0017913430000001",
+          "source_event_type": "runtime_error",
+          "source_severity": "error"
+        },
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    },
+    "sargagame-premium-onboard-1791343955619": {
+      "event_id": "evt-0000179134400001",
+      "detected_at": "2026-10-07T03:32:35.618Z",
+      "status": "active",
+      "resolved": false,
+      "resolved_at": null,
+      "event": {
+        "event_id": "evt-0000179134400001",
+        "source": "runtime",
+        "project": "sargagame",
+        "repository": "aveca/sargagame",
+        "severity": "error",
+        "type": "runtime_error",
+        "title": "Transformer l'onboarding premium de Sargagame",
+        "message": "Transformer l'onboarding 3 slides existant en une expérience produit premium qui communique la valeur de Le Veilleur avant l'hydratation React",
+        "error_signature": "0000179134400001",
+        "detected_at": "2026-10-07T03:32:35.618Z",
+        "dedup_key": "sargagame-premium-onboard-1791343955619",
+        "payload": {
+          "description": "Transformer l'onboarding premium de Sargagame",
+          "requirements": [
+            "Remplacer l'onboarding existant par une expérience premium marine/caribéenne",
+            "Slide 1: \"Voir\" - communiquer qué est Le Veilleur et sa valeur",
+            "Slide 2: \"Comprendre\" - montrer les capacités et la preuve mesurée",
+            "Slide 3: \"Décider\" - CTA principal pour choisir un Pass ou voir les plages",
+            "CTA principal évident immédiatement visible",
+            "Responsive mobile-first (mobile prioritaire)",
+            "Conserver les données produit vérifiées (136 plages, données satellite)",
+            "Aucun changement backend/database/auth/payments/Factory/analytics",
+            "Améliorer typography, spacing, hierarchy, CTA, transitions"
+          ],
+          "product_data": {
+            "what_is": "Le Veilleur - surveilleur de plages au satellite avec données en temps réel",
+            "value_provided": "136 plages mesurées · 4 fois/jour · données publiques auditables · fiabilité publiée",
+            "next_action": "Voir le verdict du matin / Choisir une plage avec Pass 7 jours (€7,99)",
+            "pass_price": "€7,99 (pass 7 jours, paiement unique, pas d'abonnement)",
+            "beach_count": "136+ plages surveillées"
+          },
+          "do_not_change": [
+            "backend",
+            "database",
+            "authentication",
+            "payments",
+            "Factory",
+            "analytics architecture"
+          ],
+          "visual_system": {
+            "theme": "marine/caribéenne",
+            "primary_color": "--gold: #E8A800",
+            "secondary_color": "--teal: #009E8E",
+            "font": "Anton (display) + Bricolage Grotesque (text)",
+            "background": "gradient marine/palette plage",
+            "illustration_style": "épurée, observation, signal",
+            "cta_hierarchy": "unique et visible",
+            "transition": "élégante, légère"
+          }
+        },
+        "workflow": null,
+        "commit_sha": null,
+        "pr_number": null,
+        "logs": ""
+      }
+    }
+  },
+  "lastCleanup": 1791337631716
+}

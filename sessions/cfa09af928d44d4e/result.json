@@ -1,0 +1,6 @@
+{
+  "success": false,
+  "task_id": "crash-recovery-test-1791319508980",
+  "session_id": "cfa09af928d44d4e",
+  "error": "executor.execute is not a function"
+}

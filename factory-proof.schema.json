@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FACTORY_PROOF.json Schema",
+  "type": "object",
+  "required": [
+    "task", "queued", "claimed", "project", "tool", "model",
+    "worker_pid", "adapter_pid", "worktree", "branch",
+    "modified_files", "tests", "scope", "policy",
+    "commit", "push", "pr", "ci", "merge",
+    "deploy", "live_verify", "repair", "duration", "result"
+  ],
+  "properties": {
+    "task": { "type": "string", "description": "Task ID / identifier" },
+    "queued": { "type": "string", "description": "ISO timestamp when task was queued" },
+    "claimed": { "type": "string", "description": "ISO timestamp when task was claimed" },
+    "project": { "type": "string", "description": "Project name" },
+    "tool": { "type": "string", "enum": ["opencode", "aider", "hermes", "jev", "playwright", "wasmoon-lua", "github", "gmail", "cloudflare", "powershell"], "description": "Tool used for task execution" },
+    "model": { "type": "string", "description": "Model name used" },
+    "worker_pid": { "type": "integer", "description": "Windows PID of the worker process" },
+    "adapter_pid": { "type": "integer", "description": "Adapter PID" },
+    "worktree": { "type": "string", "description": "Worktree path" },
+    "branch": { "type": "string", "description": "Branch name" },
+    "modified_files": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of modified files"
+    },
+    "tests": { "type": "array", "items": { "type": "string" }, "description": "Test command results" },
+    "scope": { "type": "boolean", "description": "Scope compliance (true=in-scope)" },
+    "policy": { "type": "boolean", "description": "Policy compliance (true=passed)" },
+    "commit": { "type": "string", "description": "Commit SHA" },
+    "push": { "type": "string", "description": "Push URL" },
+    "pr": { "type": "string", "description": "PR number/URL" },
+    "ci": { "type": "string", "description": "CI run URL/status" },
+    "merge": { "type": "boolean", "description": "Whether PR was merged" },
+    "deploy": { "type": "boolean", "description": "Whether deployed" },
+    "live_verify": { "type": "boolean", "description": "Live verification result" },
+    "repair": { "type": "integer", "description": "Repair attempt count" },
+    "duration": { "type": "number", "description": "Total duration in milliseconds" },
+    "result": {
+      "type": "string",
+      "enum": ["success", "failed", "needs_human", "parked"],
+      "description": "Final task result"
+    }
+  }
+}

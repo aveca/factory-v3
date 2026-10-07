@@ -1,0 +1,31 @@
+{
+  "session_id": "d0ecbb539141d925",
+  "task_id": "synthetic-test-1791340793653",
+  "incident_id": null,
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791340900525-cops",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791340883566-7cp16e",
+  "worker_id": "worker-45",
+  "pid": 15264,
+  "model": "ollama/qwen3-coder:30b",
+  "phase": "initializing",
+  "status": "recovering",
+  "started_at": "2026-10-07T02:41:40.745Z",
+  "updated_at": "2026-10-07T02:53:48.685Z",
+  "heartbeat": "2026-10-07T02:53:48.685Z",
+  "retry_count": 1,
+  "metadata": {
+    "project": "sargagame",
+    "source": "factory_injection",
+    "payload": {
+      "description": "Quick change to fix typo in readme",
+      "requirements": [
+        "Run tests"
+      ],
+      "factory_event": {
+        "event_id": "evt-synth-test",
+        "error_signature": "synth-test"
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "task_id": "test-aider-real-execution-1791347000000",
+  "session_id": "224d975d730d688d",
+  "model_used": "ollama/qwen2.5-coder:7b",
+  "agent_used": "opencode",
+  "gateway": "none"
+}

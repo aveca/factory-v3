@@ -1,0 +1,133 @@
+{
+  "nextWorkerId": 126,
+  "workers": [
+    {
+      "worker_id": "worker-125",
+      "pid": 7672,
+      "task_id": "e2e-sargagame-1791402000000",
+      "session_id": "5b0e0bac0f45846c",
+      "project": "sargagame",
+      "repo": "aveca/sargagame",
+      "branch": "factory/sargagame-1791401735554-xbrp",
+      "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791401714902-o8819n",
+      "tool": "opencode",
+      "model": "ollama/qwen2.5-coder:7b",
+      "phase": "initializing",
+      "start_time": "2026-10-07T19:35:35.727Z",
+      "status": "completed",
+      "logs": [
+        {
+          "t": "2026-10-07T19:35:35.889Z",
+          "level": "info",
+          "msg": "[session-manager] Loaded 236 sessions from disk"
+        },
+        {
+          "t": "2026-10-07T19:35:35.965Z",
+          "level": "info",
+          "msg": "[model-router] Refreshed: 8 models available"
+        },
+        {
+          "t": "2026-10-07T19:35:35.966Z",
+          "level": "info",
+          "msg": "[worker-125] Resumed session: 5b0e0bac0f45846c (retry: 0)"
+        },
+        {
+          "t": "2026-10-07T19:35:35.966Z",
+          "level": "info",
+          "msg": "[worker-125] Starting task e2e-sargagame-1791402000000 for sargagame (session: 5b0e0bac0f45846c)"
+        },
+        {
+          "t": "2026-10-07T19:35:35.966Z",
+          "level": "info",
+          "msg": "{\"event\":\"WORKER_STARTED\",\"msg\":\"Worker started for sargagame\",\"meta\":{\"worktree\":\"C:\\\\factory\\\\worktrees\\\\sargagame\\\\sargagame-1791401714902-o8819n\",\"branch\":\"factory/sargagame-1791401735554-xbrp\",\"model\":\"ollama/qwen2.5-coder:7b\",\"pid\":7672,\"session_id\":\"5b0e0bac0f45846c\"}}"
+        },
+        {
+          "t": "2026-10-07T19:35:35.967Z",
+          "level": "info",
+          "msg": "{\"event\":\"TOOL_STARTED\",\"msg\":\"Running OpenCode with ollama/qwen2.5-coder:7b\",\"meta\":{\"model\":\"ollama/qwen2.5-coder:7b\"}}"
+        },
+        {
+          "t": "2026-10-07T19:35:35.969Z",
+          "level": "info",
+          "msg": "{\"event\":\"FILE_MODIFIED\",\"msg\":\"Created test file: factory-test-1791401735966.test.js\",\"meta\":{\"file\":\"C:\\\\factory\\\\worktrees\\\\sargagame\\\\sargagame-1791401714902-o8819n\\\\tests\\\\unit\\\\factory-test-1791401735966.test.js\"}}"
+        },
+        {
+          "t": "2026-10-07T19:35:35.969Z",
+          "level": "info",
+          "msg": "{\"event\":\"TOOL_COMPLETED\",\"msg\":\"OpenCode completed\",\"meta\":{}}"
+        },
+        {
+          "t": "2026-10-07T19:35:35.970Z",
+          "level": "info",
+          "msg": "{\"event\":\"TEST_STARTED\",\"msg\":\"Running tests\",\"meta\":{}}"
+        },
+        {
+          "t": "2026-10-07T19:35:35.980Z",
+          "level": "error",
+          "msg": "(node:7672) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated."
+        },
+        {
+          "t": "2026-10-07T19:35:35.981Z",
+          "level": "error",
+          "msg": "(Use `node --trace-deprecation ...` to show where the warning was created)"
+        },
+        {
+          "t": "2026-10-07T19:35:37.799Z",
+          "level": "info",
+          "msg": "{\"event\":\"TEST_PASSED\",\"msg\":\"npm test passed\",\"meta\":{\"output\":\"> sargagame@0.0.0 test\\n> node scripts/run-tests.cjs\\n\\n\\n▶ regions\\\\regions.test.cjs\\n  ✓ assertAllRegionsValid passe sur les régions réelles\\n  ✓ getAllRegions contient les 5 régions attendues, chacune ave\"}}"
+        },
+        {
+          "t": "2026-10-07T19:35:37.820Z",
+          "level": "info",
+          "msg": "{\"event\":\"SCOPE_CHECK\",\"msg\":\"Scope check passed\",\"meta\":{}}"
+        },
+        {
+          "t": "2026-10-07T19:35:37.821Z",
+          "level": "info",
+          "msg": "{\"event\":\"POLICY_CHECK\",\"msg\":\"Policy check passed\",\"meta\":{}}"
+        },
+        {
+          "t": "2026-10-07T19:35:38.402Z",
+          "level": "info",
+          "msg": "{\"event\":\"COMMIT\",\"msg\":\"Committed\",\"meta\":{\"message\":\"Factory: e2e-sargagame-1791402000000 - Add input validation to imageResize.js\"}}"
+        },
+        {
+          "t": "2026-10-07T19:35:38.469Z",
+          "level": "info",
+          "msg": "{\"event\":\"COMMIT\",\"msg\":\"Committed 5e197e59\",\"meta\":{\"sha\":\"5e197e5994571f70fa14e833ae84bf9a81bba50f\",\"message\":\"Factory: e2e-sargagame-1791402000000 - Add input validation to imageResize.js\"}}"
+        },
+        {
+          "t": "2026-10-07T19:35:40.780Z",
+          "level": "info",
+          "msg": "{\"event\":\"PUSH\",\"msg\":\"Pushed branch factory/sargagame-1791401735554-xbrp\",\"meta\":{\"branch\":\"factory/sargagame-1791401735554-xbrp\"}}"
+        },
+        {
+          "t": "2026-10-07T19:35:43.371Z",
+          "level": "info",
+          "msg": "{\"event\":\"PR_CREATED\",\"msg\":\"PR created: https://github.com/aveca/sargagame/pull/835\",\"meta\":{\"pr_url\":\"https://github.com/aveca/sargagame/pull/835\"}}"
+        },
+        {
+          "t": "2026-10-07T19:35:43.373Z",
+          "level": "info",
+          "msg": "{\"event\":\"CI_STARTED\",\"msg\":\"Waiting for CI on factory/sargagame-1791401735554-xbrp\",\"meta\":{}}"
+        },
+        {
+          "t": "2026-10-07T19:36:27.024Z",
+          "level": "info",
+          "msg": "{\"event\":\"CI_PASSED\",\"msg\":\"CI passed\",\"meta\":{\"run_url\":\"https://github.com/aveca/sargagame/actions/runs/37675671331\",\"sha\":\"5e197e5994571f70fa14e833ae84bf9a81bba50f\"}}"
+        },
+        {
+          "t": "2026-10-07T19:36:27.030Z",
+          "level": "info",
+          "msg": "{\"event\":\"RESOLVED\",\"msg\":\"Task completed successfully\",\"meta\":{}}"
+        },
+        {
+          "t": "2026-10-07T19:36:27.031Z",
+          "level": "info",
+          "msg": "[worker-125] Task completed successfully"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-07T19:37:05.049Z"
+}

@@ -1,0 +1,6 @@
+{
+  "success": false,
+  "task_id": "e2e-test-1791386944629",
+  "session_id": "82b331825ea8ae01",
+  "error": "UNKNOWN_AGENT: 'undefined' is not a valid agent. Valid agents: aider, hermes, opencode, ollama, omniroute. Mock execution is forbidden in production."
+}

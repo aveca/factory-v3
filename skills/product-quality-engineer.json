@@ -1,0 +1,16 @@
+{
+  "name": "PRODUCT-QUALITY-ENGINEER",
+  "purpose": "functional quality + visual quality + UX quality + conversion quality + responsive quality",
+  "workflow": "AUDIT → IDENTIFY REAL PROBLEMS → PRIORITIZE → DESIGN → IMPLEMENT → TEST → VISUAL QA → REGRESSION → COMMIT → PR → CI",
+  "mandatory": "The skill must reject the idea that 'tests pass' means 'product is good.'",
+  "evaluation": {
+    "functional": "PASS - all requirements implemented correctly",
+    "visual": "PASS - no visual defects, consistent design",
+    "ux": "PASS - intuitive, accessible, usable interfaces",
+    "responsive": "PASS - works across breakpoints",
+    "regression": "PASS - no existing functionality broken",
+    "conversion": "VALIDATED - product objectives met"
+  },
+  "reject_tests_pass": true,
+  "description": "Cross-cutting product quality engineer skill that ensures all quality dimensions are validated, not just test coverage."
+}

@@ -1,0 +1,80 @@
+{
+  "session_id": "cbbe3dc6bb38ecc1",
+  "task_id": "runtime-casinobae-evt-6161425ca92f2511-1791326726614",
+  "incident_id": "evt-6161425ca92f2511",
+  "repo": "aveca/Casinobabe",
+  "branch": "factory/casinobabe-1791341599832-sqht",
+  "worktree": "C:\\factory\\worktrees\\casinobabe\\casinobabe-1791341598603-fppcbh",
+  "worker_id": "worker-48",
+  "pid": 2764,
+  "model": "ollama/qwen3-coder:30b",
+  "phase": "initializing",
+  "status": "recovering",
+  "started_at": "2026-10-07T02:53:20.071Z",
+  "updated_at": "2026-10-07T03:15:05.850Z",
+  "heartbeat": "2026-10-07T03:15:05.850Z",
+  "retry_count": 1,
+  "metadata": {
+    "project": "casinobabe",
+    "source": "runtime",
+    "payload": {
+      "description": "Casinobae runtime error: attempt to index nil value (global x)",
+      "event": {
+        "event_id": "evt-6161425ca92f2511",
+        "source": "runtime",
+        "project": "casinobabe",
+        "repository": "aveca/Casinobabe",
+        "severity": "error",
+        "type": "runtime_error",
+        "title": "WoW Error: Casinobabe",
+        "message": "attempt to index nil value (global x)",
+        "error_signature": "3c8bc8e3ce91e181",
+        "detected_at": "2026-10-06T22:32:47Z",
+        "dedup_key": "1732018111e533a9",
+        "payload": {
+          "file": "Casinobabe.lua",
+          "line": 6733,
+          "stack": "stack trace here",
+          "phase": "WOW_ERROR",
+          "dealer_state": "",
+          "game": "",
+          "addon": "Casinobabe",
+          "raw_timestamp": "2026-10-06T22:32:47Z"
+        },
+        "commit_sha": null,
+        "pr_number": null,
+        "pr_url": null,
+        "head_sha": null,
+        "ci": "pending",
+        "workflow": "Factory V3 Casinobae Pipeline",
+        "run_id": null,
+        "ci_conclusion": "pending",
+        "ci_url": null,
+        "merge": false,
+        "deploy": false,
+        "live_verify": false,
+        "repair": 0,
+        "duration": 0,
+        "result": "pending",
+        "repo": "aveca/Casinobabe",
+        "priority": 2,
+        "status": "new",
+        "start_time": "2026-10-06T22:45:26.614Z",
+        "end_time": null,
+        "timestamp": "2026-10-06T22:32:47Z",
+        "metadata": {
+          "dealer_state": "",
+          "game": "",
+          "project": "casinobabe"
+        }
+      },
+      "requirements": [
+        "Analyze the Lua runtime error",
+        "Locate the error in the codebase",
+        "Implement fix",
+        "Run Lua validation",
+        "Create PR with fix"
+      ]
+    }
+  }
+}

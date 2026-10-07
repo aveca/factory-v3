@@ -1,0 +1,54 @@
+{
+  "session_id": "f8e7db97431336e5",
+  "task_id": "task-fedcba9876543210",
+  "incident_id": "evt-fedcba9876543210",
+  "repo": "aveca/Casinobabe",
+  "branch": "factory/casinobabe-1791346259385-8b9w",
+  "worktree": "C:\\factory\\worktrees\\casinobabe\\casinobabe-1791346258256-ya8kf2",
+  "worker_id": "worker-53",
+  "pid": 20188,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "resuming",
+  "status": "failed",
+  "started_at": "2026-10-07T04:10:59.572Z",
+  "updated_at": "2026-10-07T04:10:59.776Z",
+  "heartbeat": "2026-10-07T04:10:59.572Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "casinobabe",
+    "source": "runtime",
+    "payload": {
+      "description": "Second Lua error test",
+      "factory_event": "evt-fedcba9876543210",
+      "source_event_type": "runtime_error",
+      "source_severity": "error",
+      "error_signature": "sig-456",
+      "commit_sha": null,
+      "pr_number": null,
+      "workflow": null,
+      "logs": "",
+      "original_payload": {
+        "file": "dealer.lua",
+        "line": 42,
+        "message": "second test error"
+      },
+      "requirements": [
+        "Analyze the error/event and identify root cause",
+        "Implement minimal fix",
+        "Run existing tests",
+        "Do not break existing functionality",
+        "Fix runtime error",
+        "Add error handling"
+      ]
+    }
+  },
+  "result": {
+    "success": false,
+    "task_id": "task-fedcba9876543210",
+    "session_id": "f8e7db97431336e5",
+    "model_used": "ollama/qwen2.5-coder:7b",
+    "agent_used": "aider",
+    "gateway": "none"
+  },
+  "ended_at": "2026-10-07T04:10:59.776Z"
+}

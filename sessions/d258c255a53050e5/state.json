@@ -1,0 +1,37 @@
+{
+  "session_id": "d258c255a53050e5",
+  "task_id": "prod-demo-1791385521622",
+  "incident_id": null,
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791385541388-8kk2",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791385523598-wdmryz",
+  "worker_id": "worker-68",
+  "pid": 6416,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "resuming",
+  "status": "failed",
+  "started_at": "2026-10-07T15:05:41.577Z",
+  "updated_at": "2026-10-07T15:05:41.799Z",
+  "heartbeat": "2026-10-07T15:05:41.577Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "sargagame",
+    "source": "github",
+    "payload": {
+      "description": "Quick change: update login button text from Submit to Continue",
+      "requirements": [
+        "Update text",
+        "Run tests"
+      ]
+    }
+  },
+  "result": {
+    "success": false,
+    "task_id": "prod-demo-1791385521622",
+    "session_id": "d258c255a53050e5",
+    "model_used": "ollama/qwen2.5-coder:7b",
+    "agent_used": "opencode",
+    "gateway": "none"
+  },
+  "ended_at": "2026-10-07T15:05:41.799Z"
+}

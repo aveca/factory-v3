@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "task_id": "crash-recovery-test-1791319508980",
+  "session_id": "fdb30cd909b240b9",
+  "model_used": "ollama/qwen2.5-coder:7b",
+  "agent_used": "aider",
+  "gateway": "none"
+}

@@ -1,0 +1,67 @@
+{
+  "taskId": "factory-coding-proof-1791289815389",
+  "at": "2026-10-06T12:30:53.620Z",
+  "repo": "aveca/ai-factory",
+  "project": "ai-factory",
+  "steps": [
+    {
+      "step": "repo_resolved",
+      "repo": "aveca/ai-factory",
+      "branch": "main"
+    },
+    {
+      "step": "project_context",
+      "project": "ai-factory",
+      "local_path": null,
+      "probes": []
+    },
+    {
+      "step": "worktree",
+      "root": "C:/Users/user/sargagame-tmp",
+      "head": "afbce6a915e6",
+      "worktrees": 2
+    },
+    {
+      "step": "ci_runs",
+      "runs": [
+        {
+          "n": 8,
+          "wf": "Factory CI",
+          "conclusion": "success",
+          "sha": "0a3ed8820c0ee744bf43273078a4c57710e796e7",
+          "url": "https://github.com/aveca/ai-factory/actions/runs/37375463737"
+        },
+        {
+          "n": 7,
+          "wf": "Factory CI",
+          "conclusion": "success",
+          "sha": "e0eed043d178ee306f291874e229078c909e2183",
+          "url": "https://github.com/aveca/ai-factory/actions/runs/37375042486"
+        },
+        {
+          "n": 6,
+          "wf": "Factory CI",
+          "conclusion": "success",
+          "sha": "a43562c13b3d0c2bde117ba069f1463f0d1cfb4d",
+          "url": "https://github.com/aveca/ai-factory/actions/runs/37374992729"
+        }
+      ]
+    },
+    {
+      "step": "qa_probes",
+      "results": [
+        {
+          "level": "DEFERRED",
+          "probe": "ci_logs",
+          "ok": null,
+          "proof": "deferred",
+          "detail": "logs CI collectes par incident-worker"
+        }
+      ]
+    },
+    {
+      "step": "qa_live",
+      "note": "preuves HTTP/fingerprint ci-dessus quand live_urls connues"
+    }
+  ]
+}

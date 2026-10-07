@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "task_id": "final-recovery-1791315245464",
+  "session_id": "c22d1a5410455962",
+  "commit_sha": "d47d28d2094870f8f50b24e9c9e2587e8a3e1a4f",
+  "branch": "factory/casinobabe-1791315246672-8c9s",
+  "model_used": "ollama/qwen3-coder:30b",
+  "phases_completed": [
+    "tool",
+    "tests",
+    "git",
+    "pr",
+    "ci"
+  ]
+}

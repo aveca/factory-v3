@@ -1,0 +1,9 @@
+{
+  "id": "e2e-test-1791258333121",
+  "source": "test",
+  "repo": "aveca/sargagame",
+  "severity": "P1",
+  "error": "Test error for E2E validation",
+  "detected_at": "2026-10-06T03:45:33.121Z",
+  "status": "NEW"
+}

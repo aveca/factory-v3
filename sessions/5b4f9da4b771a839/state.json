@@ -1,0 +1,48 @@
+{
+  "session_id": "5b4f9da4b771a839",
+  "task_id": "task-1e93266de57859d8",
+  "incident_id": "evt-1e93266de57859d8",
+  "repo": "aveca/Casinobabe",
+  "branch": "factory/casinobabe-1791342758723-8ljj",
+  "worktree": "C:\\factory\\worktrees\\casinobabe\\casinobabe-1791342757582-0v43bc",
+  "worker_id": "worker-135",
+  "pid": 12024,
+  "model": "ollama/qwen3-coder:30b",
+  "phase": "resuming",
+  "status": "failed",
+  "started_at": "2026-10-07T03:12:38.968Z",
+  "updated_at": "2026-10-07T03:12:39.259Z",
+  "heartbeat": "2026-10-07T03:12:38.968Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "casinobabe",
+    "source": "runtime",
+    "payload": {
+      "description": "Test error",
+      "factory_event": "evt-1e93266de57859d8",
+      "source_event_type": "runtime_error",
+      "source_severity": "error",
+      "error_signature": "1e93266de57859d8",
+      "commit_sha": null,
+      "pr_number": null,
+      "workflow": "Factory V3 Casinobae Pipeline",
+      "logs": "",
+      "original_payload": {},
+      "requirements": [
+        "Analyze the error/event and identify root cause",
+        "Implement minimal fix",
+        "Run existing tests",
+        "Do not break existing functionality",
+        "Fix runtime error",
+        "Add error handling"
+      ]
+    }
+  },
+  "result": {
+    "success": false,
+    "task_id": "task-1e93266de57859d8",
+    "session_id": "5b4f9da4b771a839",
+    "error": "executor.execute is not a function"
+  },
+  "ended_at": "2026-10-07T03:12:39.259Z"
+}

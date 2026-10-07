@@ -1,0 +1,35 @@
+{
+  "session_id": "27fc386fba5e6653",
+  "task_id": "recovery-test-1791311403447",
+  "incident_id": null,
+  "repo": "aveca/Casinobabe",
+  "branch": "factory/casinobabe-1791312320816-abc123",
+  "worktree": "C:\\factory\\worktrees\\casinobabe\\casinobabe-1791312320816-jf5s92",
+  "worker_id": "test-worker-1",
+  "pid": 21336,
+  "model": "ollama/qwen3-coder:30b",
+  "phase": "harness",
+  "status": "failed",
+  "started_at": "2026-10-06T18:47:51.005Z",
+  "updated_at": "2026-10-06T18:47:51.137Z",
+  "heartbeat": "2026-10-06T18:47:51.006Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "casinobabe",
+    "payload": {
+      "description": "RECOVERY TEST: Add debug logging to Core.lua",
+      "requirements": [
+        "Modify addon/CasinoBae/Core.lua",
+        "Run Lua validation",
+        "Commit and push"
+      ]
+    }
+  },
+  "result": {
+    "success": false,
+    "task_id": "recovery-test-1791311403447",
+    "session_id": "27fc386fba5e6653",
+    "error": "Harness validation failed"
+  },
+  "ended_at": "2026-10-06T18:47:51.137Z"
+}

@@ -1,0 +1,41 @@
+{
+  "session_id": "9c8a46a1c2941aad",
+  "task_id": "task-1791341129687-zu6k4n",
+  "incident_id": null,
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791341715297-s6av",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791341697640-9lncu7",
+  "worker_id": "worker-105",
+  "pid": 10132,
+  "model": "ollama/qwen3-coder:30b",
+  "phase": "resuming",
+  "status": "recovering",
+  "started_at": "2026-10-07T02:55:15.499Z",
+  "updated_at": "2026-10-07T03:15:05.838Z",
+  "heartbeat": "2026-10-07T03:15:05.838Z",
+  "retry_count": 1,
+  "metadata": {
+    "project": "sargagame",
+    "source": "runtime",
+    "payload": {
+      "description": "Synthetic task queued for Factory V3 pipeline testing",
+      "factory_event": "evt-1791302555924000",
+      "source_event_type": "runtime_error",
+      "source_severity": "info",
+      "error_signature": "1791302555924000",
+      "original_payload": {
+        "description": "Synthetic task queued for Factory V3 pipeline testing",
+        "factory_event": "evt-1791302555924000",
+        "source_event_type": "runtime_error",
+        "source_severity": "info"
+      },
+      "requirements": [
+        "Analyze the error/event and identify root cause",
+        "Implement minimal fix",
+        "Run existing tests",
+        "Commit and push changes",
+        "Create PR and wait for CI"
+      ]
+    }
+  }
+}

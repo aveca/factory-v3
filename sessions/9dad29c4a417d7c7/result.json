@@ -1,0 +1,6 @@
+{
+  "success": false,
+  "task_id": "recovery-test-1791311403447",
+  "session_id": "9dad29c4a417d7c7",
+  "error": "Command failed: git.exe commit -F C:\\factory\\worktrees\\casinobabe\\casinobabe-1791312320816-jf5s92\\.git\\COMMIT_MSG"
+}

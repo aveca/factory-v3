@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "task_id": "runtime-casinobae-evt-503dae430b2ce352-1791326500970",
+  "session_id": "cdab98524ec3301e",
+  "commit_sha": "3ecd862070e1411d6b741afcd804131f28c48867",
+  "branch": "factory/casinobabe-1791326595102-xvja",
+  "model_used": "ollama/qwen3-coder:30b",
+  "phases_completed": [
+    "tool",
+    "tests",
+    "git",
+    "pr",
+    "ci"
+  ]
+}

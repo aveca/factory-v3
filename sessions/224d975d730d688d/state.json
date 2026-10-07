@@ -1,0 +1,37 @@
+{
+  "session_id": "224d975d730d688d",
+  "task_id": "test-aider-real-execution-1791347000000",
+  "incident_id": null,
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791385608044-42uf",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791385591872-efx10h",
+  "worker_id": "worker-68",
+  "pid": 3808,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "resuming",
+  "status": "failed",
+  "started_at": "2026-10-07T15:06:48.221Z",
+  "updated_at": "2026-10-07T15:06:48.423Z",
+  "heartbeat": "2026-10-07T15:06:48.221Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "sargagame",
+    "source": "test",
+    "payload": {
+      "description": "Add a simple test file to verify Aider execution",
+      "requirements": [
+        "Create a test file",
+        "Run tests"
+      ]
+    }
+  },
+  "result": {
+    "success": false,
+    "task_id": "test-aider-real-execution-1791347000000",
+    "session_id": "224d975d730d688d",
+    "model_used": "ollama/qwen2.5-coder:7b",
+    "agent_used": "opencode",
+    "gateway": "none"
+  },
+  "ended_at": "2026-10-07T15:06:48.423Z"
+}

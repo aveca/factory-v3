@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "task_id": "casinobae-1791336732486-klo7s0",
+  "session_id": "901f50fb9296c95c",
+  "commit_sha": null,
+  "branch": null,
+  "model_used": "ollama/qwen2.5-coder:7b",
+  "agent_used": "ollama",
+  "gateway": "none",
+  "phases_completed": [
+    "tool",
+    "tests"
+  ]
+}

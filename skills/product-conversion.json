@@ -1,0 +1,8 @@
+{
+  "name": "PRODUCT-CONVERSION",
+  "purpose": "Improve business effectiveness",
+  "evaluate": "value proposition, CTA, friction, trust, pricing, social proof, onboarding, activation, checkout, retention hooks",
+  "do_not_optimize_purely_aesthetics": true,
+  "every_ui_decision_must_have": "product rationale",
+  "description": "Product conversion skill that evaluates business effectiveness of UI/UX decisions. Every major decision must have a product rationale tied to business objectives, not just aesthetic preferences."
+}

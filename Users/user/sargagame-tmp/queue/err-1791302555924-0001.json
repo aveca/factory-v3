@@ -1,0 +1,17 @@
+{
+  "event_id": "err-1791302555924-0001",
+  "correlation_id": "corr-1791340769481",
+  "job_id": "job-1791340769481",
+  "project": "sargagame",
+  "repo": "aveca/sargagame",
+  "event_type": "TASK_QUEUED",
+  "source": "factory-v3",
+  "dedupe_key": "sargagame-1791340769481",
+  "timestamps": {
+    "created": "2026-10-07T02:39:29.481Z",
+    "queued": "2026-10-07T02:39:29.481Z"
+  },
+  "status": "CLAIMED",
+  "claimedAt": "2026-10-07T02:51:18.913Z",
+  "claimedBy": "worker-46"
+}

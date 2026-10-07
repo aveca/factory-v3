@@ -1,0 +1,6 @@
+{
+  "success": false,
+  "task_id": "recovery-test-1791311403447",
+  "session_id": "a29ef9080deac842",
+  "error": "Command failed (1): git.exe push --set-upstream origin factory/casinobabe-1791312320816-abc123\nerror: src refspec factory/casinobabe-1791312320816-abc123 does not match any\nerror: failed to push some refs to 'https://github.com/aveca/Casinobabe.git'\n"
+}

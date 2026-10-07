@@ -1,0 +1,17 @@
+{
+  "lastEventId": null,
+  "lastEventTime": "2026-10-07T03:32:35.621Z",
+  "totalEvents": 1,
+  "duplicates": 0,
+  "errors": 0,
+  "lastCleanup": 1791343955621,
+  "bySource": {
+    "runtime": 5
+  },
+  "byProject": {
+    "sargagame": 5
+  },
+  "byType": {
+    "runtime_error": 5
+  }
+}

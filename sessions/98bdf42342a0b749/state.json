@@ -1,0 +1,56 @@
+{
+  "session_id": "98bdf42342a0b749",
+  "task_id": "task-1e93266de57859d8",
+  "incident_id": "evt-1e93266de57859d8",
+  "repo": "aveca/Casinobabe",
+  "branch": "factory/casinobabe-1791345055356-vimz",
+  "worktree": "C:\\factory\\worktrees\\casinobabe\\casinobabe-1791345054167-s8v3qv",
+  "worker_id": "worker-16",
+  "pid": 19448,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "resuming",
+  "status": "completed",
+  "started_at": "2026-10-07T03:50:55.528Z",
+  "updated_at": "2026-10-07T03:50:55.781Z",
+  "heartbeat": "2026-10-07T03:50:55.528Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "casinobabe",
+    "source": "runtime",
+    "payload": {
+      "description": "Test error",
+      "factory_event": "evt-1e93266de57859d8",
+      "source_event_type": "runtime_error",
+      "source_severity": "error",
+      "error_signature": "1e93266de57859d8",
+      "commit_sha": null,
+      "pr_number": null,
+      "workflow": "Factory V3 Casinobae Pipeline",
+      "logs": "",
+      "original_payload": {},
+      "requirements": [
+        "Analyze the error/event and identify root cause",
+        "Implement minimal fix",
+        "Run existing tests",
+        "Do not break existing functionality",
+        "Fix runtime error",
+        "Add error handling"
+      ]
+    }
+  },
+  "result": {
+    "success": true,
+    "task_id": "task-1e93266de57859d8",
+    "session_id": "98bdf42342a0b749",
+    "commit_sha": null,
+    "branch": null,
+    "model_used": "ollama/qwen2.5-coder:7b",
+    "agent_used": "ollama",
+    "gateway": "none",
+    "phases_completed": [
+      "tool",
+      "tests"
+    ]
+  },
+  "ended_at": "2026-10-07T03:50:55.781Z"
+}

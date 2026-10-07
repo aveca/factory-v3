@@ -1,0 +1,41 @@
+{
+  "session_id": "833cad131ca7c68f",
+  "task_id": "task-2222222222222222",
+  "incident_id": "evt-2222222222222222",
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791341652839-wb5v",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791341630281-m1z6q1",
+  "worker_id": "worker-95",
+  "pid": 18332,
+  "model": "ollama/qwen3-coder:30b",
+  "phase": "initializing",
+  "status": "recovering",
+  "started_at": "2026-10-07T02:54:13.046Z",
+  "updated_at": "2026-10-07T02:54:13.196Z",
+  "heartbeat": "2026-10-07T02:54:13.196Z",
+  "retry_count": 1,
+  "metadata": {
+    "project": "sargagame",
+    "source": "github",
+    "payload": {
+      "description": "Test 2",
+      "factory_event": "evt-2222222222222222",
+      "source_event_type": "ci_failure",
+      "source_severity": "error",
+      "error_signature": "sig2",
+      "commit_sha": null,
+      "pr_number": null,
+      "workflow": null,
+      "logs": "",
+      "original_payload": {},
+      "requirements": [
+        "Analyze the error/event and identify root cause",
+        "Implement minimal fix",
+        "Run existing tests",
+        "Do not break existing functionality",
+        "Fix failing CI tests",
+        "Ensure all checks pass"
+      ]
+    }
+  }
+}

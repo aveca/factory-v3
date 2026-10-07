@@ -1,0 +1,50 @@
+{
+  "session_id": "ab82d8d29059edaf",
+  "task_id": "task-1111111111111111",
+  "incident_id": "evt-1111111111111111",
+  "repo": "aveca/Casinobabe",
+  "branch": "factory/casinobabe-1791346265546-mrfw",
+  "worktree": "C:\\factory\\worktrees\\casinobabe\\casinobabe-1791346264036-o5gz84",
+  "worker_id": "worker-55",
+  "pid": 27484,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "resuming",
+  "status": "failed",
+  "started_at": "2026-10-07T04:11:05.713Z",
+  "updated_at": "2026-10-07T04:11:05.947Z",
+  "heartbeat": "2026-10-07T04:11:05.713Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "casinobabe",
+    "source": "runtime",
+    "payload": {
+      "description": "Test 1",
+      "factory_event": "evt-1111111111111111",
+      "source_event_type": "runtime_error",
+      "source_severity": "error",
+      "error_signature": "sig1",
+      "commit_sha": null,
+      "pr_number": null,
+      "workflow": null,
+      "logs": "",
+      "original_payload": {},
+      "requirements": [
+        "Analyze the error/event and identify root cause",
+        "Implement minimal fix",
+        "Run existing tests",
+        "Do not break existing functionality",
+        "Fix runtime error",
+        "Add error handling"
+      ]
+    }
+  },
+  "result": {
+    "success": false,
+    "task_id": "task-1111111111111111",
+    "session_id": "ab82d8d29059edaf",
+    "model_used": "ollama/qwen2.5-coder:7b",
+    "agent_used": "aider",
+    "gateway": "none"
+  },
+  "ended_at": "2026-10-07T04:11:05.947Z"
+}

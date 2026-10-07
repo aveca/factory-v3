@@ -1,0 +1,50 @@
+{
+  "session_id": "bebadfa2fcae2c6c",
+  "task_id": "task-2222222222222222",
+  "incident_id": "evt-2222222222222222",
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791346286982-6i92",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791346265721-dksrkp",
+  "worker_id": "worker-56",
+  "pid": 19016,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "resuming",
+  "status": "failed",
+  "started_at": "2026-10-07T04:11:27.166Z",
+  "updated_at": "2026-10-07T04:11:27.470Z",
+  "heartbeat": "2026-10-07T04:11:27.166Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "sargagame",
+    "source": "github",
+    "payload": {
+      "description": "Test 2",
+      "factory_event": "evt-2222222222222222",
+      "source_event_type": "ci_failure",
+      "source_severity": "error",
+      "error_signature": "sig2",
+      "commit_sha": null,
+      "pr_number": null,
+      "workflow": null,
+      "logs": "",
+      "original_payload": {},
+      "requirements": [
+        "Analyze the error/event and identify root cause",
+        "Implement minimal fix",
+        "Run existing tests",
+        "Do not break existing functionality",
+        "Fix failing CI tests",
+        "Ensure all checks pass"
+      ]
+    }
+  },
+  "result": {
+    "success": false,
+    "task_id": "task-2222222222222222",
+    "session_id": "bebadfa2fcae2c6c",
+    "model_used": "ollama/qwen2.5-coder:7b",
+    "agent_used": "aider",
+    "gateway": "none"
+  },
+  "ended_at": "2026-10-07T04:11:27.470Z"
+}

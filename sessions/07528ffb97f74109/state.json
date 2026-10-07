@@ -1,0 +1,34 @@
+{
+  "session_id": "07528ffb97f74109",
+  "incident_id": null,
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791345042927-qsw8",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791345025577-ttqm25",
+  "worker_id": "worker-1",
+  "pid": 2160,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "resuming",
+  "status": "completed",
+  "started_at": "2026-10-07T03:50:43.133Z",
+  "updated_at": "2026-10-07T03:50:43.370Z",
+  "heartbeat": "2026-10-07T03:50:43.133Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "sargagame",
+    "source": "factory-v3"
+  },
+  "result": {
+    "success": true,
+    "session_id": "07528ffb97f74109",
+    "commit_sha": null,
+    "branch": null,
+    "model_used": "ollama/qwen2.5-coder:7b",
+    "agent_used": "ollama",
+    "gateway": "none",
+    "phases_completed": [
+      "tool",
+      "tests"
+    ]
+  },
+  "ended_at": "2026-10-07T03:50:43.370Z"
+}

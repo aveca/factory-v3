@@ -1,0 +1,20 @@
+{
+  "gmail": {
+    "auth_state": "GMAIL_AUTH_MISSING",
+    "needs_human": true,
+    "reason": "credentials.json absent",
+    "last_poll": "2026-10-07T19:45:05.518Z",
+    "scanned": 0,
+    "queued": 0
+  },
+  "last_failure": {
+    "at": "2026-10-07T19:45:05.506Z",
+    "where": "gmail",
+    "reason": "credentials.json absent"
+  },
+  "github": {
+    "last_poll": "2026-10-07T19:45:04.578Z",
+    "watched": 0,
+    "queued": 0
+  }
+}

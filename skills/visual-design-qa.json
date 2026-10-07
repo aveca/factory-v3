@@ -1,0 +1,9 @@
+{
+  "name": "VISUAL-DESIGN-QA",
+  "purpose": "Prevent technically correct but visually poor releases",
+  "mandatory_qa": "desktop, tablet, mobile",
+  "check": "alignment, spacing, typography, contrast, component consistency, visual hierarchy, CTA prominence, layout density, overflow, responsive breakpoints, empty/error/loading states",
+  "evidence": "screenshots or equivalent visual evidence when available",
+  "fail_criteria": "A page that works but looks unfinished must FAIL visual QA",
+  "description": "Visual design QA skill that ensures releases meet visual quality standards across all device sizes. Visual quality is a requirement, not an afterthought."
+}

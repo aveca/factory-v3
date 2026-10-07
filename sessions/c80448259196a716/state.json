@@ -1,0 +1,28 @@
+{
+  "session_id": "c80448259196a716",
+  "task_id": "test-aider-2-1791386127462",
+  "incident_id": null,
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791386178285-e40l",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791386161373-ff4g3i",
+  "worker_id": "worker-72",
+  "pid": 3348,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "resuming",
+  "status": "recovering",
+  "started_at": "2026-10-07T15:16:18.493Z",
+  "updated_at": "2026-10-07T15:22:15.012Z",
+  "heartbeat": "2026-10-07T15:22:15.012Z",
+  "retry_count": 1,
+  "metadata": {
+    "project": "sargagame",
+    "source": "test",
+    "payload": {
+      "description": "Add a simple test file to verify Aider execution",
+      "requirements": [
+        "Create a test file",
+        "Run tests"
+      ]
+    }
+  }
+}

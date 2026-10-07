@@ -1,0 +1,28 @@
+{
+  "session_id": "4c1dcf77f20fca4e",
+  "incident_id": null,
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791346249996-f0yv",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791346233964-y6ionc",
+  "worker_id": "worker-33",
+  "pid": 21632,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "resuming",
+  "status": "failed",
+  "started_at": "2026-10-07T04:10:50.160Z",
+  "updated_at": "2026-10-07T04:10:50.363Z",
+  "heartbeat": "2026-10-07T04:10:50.160Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "sargagame",
+    "source": "factory-v3"
+  },
+  "result": {
+    "success": false,
+    "session_id": "4c1dcf77f20fca4e",
+    "model_used": "ollama/qwen2.5-coder:7b",
+    "agent_used": "aider",
+    "gateway": "none"
+  },
+  "ended_at": "2026-10-07T04:10:50.363Z"
+}

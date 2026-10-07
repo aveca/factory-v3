@@ -1,0 +1,12 @@
+delete require.cache[require.resolve('child_process')];
+delete require.cache[require.resolve('./security-validator.cjs')];
+const { SecurityValidator } = require('./security-validator.cjs');
+const v = new SecurityValidator();
+console.log('Node:', v.checkNode());
+console.log('Git:', v.checkGit());
+console.log('GH:', v.checkGhCli());
+console.log('Ollama:', v.checkOllama());
+console.log('OpenCode:', v.checkOpenCode());
+console.log('GitHub Auth:', v.checkGhAuth());
+console.log('Gmail:', v.checkGmailAuth());
+console.log('Full:', JSON.stringify(v.checkRequiredSecrets(), null, 2));

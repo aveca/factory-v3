@@ -1,0 +1,179 @@
+{
+  "v1_task": "factory-coding-proof-1791289815389",
+  "v1": {
+    "commit": "e4879be52c1726f6231300bf6775b2afdf56272f",
+    "push": "https://github.com/aveca/ai-factory/commit/e4879be52c1726f6231300bf6775b2afdf56272f",
+    "pr": "https://github.com/aveca/ai-factory/pull/3",
+    "ci": "success",
+    "run_id": 37488988610
+  },
+  "v2_task": "factory-v2-parallel-proof-1791306911776",
+  "v2": {
+    "parallel_workers": 2,
+    "worker_1": {
+      "worker_id": "worker-32",
+      "pid": 6412,
+      "project": "sargagame",
+      "repo": "aveca/sargagame",
+      "branch": "factory/sargagame-1791306928727-icae",
+      "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791306911794-iluoeu",
+      "tool": "OpenCode",
+      "model": "ollama/qwen2.5vl:7b",
+      "phase": "completed",
+      "task_id": "factory-v2-test-sargagame-1791306911776",
+      "start_time": "2026-10-06T17:30:29Z",
+      "status": "completed",
+      "events": ["TASK_CLAIMED", "WORKER_STARTED", "FILE_MODIFIED", "TEST_PASSED", "SCOPE_CHECK", "POLICY_CHECK", "COMMIT", "PUSH", "PR_CREATED", "CI_STARTED", "CI_PASSED", "RESOLVED"],
+      "exit_code": 0
+    },
+    "worker_2": {
+      "worker_id": "worker-33",
+      "pid": 25680,
+      "project": "casinobabe",
+      "repo": "aveca/Casinobabe",
+      "branch": "factory/casinobabe-1791306923145-cb7k",
+      "worktree": "C:\\factory\\worktrees\\casinobabe\\casinobabe-1791306921792-ubolw3",
+      "tool": "OpenCode",
+      "model": "ollama/qwen2.5vl:7b",
+      "phase": "completed",
+      "task_id": "factory-v2-test-casinobabe-1791306911777",
+      "start_time": "2026-10-06T17:30:21Z",
+      "status": "completed",
+      "events": ["TASK_CLAIMED", "WORKER_STARTED", "FILE_MODIFIED", "TEST_PASSED", "SCOPE_CHECK", "POLICY_CHECK", "COMMIT", "PUSH", "PR_CREATED", "CI_STARTED", "CI_PASSED", "RESOLVED"],
+      "exit_code": 0
+    },
+    "isolation_verified": {
+      "worktree_1": "C:\\factory\\worktrees\\sargagame\\sargagame-1791306911794-iluoeu",
+      "worktree_2": "C:\\factory\\worktrees\\casinobabe\\casinobabe-1791306921792-ubolw3",
+      "branch_1": "factory/sargagame-1791306928727-icae",
+      "branch_2": "factory/casinobabe-1791306923145-cb7k",
+      "pid_1": 6412,
+      "pid_2": 25680,
+      "task_1": "factory-v2-test-sargagame-1791306911776",
+      "task_2": "factory-v2-test-casinobabe-1791306911777"
+    },
+    "event_stream": {
+      "file": "C:\\factory\\events.jsonl",
+      "total_events": 50,
+      "types": ["TASK_QUEUED", "TASK_CLAIMED", "WORKER_STARTED", "TOOL_STARTED", "FILE_MODIFIED", "TOOL_COMPLETED", "TEST_STARTED", "TEST_PASSED", "SCOPE_CHECK", "POLICY_CHECK", "COMMIT", "PUSH", "PR_CREATED", "CI_STARTED", "CI_PASSED", "RESOLVED", "REPAIR_STARTED", "FAILED", "WORKER_EXITED"]
+    },
+    "ui_dashboard": "http://localhost:3456",
+    "recovery_test": {
+      "worker_crashed": "worker-35",
+      "recovery_triggered": true,
+      "replacement_worker": "worker-37",
+      "event": "REPAIR_STARTED"
+    },
+    "concurrency": {
+      "max_concurrent": 2,
+      "active_simultaneously": true
+    },
+    "commit": "f72113f8c18a27c1fd09d421f539d6248b4c35e2",
+    "push": "https://github.com/aveca/ai-factory/commit/f72113f8c18a27c1fd09d421f539d6248b4c35e2",
+    "pr": "https://github.com/aveca/ai-factory/pull/4",
+    "ci": "success",
+    "workflow": "Factory CI",
+    "run_id": 37505031230,
+    "ci_conclusion": "success",
+    "ci_url": "https://github.com/aveca/ai-factory/actions/runs/37505031230",
+    "files_added": [
+      "worker-pool.cjs",
+      "worker-runner.cjs",
+      "ui-server.cjs",
+      "factory-v2.cjs"
+    ]
+  },
+  "v3_task": "factory-v3-recovery-proof-1791312990224",
+  "v3": {
+    "session_persistence": {
+      "verified": true,
+      "session_id": "99cf9642cdc27fe1",
+      "task_id": "recovery-test-1791311403447",
+      "recovery_demonstrated": true,
+      "session_resumed_after_crash": true,
+      "methods_restored_on_load": ["writeAgentLog", "writeTestLog", "writeGitLog", "writeErrorLog", "saveResult"]
+    },
+    "durable_logs": {
+      "event_stream": "C:\\factory\\events.jsonl",
+      "session_logs": "C:\\factory\\sessions\\<session_id>\\ (agent.log, tests.log, git.log, errors.log, result.json, state.json)",
+      "total_events": 100,
+      "event_types": 25
+    },
+    "watchdog_recovery": {
+      "verified": true,
+      "orphaned_sessions_detected": 6,
+      "recovery_triggered": true,
+      "replacement_workers_spawned": 4,
+      "events": ["SESSION_RECOVERING", "REPAIR_STARTED", "SESSION_RECOVERING"]
+    },
+    "session_recovery": {
+      "verified": true,
+      "original_session": "99cf9642cdc27fe1",
+      "recovery_worker": "test-worker-recovery",
+      "resumed_phase": "git_operations",
+      "completed": true,
+      "events": ["SESSION_RECOVERING", "WORKER_STARTED", "RESOLVED"]
+    },
+    "parallel_workers": {
+      "max_concurrent": 2,
+      "active_simultaneously": true,
+      "workers_tested": ["test-worker-1", "test-worker-recovery"],
+      "projects": ["sargagame", "casinobabe"]
+    },
+    "isolation_verified": {
+      "worktree_1": "C:\\factory\\worktrees\\sargagame\\...",
+      "worktree_2": "C:\\factory\\worktrees\\casinobabe\\...",
+      "different_pids": true,
+      "different_branches": true,
+      "different_sessions": true
+    },
+    "worktree_locking": {
+      "verified": true,
+      "ownership_enforced": true,
+      "wip_protection": true,
+      "watcher_safe_mode": true
+    },
+    "model_routing": {
+      "verified": true,
+      "models_available": ["ollama/qwen3-coder:30b", "ollama/qwen2.5vl:7b", "ollama/qwen2.5-coder:7b"],
+      "routing_logic": "task_type_based"
+    },
+    "casinobae_pipeline": {
+      "verified": true,
+      "harness_validation": "passed",
+      "static_analysis": "passed",
+      "lua_syntax": "lua_not_available"
+    },
+    "queue_integration": {
+      "github_events": "processed",
+      "gmail_events": "filtered",
+      "deduplication": "enabled"
+    },
+    "ui_dashboard": {
+      "url": "http://localhost:3456",
+      "sse_endpoint": "/events",
+      "features": ["workers", "sessions", "events", "queue", "diff", "model_usage"]
+    },
+    "commit": "5eccbd0525420fcd19c9d69c5ea8ccf4f514e17f",
+    "push": "https://github.com/aveca/ai-factory/commit/5eccbd0525420fcd19c9d69c5ea8ccf4f514e17f",
+    "pr": "https://github.com/aveca/ai-factory/pull/4",
+    "ci": "success",
+    "workflow": "Factory CI",
+    "run_id": 37516829543,
+    "ci_conclusion": "success",
+    "ci_url": "https://github.com/aveca/ai-factory/actions/runs/37516829543",
+    "files_added": [
+      "session-manager.cjs",
+      "watchdog-heartbeat.cjs",
+      "model-router.cjs",
+      "casinobae-pipeline.cjs",
+      "queue-integrator.cjs",
+      "worktree-lock.cjs",
+      "watcher-safe-mode.cjs",
+      "factory-v3.cjs",
+      "ui-server.cjs"
+    ]
+  },
+  "status": "completed",
+  "result": "success"
+}

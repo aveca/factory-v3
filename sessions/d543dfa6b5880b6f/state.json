@@ -1,0 +1,50 @@
+{
+  "session_id": "d543dfa6b5880b6f",
+  "task_id": "task-71d574d828448936",
+  "incident_id": "evt-71d574d828448936",
+  "repo": "aveca/Casinobabe",
+  "branch": "factory/casinobabe-1791342747483-ws38",
+  "worktree": "C:\\factory\\worktrees\\casinobabe\\casinobabe-1791342746281-zxwv6b",
+  "worker_id": "worker-111",
+  "pid": 24352,
+  "model": "ollama/qwen3-coder:30b",
+  "phase": "resuming",
+  "status": "failed",
+  "started_at": "2026-10-07T03:12:27.682Z",
+  "updated_at": "2026-10-07T03:12:27.972Z",
+  "heartbeat": "2026-10-07T03:12:27.682Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "casinobabe",
+    "source": "github",
+    "payload": {
+      "description": "Tests failed in GitHub Actions",
+      "factory_event": "evt-71d574d828448936",
+      "source_event_type": "ci_failure",
+      "source_severity": "error",
+      "error_signature": "test-ci-failure",
+      "commit_sha": null,
+      "pr_number": null,
+      "workflow": null,
+      "logs": "",
+      "original_payload": {
+        "test": true
+      },
+      "requirements": [
+        "Analyze the error/event and identify root cause",
+        "Implement minimal fix",
+        "Run existing tests",
+        "Do not break existing functionality",
+        "Fix failing CI tests",
+        "Ensure all checks pass"
+      ]
+    }
+  },
+  "result": {
+    "success": false,
+    "task_id": "task-71d574d828448936",
+    "session_id": "d543dfa6b5880b6f",
+    "error": "executor.execute is not a function"
+  },
+  "ended_at": "2026-10-07T03:12:27.972Z"
+}

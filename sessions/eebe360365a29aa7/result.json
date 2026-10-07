@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "task_id": "factory-e2e-single-1791391734476- 0funxsh",
+  "session_id": "eebe360365a29aa7",
+  "model_used": "ollama/qwen2.5-coder:7b",
+  "agent_used": "aider",
+  "gateway": "none"
+}

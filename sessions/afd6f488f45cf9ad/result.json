@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "task_id": "casinobae-1791336793736-dgc9oi",
+  "session_id": "afd6f488f45cf9ad",
+  "model_used": "ollama/qwen2.5-coder:7b",
+  "agent_used": "ollama",
+  "gateway": "none"
+}

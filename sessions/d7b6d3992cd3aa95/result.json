@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "task_id": "task-1791341129687-zu6k4n",
+  "session_id": "d7b6d3992cd3aa95",
+  "commit_sha": null,
+  "branch": null,
+  "model_used": "ollama/qwen2.5-coder:7b",
+  "agent_used": "aider",
+  "gateway": "none",
+  "phases_completed": [
+    "tool",
+    "tests"
+  ]
+}

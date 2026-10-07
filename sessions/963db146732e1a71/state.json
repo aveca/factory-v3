@@ -1,0 +1,37 @@
+{
+  "session_id": "963db146732e1a71",
+  "task_id": "crash-recovery-test-1791319338249",
+  "incident_id": null,
+  "repo": "aveca/Casinobabe",
+  "branch": "factory/casinobabe-1791319339630-esrq",
+  "worktree": "C:\\factory\\worktrees\\casinobabe\\casinobabe-1791319338357-aao188",
+  "worker_id": "worker-5",
+  "pid": 28980,
+  "model": "ollama/qwen3-coder:30b",
+  "phase": "tool_running",
+  "status": "failed",
+  "started_at": "2026-10-06T20:42:19.873Z",
+  "updated_at": "2026-10-06T20:42:20.038Z",
+  "heartbeat": "2026-10-06T20:42:19.873Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "casinobabe",
+    "source": "crash-recovery-test",
+    "payload": {
+      "description": "CRASH RECOVERY TEST: Force worker crash",
+      "requirements": [
+        "Modify addon/CasinoBae/Core.lua",
+        "Run Lua validation",
+        "Commit and push"
+      ],
+      "forceFailure": true
+    }
+  },
+  "result": {
+    "success": false,
+    "task_id": "crash-recovery-test-1791319338249",
+    "session_id": "963db146732e1a71",
+    "error": "Intentional failure for recovery test"
+  },
+  "ended_at": "2026-10-06T20:42:20.038Z"
+}

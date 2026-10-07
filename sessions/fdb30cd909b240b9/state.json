@@ -1,0 +1,39 @@
+{
+  "session_id": "fdb30cd909b240b9",
+  "task_id": "crash-recovery-test-1791319508980",
+  "incident_id": null,
+  "repo": "aveca/Casinobabe",
+  "branch": "factory/casinobabe-1791346245086-tyna",
+  "worktree": "C:\\factory\\worktrees\\casinobabe\\casinobabe-1791346243970-8ulkpj",
+  "worker_id": "worker-34",
+  "pid": 26552,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "resuming",
+  "status": "failed",
+  "started_at": "2026-10-07T04:10:45.289Z",
+  "updated_at": "2026-10-07T04:10:45.522Z",
+  "heartbeat": "2026-10-07T04:10:45.289Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "casinobabe",
+    "source": "crash-recovery-test",
+    "payload": {
+      "description": "CRASH RECOVERY TEST: Force worker crash",
+      "requirements": [
+        "Modify addon/CasinoBae/Core.lua",
+        "Run Lua validation",
+        "Commit and push"
+      ],
+      "forceFailure": true
+    }
+  },
+  "result": {
+    "success": false,
+    "task_id": "crash-recovery-test-1791319508980",
+    "session_id": "fdb30cd909b240b9",
+    "model_used": "ollama/qwen2.5-coder:7b",
+    "agent_used": "aider",
+    "gateway": "none"
+  },
+  "ended_at": "2026-10-07T04:10:45.522Z"
+}

@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "task_id": "e2e-test-1791339953354",
+  "session_id": "f9b0b75a353a2f05",
+  "model_used": "ollama/qwen2.5-coder:7b",
+  "agent_used": "aider",
+  "gateway": "none"
+}

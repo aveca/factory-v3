@@ -1,0 +1,88 @@
+{
+  "nextWorkerId": 38,
+  "workers": [
+    {
+      "worker_id": "worker-37",
+      "pid": 17064,
+      "task_id": "factory-v2-test-sargagame-1791307908807",
+      "project": "sargagame",
+      "repo": "aveca/sargagame",
+      "branch": "factory/sargagame-1791307949690-e4wc",
+      "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791307932424-c8qw6x",
+      "tool": "OpenCode",
+      "model": "ollama/qwen2.5vl:7b",
+      "phase": "initializing",
+      "start_time": "2026-10-06T17:32:30.016Z",
+      "status": "failed",
+      "logs": [
+        {
+          "t": "2026-10-06T17:32:30.065Z",
+          "level": "info",
+          "msg": "[worker-37] Starting task factory-v2-test-sargagame-1791307908807 for sargagame"
+        },
+        {
+          "t": "2026-10-06T17:32:30.067Z",
+          "level": "info",
+          "msg": "{\"event\":\"WORKER_STARTED\",\"msg\":\"Worker started for sargagame\",\"meta\":{\"worktree\":\"C:\\\\factory\\\\worktrees\\\\sargagame\\\\sargagame-1791307932424-c8qw6x\",\"branch\":\"factory/sargagame-1791307949690-e4wc\",\"model\":\"ollama/qwen2.5vl:7b\",\"pid\":17064}}"
+        },
+        {
+          "t": "2026-10-06T17:32:30.067Z",
+          "level": "info",
+          "msg": "{\"event\":\"TOOL_STARTED\",\"msg\":\"Running OpenCode with ollama/qwen2.5vl:7b\",\"meta\":{\"model\":\"ollama/qwen2.5vl:7b\"}}"
+        },
+        {
+          "t": "2026-10-06T17:32:30.068Z",
+          "level": "error",
+          "msg": "[worker-37] Task failed: Intentional failure for recovery test"
+        },
+        {
+          "t": "2026-10-06T17:32:30.068Z",
+          "level": "info",
+          "msg": "{\"event\":\"FAILED\",\"msg\":\"Task failed: Intentional failure for recovery test\",\"meta\":{\"error\":\"Intentional failure for recovery test\",\"stack\":\"Error: Intentional failure for recovery test\\n    at makeSargagameChange (C:\\\\factory\\\\ai-factory-tmp\\\\worker-runner.cjs:141:11)\\n    at runOpenCode (C:\\\\factory\\\\ai-factory-tmp\\\\worker-runner.cjs:71:18)\\n    at main (C:\\\\factory\\\\ai-factory-tmp\\\\worker-runner.cjs:345:11)\\n    at Object.<anonymous> (C:\\\\factory\\\\ai-factory-tmp\\\\worker-runner.cjs:384:3)\\n    at Module._compile (node:internal/modules/cjs/loader:1812:14)\\n    at Object..js (node:internal/modules/cjs/loader:1943:10)\\n    at Module.load (node:internal/modules/cjs/loader:1533:32)\\n    at Module._load (node:internal/modules/cjs/loader:1335:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\"}}"
+        }
+      ]
+    },
+    {
+      "worker_id": "worker-36",
+      "pid": 17064,
+      "task_id": "factory-v2-test-sargagame-1791307908807",
+      "project": "sargagame",
+      "repo": "aveca/sargagame",
+      "branch": "factory/sargagame-1791307949690-e4wc",
+      "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791307932424-c8qw6x",
+      "tool": "OpenCode",
+      "model": "ollama/qwen2.5vl:7b",
+      "phase": "initializing",
+      "start_time": "2026-10-06T17:32:30.016Z",
+      "status": "failed",
+      "logs": [
+        {
+          "t": "2026-10-06T17:32:30.065Z",
+          "level": "info",
+          "msg": "[worker-37] Starting task factory-v2-test-sargagame-1791307908807 for sargagame"
+        },
+        {
+          "t": "2026-10-06T17:32:30.067Z",
+          "level": "info",
+          "msg": "{\"event\":\"WORKER_STARTED\",\"msg\":\"Worker started for sargagame\",\"meta\":{\"worktree\":\"C:\\\\factory\\\\worktrees\\\\sargagame\\\\sargagame-1791307932424-c8qw6x\",\"branch\":\"factory/sargagame-1791307949690-e4wc\",\"model\":\"ollama/qwen2.5vl:7b\",\"pid\":17064}}"
+        },
+        {
+          "t": "2026-10-06T17:32:30.067Z",
+          "level": "info",
+          "msg": "{\"event\":\"TOOL_STARTED\",\"msg\":\"Running OpenCode with ollama/qwen2.5vl:7b\",\"meta\":{\"model\":\"ollama/qwen2.5vl:7b\"}}"
+        },
+        {
+          "t": "2026-10-06T17:32:30.068Z",
+          "level": "error",
+          "msg": "[worker-37] Task failed: Intentional failure for recovery test"
+        },
+        {
+          "t": "2026-10-06T17:32:30.068Z",
+          "level": "info",
+          "msg": "{\"event\":\"FAILED\",\"msg\":\"Task failed: Intentional failure for recovery test\",\"meta\":{\"error\":\"Intentional failure for recovery test\",\"stack\":\"Error: Intentional failure for recovery test\\n    at makeSargagameChange (C:\\\\factory\\\\ai-factory-tmp\\\\worker-runner.cjs:141:11)\\n    at runOpenCode (C:\\\\factory\\\\ai-factory-tmp\\\\worker-runner.cjs:71:18)\\n    at main (C:\\\\factory\\\\ai-factory-tmp\\\\worker-runner.cjs:345:11)\\n    at Object.<anonymous> (C:\\\\factory\\\\ai-factory-tmp\\\\worker-runner.cjs:384:3)\\n    at Module._compile (node:internal/modules/cjs/loader:1812:14)\\n    at Object..js (node:internal/modules/cjs/loader:1943:10)\\n    at Module.load (node:internal/modules/cjs/loader:1533:32)\\n    at Module._load (node:internal/modules/cjs/loader:1335:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\"}}"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-06T17:36:39.053Z"
+}

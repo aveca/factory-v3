@@ -1,0 +1,7 @@
+{
+  "success": false,
+  "session_id": "4c1dcf77f20fca4e",
+  "model_used": "ollama/qwen2.5-coder:7b",
+  "agent_used": "aider",
+  "gateway": "none"
+}

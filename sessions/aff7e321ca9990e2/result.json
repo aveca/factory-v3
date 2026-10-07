@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "task_id": "recovery-test-1791338774202",
+  "session_id": "aff7e321ca9990e2",
+  "model_used": "ollama/qwen2.5-coder:7b",
+  "agent_used": "aider",
+  "gateway": "none"
+}

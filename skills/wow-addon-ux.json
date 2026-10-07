@@ -1,0 +1,21 @@
+{
+  "name": "WOW-ADDON-UX",
+  "purpose": "Improve WoW addon usability and presentation",
+  "cover": "UI hierarchy, button placement, feedback, state readability, combat readability, dialogs, minimap interaction, error handling, user flow, performance, Lua robustness",
+  "mandatory_rules": "Casinobabe.lua production = protected, WoW SavedVariables = protected, No speculative runtime modifications, No reload-dependent validation, No visual regression without screenshot/manual proof where appropriate",
+  "distinguish": "technical correctness vs player experience",
+  "evaluation": {
+    "ui_hierarchy": "Structure and logical grouping",
+    "button_placement": "Reachable, contextual, consistent",
+    "feedback": "Clear action-response communication",
+    "state_readability": "Current state easily discernible",
+    "combat_readability": "Information legible under pressure",
+    "dialogs": "Modal flow, escape, context preservation",
+    "minimap_interaction": "Accessible shortcuts",
+    "error_handling": "Graceful, non-crashing",
+    "user_flow": "Logical progression through actions",
+    "performance": "No latency-inducing operations",
+    "lua_robustness": "No nil errors, defensive coding"
+  },
+  "description": "WoW addon UX skill that distinguishes technical correctness from actual player experience, focusing on usability and presentation improvements."
+}

@@ -1,0 +1,20 @@
+{
+  "eventsReceived": 19,
+  "eventsAccepted": 10,
+  "eventsRejected": 6,
+  "duplicates": 3,
+  "bySource": {
+    "runtime": 7,
+    "github": 3
+  },
+  "byProject": {
+    "casinobabe": 7,
+    "sargagame": 3
+  },
+  "byType": {
+    "runtime_error": 7,
+    "ci_failure": 3
+  },
+  "lastEvent": "2026-10-07T02:15:39.528Z",
+  "startTime": "2026-10-07T01:47:11.716Z"
+}

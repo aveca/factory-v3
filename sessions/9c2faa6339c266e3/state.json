@@ -1,0 +1,38 @@
+{
+  "session_id": "9c2faa6339c266e3",
+  "task_id": "e2e-realjob-1791396919689",
+  "incident_id": null,
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791396981680-f5qy",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791396963673-wavujc",
+  "worker_id": "worker-103",
+  "pid": 30936,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "resuming",
+  "status": "recovering",
+  "started_at": "2026-10-07T18:16:21.821Z",
+  "updated_at": "2026-10-07T18:35:12.287Z",
+  "heartbeat": "2026-10-07T18:35:12.287Z",
+  "retry_count": 1,
+  "metadata": {
+    "project": "sargagame",
+    "source": "factory",
+    "payload": {
+      "description": "Add a deterministic TEST_EXPORT constant to imageResize.js for Factory E2E verification",
+      "requirements": [
+        "Add export const TEST_EXPORT = \"factory-e2e-verification\" at the end of imageResize.js",
+        "The constant must be a string literal",
+        "Do not modify any existing exports or function signatures",
+        "The modification must be deterministic and verifyable on disk"
+      ],
+      "targetFile": "src/imageResize.js",
+      "testFile": "src/imageResize.test.cjs",
+      "allowedFiles": [
+        "src/imageResize.js",
+        "src/imageResize.test.cjs"
+      ],
+      "dedup_key": "e2e-realjob-imageResize",
+      "evidence": "factory-e2e-real-modification"
+    }
+  }
+}

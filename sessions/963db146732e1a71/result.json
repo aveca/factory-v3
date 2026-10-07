@@ -1,0 +1,6 @@
+{
+  "success": false,
+  "task_id": "crash-recovery-test-1791319338249",
+  "session_id": "963db146732e1a71",
+  "error": "Intentional failure for recovery test"
+}

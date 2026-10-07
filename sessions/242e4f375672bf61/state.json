@@ -1,0 +1,56 @@
+{
+  "session_id": "242e4f375672bf61",
+  "task_id": "task-1791343040191-waocjo",
+  "incident_id": null,
+  "repo": "aveca/sargagame",
+  "branch": "factory/sargagame-1791346339215-7ax8",
+  "worktree": "C:\\factory\\worktrees\\sargagame\\sargagame-1791346313775-hqqot2",
+  "worker_id": "worker-63",
+  "pid": 12100,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "resuming",
+  "status": "failed",
+  "started_at": "2026-10-07T04:12:19.419Z",
+  "updated_at": "2026-10-07T04:12:19.667Z",
+  "heartbeat": "2026-10-07T04:12:19.419Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "sargagame",
+    "source": "runtime",
+    "payload": {
+      "description": "Fix runtime error - add missing configuration to Core.lua",
+      "factory_event": "evt-0017913430000001",
+      "source_event_type": "runtime_error",
+      "source_severity": "error",
+      "error_signature": "0017913430000001",
+      "original_payload": {
+        "description": "Fix runtime error - add missing configuration to Core.lua",
+        "requirements": [
+          "Add missing configuration parameter to Core.lua",
+          "Run Lua validation",
+          "Commit and push changes",
+          "Create PR and wait for CI"
+        ],
+        "factory_event": "evt-0017913430000001",
+        "source_event_type": "runtime_error",
+        "source_severity": "error"
+      },
+      "requirements": [
+        "Analyze the error/event and identify root cause",
+        "Implement minimal fix",
+        "Run existing tests",
+        "Commit and push changes",
+        "Create PR and wait for CI"
+      ]
+    }
+  },
+  "result": {
+    "success": false,
+    "task_id": "task-1791343040191-waocjo",
+    "session_id": "242e4f375672bf61",
+    "model_used": "ollama/qwen2.5-coder:7b",
+    "agent_used": "aider",
+    "gateway": "none"
+  },
+  "ended_at": "2026-10-07T04:12:19.667Z"
+}

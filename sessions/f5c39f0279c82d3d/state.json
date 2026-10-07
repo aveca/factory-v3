@@ -1,0 +1,30 @@
+{
+  "session_id": "f5c39f0279c82d3d",
+  "task_id": "e2e-test-1791401170601",
+  "incident_id": null,
+  "repo": "aveca/Casinobabe",
+  "branch": "factory/casinobabe-1791401174431-mrke",
+  "worktree": "C:\\factory\\worktrees\\casinobabe\\casinobabe-1791401173243-rlmxyw",
+  "worker_id": "worker-123",
+  "pid": 28184,
+  "model": "ollama/qwen2.5-coder:7b",
+  "phase": "initializing",
+  "status": "running",
+  "started_at": "2026-10-07T19:26:14.601Z",
+  "updated_at": "2026-10-07T19:26:14.647Z",
+  "heartbeat": "2026-10-07T19:26:14.601Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "casinobabe",
+    "source": "runtime",
+    "payload": {
+      "description": "E2E test: analyze WoW dealer error",
+      "requirements": [
+        "Analyze the error",
+        "Implement minimal fix",
+        "Run validation"
+      ],
+      "factory_event": "e2e-test-1791401170601"
+    }
+  }
+}

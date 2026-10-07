@@ -1,0 +1,8 @@
+{
+  "name": "WEB-PRODUCT-DESIGN",
+  "purpose": "Improve websites as real products",
+  "evaluate": "first impression, hero section, value proposition, visual hierarchy, typography, spacing, navigation, CTA clarity, trust, pricing, mobile UX, responsive behavior, loading, error states, conversion funnel",
+  "never_accept": "generic template appearance, placeholder visual hierarchy, weak typography, empty sections, random gradients, poor spacing, desktop-only layouts",
+  "require_before_code": "concrete design direction",
+  "description": "Web product design skill that evaluates websites as products with business impact, not just technical implementations. Produces concrete design direction before any coding begins."
+}

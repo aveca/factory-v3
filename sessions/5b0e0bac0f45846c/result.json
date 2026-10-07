@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "task_id": "e2e-sargagame-1791402000000",
+  "session_id": "5b0e0bac0f45846c",
+  "commit_sha": "5e197e5994571f70fa14e833ae84bf9a81bba50f",
+  "branch": "factory/sargagame-1791401735554-xbrp",
+  "model_used": "ollama/qwen2.5-coder:7b",
+  "phases_completed": [
+    "tool",
+    "tests",
+    "git",
+    "pr",
+    "ci"
+  ]
+}

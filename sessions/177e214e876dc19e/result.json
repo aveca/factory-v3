@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "task_id": "crash-recovery-test-1791319102245",
+  "session_id": "177e214e876dc19e",
+  "commit_sha": "2680c7334992f1e2acaa4fd459432cfb735d0bfe",
+  "branch": "factory/casinobabe-1791319103590-yuhn",
+  "model_used": "ollama/qwen3-coder:30b",
+  "phases_completed": [
+    "tool",
+    "tests",
+    "git",
+    "pr",
+    "ci"
+  ]
+}

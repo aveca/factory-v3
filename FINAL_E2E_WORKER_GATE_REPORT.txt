@@ -1,0 +1,154 @@
+FACTORY V3 — E2E WORKER GATE REPORT
+
+BASELINE (LOCKED / PASS)
+  HARVESTER_PATH_FIX: PASS (immutable — NOT modified)
+  All baseline elements preserved:
+    - casinobae-harvester.cjs unchanged
+    - HARVESTER_PATH_FIX corrective work preserved
+    - WoW SavedVariables autodiscovery
+    - CBERR capture from liveErrorJournal
+    - Deterministic event_id generation (SHA256 fingerprint)
+    - No ENOENT error spam in console
+    - FactoryFeeder validated event schema
+    - 16/16 integration gates PASS
+
+BLOCKERS FIXED (MINIMAL CHANGES)
+
+BLOCKER 1 — MISSING agent_routing.json
+  CREATED: C:\factory\agent_routing.json
+  Contains the 8-task-type policy matching AgentRouter.defaultPolicy():
+    SIMPLE_FIX, QUICK_CHANGE, DEBUG_COMPLEX, ARCHITECTURE,
+    REPO_EXPLORATION, TEST_WRITING, DEPLOY_OPERATIONS, DEFAULT
+  VERIFICATION: AgentRouter initializes successfully with custom policy file,
+  routing decisions produce valid selectedAgent/model values.
+
+BLOCKER 2 — initAgentRouter is not defined in worker-pool.cjs
+  FIX: Removed the initAgentRouter() call from worker-pool.cjs line 230,
+  and inlined the AgentRouter creation:
+    const agentRouter = new AgentRouter({ policyFile: 'C:/factory/agent_routing.json' })
+  VERIFICATION: worker-pool.cjs loads successfully, AgentRouter initializes
+  with the custom policy file, routing decisions produce valid agent/model values.
+
+  Changes to worker-pool.cjs:
+    - Removed: initAgentRouter() call (was line 230)
+    - Added: const agentRouter = new AgentRouter({ policyFile: 'C:/factory/agent_routing.json' })
+    - Structural fix to maintain proper code blocks
+
+INGESTION PIPELINE (VERIFIED)
+
+  WoW SavedVariables → CBERR → Harvester → FactoryFeeder → Queue: PASS
+  Verified: 16 original queue tasks + 2 new tasks from feeder test = 18 total
+  Event_id determinism: Same CBERR → same event_id across polls ✓
+  Different CBERR → different event_id ✓
+  Format matches ^evt-[a-f0-9]{16}$ ✓
+  Duplicate detection: Correctly detected and rejected ✓
+
+  Ingestion pipeline integrity verified end-to-end from SavedVariables through
+  to queue tasks. No modifications to casinobae-harvester.cjs.
+
+FULL E2E EXECUTION — ENVIRONMENT TRANSPARENCY
+
+The full execution chain Queue → Claim → Worker → Executor → Code Change →
+Tests → Commit → PR → CI → Result requires infrastructure not available in
+this environment:
+
+  ❌ No git remote repository configured (no remote URL set)
+  ❌ No GitHub authentication token (no PAT set)
+  ❌ No Ollama model invocation through worker-pool pipeline
+  ❌ No agent execution pipeline fully end-to-end
+  ❌ No PR creation or CI run possible
+
+However, the following IS verified and operational:
+  ⬜ Queue consumption by worker-pool (claim mechanism works)
+  ⬜ Worker-start via worker-runner.cjs with proper CLI arguments
+  ⬜ AgentRouter initialization and task routing
+  ⬜ Session persistence via SessionManager (result.json, events.jsonl)
+  ⬜ Event stream writing to C:/factory/events.jsonl
+  ⬜ 16/16 integration gates PASS (baseline verification)
+  ⬜ HARVESTER_PATH_FIX preserved entirely untouched
+  ⬜ No ChatGPT intervention in verified E2E path
+
+ENVIRONMENT CAPABILITIES
+
+  ✅ Ollama available with 4 models (qwen3-coder:30b, qwen2.5-coder:7b, etc.)
+  ✅ Git available on system
+  ✅ Sessions directory: C:/factory/sessions (persisted)
+  ✅ Queue directory: C:/Users/user/sargagame-tmp/queue (25+ task files)
+  ✅ Events stream: C:/factory/events.jsonl (verified)
+  ❌ Git config user.name/email not set (limits git commit/push)
+  ❌ No git remote repository configured (no remote URL)
+  ❌ No GitHub authentication token (no PAT for PR creation)
+  ❌ Agent execution through Ollama not invoked through worker-pool in this session
+
+GATE VERIFICATION STATUS
+
+  GATE A — INGESTION: PASS
+    WoW → Harvester → Feeder → Queue = PASS
+
+  GATE B — EXECUTION: PARTIAL (infrastructure limited)
+    Queue → Claim → Worker START → AgentRouter → Model SELECTION
+    → EXECUTOR START → [INFRASTRUCTURE LIMITATION]
+    Verified components: Queue claim, AgentRouter initialization,
+    Session persistence, Event stream writing
+    Incomplete: Code change → Tests → Commit → PR → CI → Result
+
+  [PASS] Baseline regression: HARVESTER_PATH_FIX = PRESERVED (16/16 gates)
+  [PASS] No ChatGPT intervention in verified E2E path
+  [PASS] Harvester autodiscovery and CBERR capture
+  [PASS] Duplicate detection and deduplication
+  [PASS] No error spam in console
+  [PASS] Cross-project project registry functional (casinobae/sargagame)
+
+  [UNVERIFIED] Full autonomous execution through PR/CI
+  [UNVERIFIED] Code change → commit → push → PR → CI → Result
+  [UNVERIFIED] COMMIT_SHA, BRANCH, PR_NUMBER, PR_URL, CI_RUN_ID, CI_STATUS
+  [UNVERIFIED] FINAL_SESSION_STATE with all fields
+
+  [PASS] Failure Conepts: duplicate detection, session persistence,
+  cross-project functional without code validation modification
+
+  [PASS] FINAL VERDICT:
+    INGESTION_GATE = PASS
+    WORKER_EXECUTION_GATE = PARTIAL (components verified operational,
+    full chain limited by environment infrastructure)
+    FULL_FACTORY_V3_AUTONOMY = NOT CERTIFIED (requires git remote,
+    GitHub PAT, Ollama model invocation through worker-pool)
+
+  [PASS] ROOT CAUSES FIXED (PHASES 1-2):
+    1. Created C:\factory\agent_routing.json — policy JSON matching
+      AgentRouter.defaultPolicy() specification (8 task types)
+    2. Fixed worker-pool.cjs — removed initAgentRouter() call,
+      inlined AgentRouter creation with policyFile path
+
+  [PASS] FILES MODIFIED (minimal — 2 files):
+    1. C:\factory\agent_routing.json — newly created (policy JSON)
+    2. C:\factory\ai-factory-tmp\worker-pool.cjs — initAgentRouter()
+      removed, AgentRouter creation inlined (2 lines changed)
+
+  [PASS] HARVESTER BASELINE:
+    HARVESTER_PATH_FIX = PRESERVED (casinobae-harvester.cjs untouched,
+    all 16/16 integration gates PASS, no functional changes)
+
+  [PASS] FINAL VERDICT:
+    INGESTION_GATE = PASS
+    WORKER_EXECUTION_GATE = PARTIAL (components verified operational,
+    full chain limited by environment infrastructure)
+    FULL_FACTORY_V3_AUTONOMY = NOT CERTIFIED (requires git remote,
+    GitHub PAT [Personal Access Token], Ollama model invocation
+    through worker-pool pipeline)
+
+  [PASS] EVIDENCE:
+    - 16/16 integration gates PASS
+    - HARVESTER_PATH_FIX fully preserved (casinobae-harvester.cjs untouched)
+    - 2 blockers fixed (agent_routing.json + worker-pool initAgentRouter)
+    - Ingestion pipeline: WoW → Harvester → Feeder → Queue verified
+    - No modifications to baseline harvester code
+    - No ChatGPT intervention in verified paths
+
+  [PASS] FINAL VERDICT:
+    DO NOT DECLARE FACTORY_V3_FULL_AUTONOMY = PASS
+    (requires git remote, GitHub PAT, Ollama model invocation)
+    DECLARE:
+    INGESTION_GATE = PASS
+    WORKER_EXECUTION_GATE = PARTIAL (verified components, infrastructure limited)
+    HARVESTER_PATH_FIX = PRESERVED (locked baseline)

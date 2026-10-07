@@ -1,0 +1,45 @@
+{
+  "session_id": "f09379a4c46b6028",
+  "task_id": "recovery-test-1791318672975",
+  "incident_id": null,
+  "repo": "aveca/Casinobabe",
+  "branch": "factory/casinobabe-1791318674190-i0s4",
+  "worktree": "C:\\factory\\worktrees\\casinobabe\\casinobabe-1791318672979-0xwe5a",
+  "worker_id": "worker-3",
+  "pid": 14352,
+  "model": "ollama/qwen3-coder:30b",
+  "phase": "waiting_ci",
+  "status": "completed",
+  "started_at": "2026-10-06T20:31:14.429Z",
+  "updated_at": "2026-10-06T20:31:41.089Z",
+  "heartbeat": "2026-10-06T20:31:14.429Z",
+  "retry_count": 0,
+  "metadata": {
+    "project": "casinobabe",
+    "source": "recovery-test",
+    "payload": {
+      "description": "RECOVERY TEST: Add debug logging to Core.lua",
+      "requirements": [
+        "Modify addon/CasinoBae/Core.lua",
+        "Run Lua validation",
+        "Commit and push"
+      ]
+    }
+  },
+  "result": {
+    "success": true,
+    "task_id": "recovery-test-1791318672975",
+    "session_id": "f09379a4c46b6028",
+    "commit_sha": "3c0e9486f326a7f7bb36c32ad493029b19827ebc",
+    "branch": "factory/casinobabe-1791318674190-i0s4",
+    "model_used": "ollama/qwen3-coder:30b",
+    "phases_completed": [
+      "tool",
+      "tests",
+      "git",
+      "pr",
+      "ci"
+    ]
+  },
+  "ended_at": "2026-10-06T20:31:41.089Z"
+}

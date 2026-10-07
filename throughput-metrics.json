@@ -1,0 +1,43 @@
+{
+  "queue": {
+    "size": 0,
+    "age_seconds": 0,
+    "claimed": 0,
+    "running": 0,
+    "idle": 0,
+    "blocked": 0,
+    "parked": 0,
+    "completed": 0
+  },
+  "workers": {
+    "total": 0,
+    "active": 0,
+    "idle": 0,
+    "utilization_percent": 0,
+    "average_execution_time_seconds": 0,
+    "median_execution_time_seconds": 0
+  },
+  "pipeline": {
+    "prOpened": 0,
+    "merged": 0,
+    "deployed": 0,
+    "failed": 0,
+    "retries": 0,
+    "timeouts": 0
+  },
+  "agentExecution": {
+    "totalExecuted": 15,
+    "successful": 0,
+    "failed": 15,
+    "byAgent": {
+      "opencode": {
+        "total": 15,
+        "totalTime": 0,
+        "count": 0,
+        "avgTime": 0
+      }
+    }
+  },
+  "timestamp": "2026-10-07T02:06:14.213Z",
+  "uptime_seconds": 0
+}

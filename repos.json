@@ -1,0 +1,75 @@
+{
+  "total": 7,
+  "repos": [
+    {
+      "full_name": "aveca/sargagame",
+      "name": "sargagame",
+      "default_branch": "main",
+      "archived": false,
+      "fork": false,
+      "last_activity": "2026-10-06T03:23:12.000Z",
+      "pushes": 0,
+      "pulls": 0
+    },
+    {
+      "full_name": "aveca/Casinobabe",
+      "name": "Casinobabe",
+      "default_branch": "main",
+      "archived": false,
+      "fork": false,
+      "last_activity": "2026-10-05T15:41:37.000Z",
+      "pushes": 0,
+      "pulls": 0
+    },
+    {
+      "full_name": "aveca/bot-wow",
+      "name": "bot-wow",
+      "default_branch": "main",
+      "archived": false,
+      "fork": false,
+      "last_activity": "2026-10-05T15:41:37.000Z",
+      "pushes": 0,
+      "pulls": 0
+    },
+    {
+      "full_name": "aveca/trading-bot",
+      "name": "trading-bot",
+      "default_branch": "main",
+      "archived": false,
+      "fork": false,
+      "last_activity": "2026-10-05T15:41:37.000Z",
+      "pushes": 0,
+      "pulls": 0
+    },
+    {
+      "full_name": "aveca/ai-factory",
+      "name": "ai-factory",
+      "default_branch": "main",
+      "archived": false,
+      "fork": false,
+      "last_activity": "2026-10-06T03:58:25.000Z",
+      "pushes": 0,
+      "pulls": 0
+    },
+    {
+      "full_name": "aveca/AcimCaisse",
+      "name": "AcimCaisse",
+      "default_branch": "main",
+      "archived": false,
+      "fork": false,
+      "last_activity": "2026-10-05T15:41:37.000Z",
+      "pushes": 0,
+      "pulls": 0
+    },
+    {
+      "full_name": "aveca/naming",
+      "name": "naming",
+      "default_branch": "main",
+      "archived": false,
+      "fork": false,
+      "last_activity": "2026-10-06T03:58:25.000Z",
+      "pushes": 0,
+      "pulls": 0
+    }
+  ]
+}

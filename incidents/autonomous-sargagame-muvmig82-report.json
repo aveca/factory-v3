@@ -1,0 +1,103 @@
+{
+  "taskId": "autonomous-sargagame-muvmig82",
+  "at": "2026-10-06T11:49:21.980Z",
+  "repo": "aveca/sargagame",
+  "project": "sargagame",
+  "steps": [
+    {
+      "step": "repo_resolved",
+      "repo": "aveca/sargagame",
+      "branch": "main"
+    },
+    {
+      "step": "project_context",
+      "project": "sargagame",
+      "local_path": "C:/Users/user/sargagame-tmp",
+      "probes": [
+        "ci_logs",
+        "playwright",
+        "api",
+        "fingerprint"
+      ]
+    },
+    {
+      "step": "worktree",
+      "root": "C:/Users/user/sargagame-tmp",
+      "head": "afbce6a915e6",
+      "worktrees": 2
+    },
+    {
+      "step": "ci_runs",
+      "runs": [
+        {
+          "n": 492,
+          "wf": "Agent Handoff Automation",
+          "conclusion": "failure",
+          "sha": "afbce6a915e60e5d7750ef3fe715cdb74db952e6",
+          "url": "https://github.com/aveca/sargagame/actions/runs/37454588703"
+        },
+        {
+          "n": 114,
+          "wf": "SEO Guard & Link Checker",
+          "conclusion": "success",
+          "sha": "afbce6a915e60e5d7750ef3fe715cdb74db952e6",
+          "url": "https://github.com/aveca/sargagame/actions/runs/37438080659"
+        },
+        {
+          "n": 6,
+          "wf": "Live Production Sentinel",
+          "conclusion": "failure",
+          "sha": "afbce6a915e60e5d7750ef3fe715cdb74db952e6",
+          "url": "https://github.com/aveca/sargagame/actions/runs/37434382951"
+        }
+      ]
+    },
+    {
+      "step": "failed_logs",
+      "error": "Command failed: gh run view 492 --repo aveca/sargagame --log-failed\nfailed to get run: HTTP 404: Not Found (https://api.github.com/repos/aveca/sargagame/actions/runs/492?exclude_pull_requests=true)\n"
+    },
+    {
+      "step": "qa_probes",
+      "results": [
+        {
+          "level": "DEFERRED",
+          "probe": "ci_logs",
+          "ok": null,
+          "proof": "deferred",
+          "detail": "logs CI collectes par incident-worker"
+        },
+        {
+          "level": "DEFERRED",
+          "probe": "playwright",
+          "ok": null,
+          "proof": "deferred",
+          "detail": "suite e2e executee par le runner (pas ici)"
+        },
+        {
+          "level": "LIVE_FAILED",
+          "probe": "api",
+          "ok": false,
+          "proof": "measured",
+          "detail": {
+            "url": "h",
+            "error": "Failed to parse URL from h"
+          }
+        },
+        {
+          "level": "LIVE_FAILED",
+          "probe": "fingerprint",
+          "ok": false,
+          "proof": "measured",
+          "detail": {
+            "url": "h",
+            "error": "Failed to parse URL from h"
+          }
+        }
+      ]
+    },
+    {
+      "step": "qa_live",
+      "note": "preuves HTTP/fingerprint ci-dessus quand live_urls connues"
+    }
+  ]
+}

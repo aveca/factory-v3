@@ -1,0 +1,169 @@
+{
+  "SIMPLE_FIX": {
+    "preferredAgent": "aider",
+    "fallbackAgents": [
+      "ollama",
+      "opencode"
+    ],
+    "preferredModel": "qwen2.5-coder:7b",
+    "fallbackModels": [
+      "qwen3-coder:30b"
+    ],
+    "timeout": 30000,
+    "maxRetries": 2,
+    "useOmniRoute": true
+  },
+  "QUICK_CHANGE": {
+    "preferredAgent": "aider",
+    "fallbackAgents": [
+      "ollama",
+      "opencode"
+    ],
+    "preferredModel": "qwen2.5-coder:7b",
+    "fallbackModels": [
+      "qwen3-coder:30b"
+    ],
+    "timeout": 60000,
+    "maxRetries": 3
+  },
+  "DEBUG_COMPLEX": {
+    "preferredAgent": "hermes",
+    "fallbackAgents": [
+      "opencode",
+      "ollama"
+    ],
+    "preferredModel": "qwen3:30b",
+    "fallbackModels": [
+      "qwen3-coder:30b",
+      "nemotron-3-ultra:550b"
+    ],
+    "timeout": 120000,
+    "maxRetries": 3,
+    "useOmniRoute": true
+  },
+  "ARCHITECTURE": {
+    "preferredAgent": "opencode",
+    "fallbackAgents": [
+      "hermes",
+      "ollama"
+    ],
+    "preferredModel": "nemotron-3-ultra:550b",
+    "fallbackModels": [
+      "qwen3:30b",
+      "qwen3-coder:30b"
+    ],
+    "timeout": 180000,
+    "maxRetries": 2,
+    "useOmniRoute": true
+  },
+  "REPO_EXPLORATION": {
+    "preferredAgent": "ollama",
+    "fallbackAgents": [
+      "opencode"
+    ],
+    "preferredModel": "qwen3-coder:30b",
+    "fallbackModels": [
+      "qwen2.5-coder:7b"
+    ],
+    "timeout": 60000,
+    "maxRetries": 2
+  },
+  "TEST_WRITING": {
+    "preferredAgent": "aider",
+    "fallbackAgents": [
+      "ollama"
+    ],
+    "preferredModel": "qwen2.5-coder:7b",
+    "fallbackModels": [
+      "qwen3-coder:30b"
+    ],
+    "timeout": 30000,
+    "maxRetries": 2
+  },
+  "DEPLOY_OPERATIONS": {
+    "preferredAgent": null,
+    "fallbackAgents": [],
+    "preferredModel": null,
+    "fallbackModels": [],
+    "timeout": 15000,
+    "maxRetries": 1,
+    "deterministic": true,
+    "useOmniRoute": false
+  },
+  "DEFAULT": {
+    "preferredAgent": "opencode",
+    "fallbackAgents": [
+      "aider",
+      "ollama"
+    ],
+    "preferredModel": "qwen3-coder:30b",
+    "fallbackModels": [
+      "qwen2.5-coder:7b",
+      "nemotron-3-ultra:550b"
+    ],
+    "timeout": 120000,
+    "maxRetries": 3
+  },
+  "PRODUCT_QUALITY_ENGINEER": {
+    "preferredAgent": "opencode",
+    "fallbackAgents": [
+      "aider",
+      "ollama"
+    ],
+    "preferredModel": "qwen3-coder:30b",
+    "fallbackModels": [
+      "qwen2.5-coder:7b",
+      "nemotron-3-ultra:550b"
+    ],
+    "timeout": 180000,
+    "maxRetries": 3
+  },
+  "WOW_ADDON_UX": {
+    "preferredAgent": "opencode",
+    "fallbackAgents": [
+      "aider"
+    ],
+    "preferredModel": "qwen3-coder:30b",
+    "fallbackModels": [
+      "qwen2.5-coder:7b"
+    ],
+    "timeout": 120000,
+    "maxRetries": 3
+  },
+  "WEB_PRODUCT_DESIGN": {
+    "preferredAgent": "opencode",
+    "fallbackAgents": [
+      "aider"
+    ],
+    "preferredModel": "qwen3-coder:30b",
+    "fallbackModels": [
+      "qwen2.5-coder:7b"
+    ],
+    "timeout": 180000,
+    "maxRetries": 3
+  },
+  "VISUAL_DESIGN_QA": {
+    "preferredAgent": "opencode",
+    "fallbackAgents": [
+      "aider"
+    ],
+    "preferredModel": "qwen3-coder:30b",
+    "fallbackModels": [
+      "qwen2.5-coder:7b"
+    ],
+    "timeout": 120000,
+    "maxRetries": 3
+  },
+  "PRODUCT_CONVERSION": {
+    "preferredAgent": "opencode",
+    "fallbackAgents": [
+      "aider"
+    ],
+    "preferredModel": "qwen3-coder:30b",
+    "fallbackModels": [
+      "qwen2.5-coder:7b"
+    ],
+    "timeout": 180000,
+    "maxRetries": 3
+  }
+}

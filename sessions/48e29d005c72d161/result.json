@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "task_id": "task-1791342736920-9gblhr",
+  "session_id": "48e29d005c72d161",
+  "model_used": "ollama/qwen2.5-coder:7b",
+  "agent_used": "aider",
+  "gateway": "none"
+}
