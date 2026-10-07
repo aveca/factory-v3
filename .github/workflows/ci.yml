@@ -1,0 +1,26 @@
+name: Factory V3 CI
+
+on:
+  push:
+    branches: [master, factory-e2e-002]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Verify marker file exists
+        run: |
+          if [ -f FACTORY_E2E_MARKER_*.txt ]; then
+            echo "✓ Marker file found"
+            exit 0
+          else
+            echo "✗ No marker file found"
+            exit 1
+          fi
+      
+      - name: Print JOB_ID
+        run: echo "JOB_ID: $JOB_ID"
