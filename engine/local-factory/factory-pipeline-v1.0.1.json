@@ -1,0 +1,408 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Factory Pipeline Canonical Contract v1.0.1",
+  "type": "object",
+  "version": "1.0.1",
+
+  "event_id": { "type": "string", "description": "Unique event identifier" },
+  "correlation_id": { "type": "string", "description": "Correlation identifier for tracking across stages" },
+
+  "project": {
+    "type": "string",
+    "enum": ["casinobae", "sargagame", "drone-martinique", "generic", "unknown"],
+    "description": "Source project identifier"
+  },
+  "source": {
+    "type": "string",
+    "enum": ["github", "gmail", "webhook", "cron", "sentinel"],
+    "description": "Event source"
+  },
+  "event_type": {
+    "type": "string",
+    "enum": ["ci_failure", "ci_success", "live_error", "manual", "dispatch"],
+    "description": "Type of event"
+  },
+
+  "pipeline": {
+    "type": "object",
+    "properties": {
+      "stage": {
+        "type": "string",
+        "description": "Current pipeline stage"
+      },
+      "stage_started_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "ISO-8601 timestamp when stage started"
+      },
+      "stage_duration_ms": {
+        "type": ["number", "null"],
+        "description": "Duration in ms (null until stage completes)"
+      },
+      "attempt": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Attempt number (1-based)"
+      },
+      "max_attempts": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Maximum number of attempts allowed"
+      },
+      "status": {
+        "type": "string",
+        "enum": ["pending", "processing", "success", "failed", "parked", "cancelled"],
+        "description": "Current pipeline status"
+      },
+
+      "dedupe": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Stable dedupe key"
+          },
+          "first_seen": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO-8601 when first seen"
+          },
+          "times_seen": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Number of times this event has been observed"
+          },
+          "duplicate_of": {
+            "type": "string",
+            "description": "Event ID this duplicates, if applicable"
+          }
+        },
+        "required": ["key", "first_seen", "times_seen"],
+        "additionalProperties": false
+      },
+
+      "priority": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": ["P0", "P1", "P2", "P3"],
+            "description": "Priority level (P0 highest)"
+          },
+          "assigned_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO-8601 when priority assigned"
+          },
+          "assigned_by": {
+            "type": "string",
+            "enum": ["system", "handler", "scheduler"],
+            "description": "Who assigned the priority"
+          }
+        },
+        "required": ["level", "assigned_at", "assigned_by"],
+        "additionalProperties": false
+      },
+
+      "routing": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "type": "string",
+            "enum": ["casinobae", "sargagame", "drone-martinique", "generic", "unknown"],
+            "description": "Routed project"
+          },
+          "handler": {
+            "type": "string",
+            "enum": ["casinobae", "sargagame", "drone", "generic", "none"],
+            "description": "Assigned handler"
+          },
+          "handler_version": {
+            "type": "string",
+            "description": "Handler version string"
+          },
+          "queue": {
+            "type": "string",
+            "enum": ["global", "project-special", "park"],
+            "description": "Target queue"
+          },
+          "worker_assigned": {
+            "type": "string",
+            "description": "Worker identifier"
+          },
+          "worker_version": {
+            "type": "string",
+            "description": "Worker version"
+          }
+        },
+        "required": ["project", "handler", "handler_version", "queue"],
+        "additionalProperties": false
+      },
+
+      "result": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["SUCCESS", "RETRY", "PARKED", "FAILED"],
+            "description": "Handler result status"
+          },
+          "result": {
+            "type": "object",
+            "description": "Handler output payload"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Human-readable reason"
+          },
+          "retryable": {
+            "type": "boolean",
+            "description": "Whether the event is retryable"
+          },
+          "retry_after_ms": {
+            "type": ["number", "null"],
+            "description": "Suggested retry delay in ms"
+          },
+          "emitted_events": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "project": {
+                  "type": "string",
+                  "enum": ["casinobae", "sargagame", "drone-martinique", "generic", "unknown"],
+                  "description": "Emitted event project"
+                },
+                "event_type": {
+                  "type": "string",
+                  "enum": ["ci_failure", "ci_success", "live_error", "manual", "dispatch"],
+                  "description": "Emitted event type"
+                },
+                "payload": {
+                  "type": "object",
+                  "description": "Event payload"
+                }
+              },
+              "required": ["project", "event_type", "payload"],
+              "additionalProperties": false
+            },
+            "description": "Events emitted from handler execution"
+          },
+          "observability": {
+            "type": "object",
+            "properties": {
+              "execution_id": {
+                "type": "string",
+                "description": "Unique execution identifier"
+              },
+              "correlation_id": {
+                "type": "string",
+                "description": "Correlation identifier"
+              },
+              "handler": {
+                "type": "string",
+                "description": "Handler name"
+              },
+              "handler_version": {
+                "type": "string",
+                "description": "Handler version"
+              },
+              "attempt": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Attempt number"
+              },
+              "started_at": {
+                "type": "string",
+                "format": "date-time",
+                "description": "ISO-8601 start timestamp"
+              },
+              "ended_at": {
+                "type": "string",
+                "format": "date-time",
+                "description": "ISO-8601 end timestamp"
+              },
+              "status": {
+                "type": "string",
+                "enum": ["success", "retry", "parked", "failed"],
+                "description": "Handler execution status"
+              },
+              "reason_code": {
+                "type": ["string", "null"],
+                "description": "Stable reason code"
+              },
+              "side_effects": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Side effects produced"
+              }
+            },
+            "required": ["execution_id", "correlation_id", "handler", "handler_version", "attempt", "started_at", "ended_at", "status", "side_effects"],
+            "additionalProperties": false
+          }
+        },
+        "required": ["status", "result", "retryable", "emitted_events", "observability"],
+        "additionalProperties": false
+      },
+
+      "recovery": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["none", "retry", "park", "crash"],
+            "description": "Recovery type"
+          },
+          "times_retried": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of times retried"
+          },
+          "last_retry_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO-8601 of last retry"
+          },
+          "max_retries": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Maximum retries allowed"
+          },
+          "parked_at": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "description": "ISO-8601 when parked"
+          },
+          "resumed_at": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "description": "ISO-8601 when resumed"
+          },
+          "crash_details": {
+            "type": "object",
+            "properties": {
+              "error": { "type": "string" },
+              "stack": { "type": "string" },
+              "timestamp": { "type": "string", "format": "date-time" }
+            },
+            "description": "Crash details if applicable"
+          }
+        },
+        "required": ["type", "times_retried", "max_retries"],
+        "additionalProperties": false
+      }
+    },
+    "required": ["stage", "stage_started_at", "attempt", "max_attempts", "status", "dedupe", "priority", "routing", "result", "recovery"],
+    "additionalProperties": false
+  },
+
+  "history": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "from": { "type": "string", "description": "Source stage" },
+        "to": { "type": "string", "description": "Target stage" },
+        "trigger": { "type": "string", "description": "Transition trigger" },
+        "executed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO-8601 execution timestamp"
+        },
+        "execution_id": {
+          "type": "string",
+          "description": "Execution identifier"
+        }
+      },
+      "required": ["from", "to", "trigger", "executed_at", "execution_id"],
+      "additionalProperties": false
+    },
+    "description": "Append-only transition history"
+  },
+
+  "metadata": {
+    "type": "object",
+    "properties": {
+      "created_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "ISO-8601 creation timestamp"
+      },
+      "updated_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "ISO-8601 last update timestamp"
+      },
+      "logger": {
+        "type": "string",
+        "description": "Logger name"
+      },
+      "tags": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Tag array"
+      },
+      "hash": {
+        "type": "string",
+        "pattern": "^sha256:[0-9a-f]{64}$",
+        "description": "Deterministic SHA-256 hash"
+      },
+      "references": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Event reference IDs"
+      }
+    },
+    "required": ["created_at", "updated_at", "logger", "hash"],
+    "additionalProperties": false
+  },
+
+  "exit_gate": {
+    "type": "object",
+    "properties": {
+      "passed": {
+        "type": "boolean",
+        "description": "Whether exit gate passed"
+      },
+      "terminal_status": {
+        "type": "string",
+        "enum": ["SUCCESS", "RETRY", "PARKED", "FAILED"],
+        "description": "Terminal status"
+      },
+      "state_valid": {
+        "type": "boolean",
+        "description": "State machine validation"
+      },
+      "dedupe_valid": {
+        "type": "boolean",
+        "description": "Dedup key stability"
+      },
+      "routing_valid": {
+        "type": "boolean",
+        "description": "Routing validation"
+      },
+      "result_valid": {
+        "type": "boolean",
+        "description": "Result validation"
+      },
+      "recovery_valid": {
+        "type": "boolean",
+        "description": "Recovery validation"
+      },
+      "history_consistent": {
+        "type": "boolean",
+        "description": "History consistency"
+      },
+      "timestamps_monotonic": {
+        "type": "boolean",
+        "description": "Timestamp monotonicity"
+      },
+      "reason": {
+        "type": "string",
+        "description": "Failure reason if not passed"
+      }
+    },
+    "required": ["passed", "state_valid", "dedupe_valid", "routing_valid", "result_valid", "recovery_valid", "history_consistent", "timestamps_monotonic"],
+    "additionalProperties": false
+  }
+}
