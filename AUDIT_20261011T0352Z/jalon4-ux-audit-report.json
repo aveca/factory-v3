@@ -1,0 +1,892 @@
+{
+  "startedAt": "2026-10-11T18:36:16.187Z",
+  "domains": [
+    {
+      "id": "mq",
+      "domain": "https://sargasses-martinique.com",
+      "viewports": {
+        "desktop": {
+          "pages": {
+            "/": {
+              "url": "https://sargasses-martinique.com/",
+              "status": 200,
+              "finalUrl": "https://sargasses-martinique.com/",
+              "loadMs": 6978,
+              "title": "Plages Martinique aujourd'hui · Score 0-100 (sargasses, mer, soleil) 2026",
+              "h1": "",
+              "mapPresent": true,
+              "mapTag": "DIV.sg-map-chrome",
+              "visibleButtons": 25,
+              "visibleLinks": 2,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 576,
+              "suspiciousTitle": false,
+              "screenshot": "desktop-_.png"
+            },
+            "/fiabilite/": {
+              "url": "https://sargasses-martinique.com/fiabilite/",
+              "status": 200,
+              "finalUrl": "https://sargasses-martinique.com/fiabilite/",
+              "loadMs": 6439,
+              "title": "96 % de prévisions sargasses justes, vérifié — Martinique",
+              "h1": "NOS PRÉVISIONS, VÉRIFIÉES",
+              "mapPresent": false,
+              "mapTag": null,
+              "visibleButtons": 0,
+              "visibleLinks": 11,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 3166,
+              "suspiciousTitle": false,
+              "screenshot": "desktop-_fiabilite_.png"
+            }
+          },
+          "consoleErrors": [
+            {
+              "text": "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+              "loc": "https://sargasses-martinique.com/"
+            },
+            {
+              "text": "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' https://js.stripe.com https://js.mollie.com https://www.paypal.com https://www.googleta",
+              "loc": "https://sargasses-martinique.com/"
+            },
+            {
+              "text": "Connecting to 'https://e.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://e.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://e.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://e.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            }
+          ],
+          "consoleWarnings": [],
+          "pageErrors": [],
+          "badResponses": [],
+          "failedRequests": [
+            {
+              "url": "https://sargasses-martinique.com/.well-known/apple-developer-merchantid-domain-association",
+              "failure": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920",
+              "failure": "csp"
+            },
+            {
+              "url": "https://rswdmjtdzrucqzzukfmd.supabase.co/rest/v1/analytics_events",
+              "failure": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://e.clarity.ms/collect",
+              "failure": "csp"
+            },
+            {
+              "url": "https://e.clarity.ms/collect",
+              "failure": "csp"
+            }
+          ]
+        },
+        "mobile": {
+          "pages": {
+            "/": {
+              "url": "https://sargasses-martinique.com/",
+              "status": 200,
+              "finalUrl": "https://sargasses-martinique.com/",
+              "loadMs": 6604,
+              "title": "Plages Martinique aujourd'hui · Score 0-100 (sargasses, mer, soleil) 2026",
+              "h1": "",
+              "mapPresent": true,
+              "mapTag": "DIV.sg-map-chrome",
+              "visibleButtons": 25,
+              "visibleLinks": 2,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 561,
+              "suspiciousTitle": false,
+              "screenshot": "mobile-_.png"
+            },
+            "/fiabilite/": {
+              "url": "https://sargasses-martinique.com/fiabilite/",
+              "status": 200,
+              "finalUrl": "https://sargasses-martinique.com/fiabilite/",
+              "loadMs": 6411,
+              "title": "96 % de prévisions sargasses justes, vérifié — Martinique",
+              "h1": "Nos prévisions, vérifiées",
+              "mapPresent": false,
+              "mapTag": null,
+              "visibleButtons": 1,
+              "visibleLinks": 11,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 3828,
+              "suspiciousTitle": false,
+              "screenshot": "mobile-_fiabilite_.png"
+            }
+          },
+          "consoleErrors": [
+            {
+              "text": "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+              "loc": "https://sargasses-martinique.com/"
+            },
+            {
+              "text": "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' https://js.stripe.com https://js.mollie.com https://www.paypal.com https://www.googleta",
+              "loc": "https://sargasses-martinique.com/"
+            }
+          ],
+          "consoleWarnings": [],
+          "pageErrors": [],
+          "badResponses": [],
+          "failedRequests": [
+            {
+              "url": "https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920",
+              "failure": "csp"
+            },
+            {
+              "url": "https://sargasses-martinique.com/.well-known/apple-developer-merchantid-domain-association",
+              "failure": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://rswdmjtdzrucqzzukfmd.supabase.co/rest/v1/analytics_events",
+              "failure": "net::ERR_ABORTED"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "gp",
+      "domain": "https://sargasses-guadeloupe.com",
+      "viewports": {
+        "desktop": {
+          "pages": {
+            "/": {
+              "url": "https://sargasses-guadeloupe.com/",
+              "status": 200,
+              "finalUrl": "https://sargasses-guadeloupe.com/",
+              "loadMs": 6844,
+              "title": "Plages Guadeloupe aujourd'hui · Score 0-100 (sargasses, mer, soleil) 2026",
+              "h1": "",
+              "mapPresent": true,
+              "mapTag": "DIV.sg-map-chrome",
+              "visibleButtons": 25,
+              "visibleLinks": 2,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 604,
+              "suspiciousTitle": false,
+              "screenshot": "desktop-_.png"
+            },
+            "/fiabilite/": {
+              "url": "https://sargasses-guadeloupe.com/fiabilite/",
+              "status": 200,
+              "finalUrl": "https://sargasses-guadeloupe.com/fiabilite/",
+              "loadMs": 6574,
+              "title": "96 % de prévisions sargasses justes, vérifié — Guadeloupe",
+              "h1": "Nos prévisions, vérifiées",
+              "mapPresent": false,
+              "mapTag": null,
+              "visibleButtons": 1,
+              "visibleLinks": 11,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 3828,
+              "suspiciousTitle": false,
+              "screenshot": "desktop-_fiabilite_.png"
+            }
+          },
+          "consoleErrors": [],
+          "consoleWarnings": [],
+          "pageErrors": [],
+          "badResponses": [],
+          "failedRequests": [
+            {
+              "url": "https://rswdmjtdzrucqzzukfmd.supabase.co/rest/v1/analytics_events",
+              "failure": "net::ERR_ABORTED"
+            }
+          ]
+        },
+        "mobile": {
+          "pages": {
+            "/": {
+              "url": "https://sargasses-guadeloupe.com/",
+              "status": 200,
+              "finalUrl": "https://sargasses-guadeloupe.com/",
+              "loadMs": 6539,
+              "title": "Plages Guadeloupe aujourd'hui · Score 0-100 (sargasses, mer, soleil) 2026",
+              "h1": "",
+              "mapPresent": true,
+              "mapTag": "DIV.sg-map-chrome",
+              "visibleButtons": 25,
+              "visibleLinks": 2,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 561,
+              "suspiciousTitle": false,
+              "screenshot": "mobile-_.png"
+            },
+            "/fiabilite/": {
+              "url": "https://sargasses-guadeloupe.com/fiabilite/",
+              "status": 200,
+              "finalUrl": "https://sargasses-guadeloupe.com/fiabilite/",
+              "loadMs": 6511,
+              "title": "96 % de prévisions sargasses justes, vérifié — Guadeloupe",
+              "h1": "Nos prévisions, vérifiées",
+              "mapPresent": false,
+              "mapTag": null,
+              "visibleButtons": 1,
+              "visibleLinks": 11,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 3828,
+              "suspiciousTitle": false,
+              "screenshot": "mobile-_fiabilite_.png"
+            }
+          },
+          "consoleErrors": [],
+          "consoleWarnings": [],
+          "pageErrors": [],
+          "badResponses": [],
+          "failedRequests": [
+            {
+              "url": "https://rswdmjtdzrucqzzukfmd.supabase.co/rest/v1/analytics_events",
+              "failure": "net::ERR_ABORTED"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "florida",
+      "domain": "https://sargassummiami.com",
+      "viewports": {
+        "desktop": {
+          "pages": {
+            "/": {
+              "url": "https://sargassummiami.com/",
+              "status": 200,
+              "finalUrl": "https://sargassummiami.com/",
+              "loadMs": 6802,
+              "title": "Sargassum in Florida Today — Live Beach Map & 7-Day Forecast",
+              "h1": "",
+              "mapPresent": true,
+              "mapTag": "DIV.sg-map-chrome",
+              "visibleButtons": 23,
+              "visibleLinks": 2,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 346,
+              "suspiciousTitle": false,
+              "screenshot": "desktop-_.png"
+            },
+            "/fiabilite/": {
+              "url": "https://sargassummiami.com/fiabilite/",
+              "status": 404,
+              "finalUrl": "https://sargassummiami.com/fiabilite/",
+              "loadMs": 6376,
+              "title": "Le Veilleur a perdu celle-ci · Sargassum Florida",
+              "h1": "MÊME LE SATELLITE A PERDU CELLE-CI",
+              "mapPresent": false,
+              "mapTag": null,
+              "visibleButtons": 0,
+              "visibleLinks": 5,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 337,
+              "suspiciousTitle": false,
+              "screenshot": "desktop-_fiabilite_.png"
+            }
+          },
+          "consoleErrors": [
+            {
+              "text": "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+              "loc": "https://sargassummiami.com/"
+            },
+            {
+              "text": "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' https://js.stripe.com https://js.mollie.com https://www.paypal.com https://www.googleta",
+              "loc": "https://sargassummiami.com/"
+            },
+            {
+              "text": "Connecting to 'https://y.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://y.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://y.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://y.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Failed to load resource: the server responded with a status of 404 ()",
+              "loc": "https://sargassummiami.com/fiabilite/"
+            }
+          ],
+          "consoleWarnings": [],
+          "pageErrors": [],
+          "badResponses": [
+            {
+              "url": "https://sargassummiami.com/fiabilite/",
+              "status": 404
+            }
+          ],
+          "failedRequests": [
+            {
+              "url": "https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920",
+              "failure": "csp"
+            },
+            {
+              "url": "https://sargassummiami.com/.well-known/apple-developer-merchantid-domain-association",
+              "failure": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://rswdmjtdzrucqzzukfmd.supabase.co/rest/v1/analytics_events",
+              "failure": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://y.clarity.ms/collect",
+              "failure": "csp"
+            },
+            {
+              "url": "https://y.clarity.ms/collect",
+              "failure": "csp"
+            }
+          ]
+        },
+        "mobile": {
+          "pages": {
+            "/": {
+              "url": "https://sargassummiami.com/",
+              "status": 200,
+              "finalUrl": "https://sargassummiami.com/",
+              "loadMs": 6540,
+              "title": "Sargassum in Florida Today — Live Beach Map & 7-Day Forecast",
+              "h1": "",
+              "mapPresent": true,
+              "mapTag": "DIV.sg-map-chrome",
+              "visibleButtons": 23,
+              "visibleLinks": 2,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 346,
+              "suspiciousTitle": false,
+              "screenshot": "mobile-_.png"
+            },
+            "/fiabilite/": {
+              "url": "https://sargassummiami.com/fiabilite/",
+              "status": 404,
+              "finalUrl": "https://sargassummiami.com/fiabilite/",
+              "loadMs": 6369,
+              "title": "Le Veilleur a perdu celle-ci · Sargassum Florida",
+              "h1": "MÊME LE SATELLITE A PERDU CELLE-CI",
+              "mapPresent": false,
+              "mapTag": null,
+              "visibleButtons": 0,
+              "visibleLinks": 5,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 337,
+              "suspiciousTitle": false,
+              "screenshot": "mobile-_fiabilite_.png"
+            }
+          },
+          "consoleErrors": [
+            {
+              "text": "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+              "loc": "https://sargassummiami.com/"
+            },
+            {
+              "text": "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' https://js.stripe.com https://js.mollie.com https://www.paypal.com https://www.googleta",
+              "loc": "https://sargassummiami.com/"
+            },
+            {
+              "text": "Connecting to 'https://f.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://f.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://f.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://f.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Failed to load resource: the server responded with a status of 404 ()",
+              "loc": "https://sargassummiami.com/fiabilite/"
+            }
+          ],
+          "consoleWarnings": [],
+          "pageErrors": [],
+          "badResponses": [
+            {
+              "url": "https://sargassummiami.com/fiabilite/",
+              "status": 404
+            }
+          ],
+          "failedRequests": [
+            {
+              "url": "https://sargassummiami.com/.well-known/apple-developer-merchantid-domain-association",
+              "failure": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920",
+              "failure": "csp"
+            },
+            {
+              "url": "https://rswdmjtdzrucqzzukfmd.supabase.co/rest/v1/analytics_events",
+              "failure": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://f.clarity.ms/collect",
+              "failure": "csp"
+            },
+            {
+              "url": "https://f.clarity.ms/collect",
+              "failure": "csp"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "puntacana",
+      "domain": "https://sargassumpuntacana.com",
+      "viewports": {
+        "desktop": {
+          "pages": {
+            "/": {
+              "url": "https://sargassumpuntacana.com/",
+              "status": 200,
+              "finalUrl": "https://sargassumpuntacana.com/",
+              "loadMs": 6748,
+              "title": "Punta Cana Sargassum Today — Live Beach Map & 7-Day Forecast",
+              "h1": "",
+              "mapPresent": true,
+              "mapTag": "DIV.sg-map-chrome",
+              "visibleButtons": 23,
+              "visibleLinks": 2,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 474,
+              "suspiciousTitle": false,
+              "screenshot": "desktop-_.png"
+            },
+            "/fiabilite/": {
+              "url": "https://sargassumpuntacana.com/fiabilite/",
+              "status": 404,
+              "finalUrl": "https://sargassumpuntacana.com/fiabilite/",
+              "loadMs": 6337,
+              "title": "Le Veilleur a perdu celle-ci · Sargassum Punta Cana",
+              "h1": "MÊME LE SATELLITE A PERDU CELLE-CI",
+              "mapPresent": false,
+              "mapTag": null,
+              "visibleButtons": 0,
+              "visibleLinks": 5,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 337,
+              "suspiciousTitle": false,
+              "screenshot": "desktop-_fiabilite_.png"
+            }
+          },
+          "consoleErrors": [
+            {
+              "text": "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+              "loc": "https://sargassumpuntacana.com/"
+            },
+            {
+              "text": "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' https://js.stripe.com https://js.mollie.com https://www.paypal.com https://www.googleta",
+              "loc": "https://sargassumpuntacana.com/"
+            },
+            {
+              "text": "Connecting to 'https://a.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://a.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://a.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://a.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Failed to load resource: the server responded with a status of 404 ()",
+              "loc": "https://sargassumpuntacana.com/fiabilite/"
+            }
+          ],
+          "consoleWarnings": [],
+          "pageErrors": [],
+          "badResponses": [
+            {
+              "url": "https://sargassumpuntacana.com/fiabilite/",
+              "status": 404
+            }
+          ],
+          "failedRequests": [
+            {
+              "url": "https://sargassumpuntacana.com/.well-known/apple-developer-merchantid-domain-association",
+              "failure": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920",
+              "failure": "csp"
+            },
+            {
+              "url": "https://rswdmjtdzrucqzzukfmd.supabase.co/rest/v1/analytics_events",
+              "failure": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://a.clarity.ms/collect",
+              "failure": "csp"
+            },
+            {
+              "url": "https://a.clarity.ms/collect",
+              "failure": "csp"
+            }
+          ]
+        },
+        "mobile": {
+          "pages": {
+            "/": {
+              "url": "https://sargassumpuntacana.com/",
+              "status": 200,
+              "finalUrl": "https://sargassumpuntacana.com/",
+              "loadMs": 6594,
+              "title": "Punta Cana Sargassum Today — Live Beach Map & 7-Day Forecast",
+              "h1": "",
+              "mapPresent": true,
+              "mapTag": "DIV.sg-map-chrome",
+              "visibleButtons": 23,
+              "visibleLinks": 2,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 452,
+              "suspiciousTitle": false,
+              "screenshot": "mobile-_.png"
+            },
+            "/fiabilite/": {
+              "url": "https://sargassumpuntacana.com/fiabilite/",
+              "status": 404,
+              "finalUrl": "https://sargassumpuntacana.com/fiabilite/",
+              "loadMs": 6371,
+              "title": "Le Veilleur a perdu celle-ci · Sargassum Punta Cana",
+              "h1": "MÊME LE SATELLITE A PERDU CELLE-CI",
+              "mapPresent": false,
+              "mapTag": null,
+              "visibleButtons": 0,
+              "visibleLinks": 5,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 337,
+              "suspiciousTitle": false,
+              "screenshot": "mobile-_fiabilite_.png"
+            }
+          },
+          "consoleErrors": [
+            {
+              "text": "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+              "loc": "https://sargassumpuntacana.com/"
+            },
+            {
+              "text": "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' https://js.stripe.com https://js.mollie.com https://www.paypal.com https://www.googleta",
+              "loc": "https://sargassumpuntacana.com/"
+            },
+            {
+              "text": "Connecting to 'https://t.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://t.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://t.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Connecting to 'https://t.clarity.ms/collect' violates the following Content Security Policy directive: \"connect-src 'self' https://api.mollie.com https://api.stripe.com https://www.mollie.com https://www.paypal.com https://www.google-analytics.com https://region1.analytics.google.com https://www.goo",
+              "loc": "https://scripts.clarity.ms/0.8.72/clarity.js"
+            },
+            {
+              "text": "Failed to load resource: the server responded with a status of 404 ()",
+              "loc": "https://sargassumpuntacana.com/fiabilite/"
+            }
+          ],
+          "consoleWarnings": [],
+          "pageErrors": [],
+          "badResponses": [
+            {
+              "url": "https://sargassumpuntacana.com/fiabilite/",
+              "status": 404
+            }
+          ],
+          "failedRequests": [
+            {
+              "url": "https://sargassumpuntacana.com/.well-known/apple-developer-merchantid-domain-association",
+              "failure": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920",
+              "failure": "csp"
+            },
+            {
+              "url": "https://rswdmjtdzrucqzzukfmd.supabase.co/rest/v1/analytics_events",
+              "failure": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://t.clarity.ms/collect",
+              "failure": "csp"
+            },
+            {
+              "url": "https://t.clarity.ms/collect",
+              "failure": "csp"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "rivieramaya",
+      "domain": "https://sargassumcancun.com",
+      "viewports": {
+        "desktop": {
+          "pages": {
+            "/": {
+              "url": "https://sargassumcancun.com/",
+              "status": 200,
+              "finalUrl": "https://sargassumcancun.com/",
+              "loadMs": 6884,
+              "title": "Sargazo en Cancún HOY — Mapa Satelital en Vivo y Pronóstico 7 Días 2026",
+              "h1": "",
+              "mapPresent": true,
+              "mapTag": "DIV.sg-map-chrome",
+              "visibleButtons": 23,
+              "visibleLinks": 2,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 455,
+              "suspiciousTitle": false,
+              "screenshot": "desktop-_.png"
+            },
+            "/fiabilite/": {
+              "url": "https://sargassumcancun.com/fiabilite/",
+              "status": 404,
+              "finalUrl": "https://sargassumcancun.com/fiabilite/",
+              "loadMs": 6347,
+              "title": "Le Veilleur a perdu celle-ci · Sargassum Riviera Maya",
+              "h1": "MÊME LE SATELLITE A PERDU CELLE-CI",
+              "mapPresent": false,
+              "mapTag": null,
+              "visibleButtons": 0,
+              "visibleLinks": 5,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 337,
+              "suspiciousTitle": false,
+              "screenshot": "desktop-_fiabilite_.png"
+            }
+          },
+          "consoleErrors": [
+            {
+              "text": "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+              "loc": "https://sargassumcancun.com/"
+            },
+            {
+              "text": "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' https://js.stripe.com https://js.mollie.com https://www.paypal.com https://www.googleta",
+              "loc": "https://sargassumcancun.com/"
+            },
+            {
+              "text": "Failed to load resource: the server responded with a status of 404 ()",
+              "loc": "https://sargassumcancun.com/fiabilite/"
+            }
+          ],
+          "consoleWarnings": [],
+          "pageErrors": [],
+          "badResponses": [
+            {
+              "url": "https://sargassumcancun.com/fiabilite/",
+              "status": 404
+            }
+          ],
+          "failedRequests": [
+            {
+              "url": "https://sargassumcancun.com/.well-known/apple-developer-merchantid-domain-association",
+              "failure": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920",
+              "failure": "csp"
+            },
+            {
+              "url": "https://rswdmjtdzrucqzzukfmd.supabase.co/rest/v1/analytics_events",
+              "failure": "net::ERR_ABORTED"
+            }
+          ]
+        },
+        "mobile": {
+          "pages": {
+            "/": {
+              "url": "https://sargassumcancun.com/",
+              "status": 200,
+              "finalUrl": "https://sargassumcancun.com/",
+              "loadMs": 6654,
+              "title": "Sargazo en Cancún HOY — Mapa Satelital en Vivo y Pronóstico 7 Días 2026",
+              "h1": "",
+              "mapPresent": true,
+              "mapTag": "DIV.sg-map-chrome",
+              "visibleButtons": 23,
+              "visibleLinks": 2,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 438,
+              "suspiciousTitle": false,
+              "screenshot": "mobile-_.png"
+            },
+            "/fiabilite/": {
+              "url": "https://sargassumcancun.com/fiabilite/",
+              "status": 404,
+              "finalUrl": "https://sargassumcancun.com/fiabilite/",
+              "loadMs": 6406,
+              "title": "Le Veilleur a perdu celle-ci · Sargassum Riviera Maya",
+              "h1": "MÊME LE SATELLITE A PERDU CELLE-CI",
+              "mapPresent": false,
+              "mapTag": null,
+              "visibleButtons": 0,
+              "visibleLinks": 5,
+              "imgCount": 0,
+              "brokenImgs": 0,
+              "textLen": 337,
+              "suspiciousTitle": false,
+              "screenshot": "mobile-_fiabilite_.png"
+            }
+          },
+          "consoleErrors": [
+            {
+              "text": "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+              "loc": "https://sargassumcancun.com/"
+            },
+            {
+              "text": "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' https://js.stripe.com https://js.mollie.com https://www.paypal.com https://www.googleta",
+              "loc": "https://sargassumcancun.com/"
+            },
+            {
+              "text": "Failed to load resource: the server responded with a status of 404 ()",
+              "loc": "https://sargassumcancun.com/fiabilite/"
+            }
+          ],
+          "consoleWarnings": [],
+          "pageErrors": [],
+          "badResponses": [
+            {
+              "url": "https://sargassumcancun.com/fiabilite/",
+              "status": 404
+            }
+          ],
+          "failedRequests": [
+            {
+              "url": "https://sargassumcancun.com/.well-known/apple-developer-merchantid-domain-association",
+              "failure": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920",
+              "failure": "csp"
+            },
+            {
+              "url": "https://rswdmjtdzrucqzzukfmd.supabase.co/rest/v1/analytics_events",
+              "failure": "net::ERR_ABORTED"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "barbados",
+      "domain": "https://sargassumbarbados.com",
+      "viewports": {
+        "desktop": {
+          "pages": {
+            "/": {
+              "url": "https://sargassumbarbados.com/",
+              "status": 0,
+              "error": "Error: page.goto: net::ERR_NAME_NOT_RESOLVED at https://sargassumbarbados.com/\nCall log:\n\u001b[2m  - navigating to \"https://sargassumbarbados.com/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+              "loadMs": 152
+            },
+            "/fiabilite/": {
+              "url": "https://sargassumbarbados.com/fiabilite/",
+              "status": 0,
+              "error": "Error: page.goto: net::ERR_NAME_NOT_RESOLVED at https://sargassumbarbados.com/fiabilite/\nCall log:\n\u001b[2m  - navigating to \"https://sargassumbarbados.com/fiabilite/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+              "loadMs": 50
+            }
+          },
+          "consoleErrors": [],
+          "consoleWarnings": [],
+          "pageErrors": [],
+          "badResponses": [],
+          "failedRequests": [
+            {
+              "url": "https://sargassumbarbados.com/",
+              "failure": "net::ERR_NAME_NOT_RESOLVED"
+            },
+            {
+              "url": "https://sargassumbarbados.com/fiabilite/",
+              "failure": "net::ERR_NAME_NOT_RESOLVED"
+            }
+          ]
+        },
+        "mobile": {
+          "pages": {
+            "/": {
+              "url": "https://sargassumbarbados.com/",
+              "status": 0,
+              "error": "Error: page.goto: net::ERR_NAME_NOT_RESOLVED at https://sargassumbarbados.com/\nCall log:\n\u001b[2m  - navigating to \"https://sargassumbarbados.com/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+              "loadMs": 4
+            },
+            "/fiabilite/": {
+              "url": "https://sargassumbarbados.com/fiabilite/",
+              "status": 0,
+              "error": "Error: page.goto: net::ERR_NAME_NOT_RESOLVED at https://sargassumbarbados.com/fiabilite/\nCall log:\n\u001b[2m  - navigating to \"https://sargassumbarbados.com/fiabilite/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+              "loadMs": 38
+            }
+          },
+          "consoleErrors": [],
+          "consoleWarnings": [],
+          "pageErrors": [],
+          "badResponses": [],
+          "failedRequests": [
+            {
+              "url": "https://sargassumbarbados.com/",
+              "failure": "net::ERR_NAME_NOT_RESOLVED"
+            },
+            {
+              "url": "https://sargassumbarbados.com/fiabilite/",
+              "failure": "net::ERR_NAME_NOT_RESOLVED"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "finishedAt": "2026-10-11T18:38:28.749Z"
+}
