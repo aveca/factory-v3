@@ -1,0 +1,26 @@
+diff --git "a/C:\\factory\\ai-factory-tmp\\worker-pool.cjs.bak-20261011" "b/C:\\factory\\ai-factory-tmp\\worker-pool.cjs"
+index 19e8bc2..a0e9fa4 100644
+--- "a/C:\\factory\\ai-factory-tmp\\worker-pool.cjs.bak-20261011"
++++ "b/C:\\factory\\ai-factory-tmp\\worker-pool.cjs"
+@@ -201,10 +201,17 @@ class WorkerPool extends EventEmitter {
+     const worktreeName = existingWorktree || `${project}-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+     const worktreePath = path.join(worktreeDir, worktreeName);
+     const branch = `factory/${project}-${Date.now()}-${Math.random().toString(36).slice(2,6)}`;
+-    
+-    // Check out the branch
+-    await this.execAsync('git', ['checkout', branch], { cwd: worktreePath });
+-    
++
++    // Check out the branch (create it if it does not exist yet — a fresh job
++    // branch name never exists, so -b is required; reusing an existing branch
++    // from a previous run would collide only on identical timestamp)
++    const branchExists = (await this.execAsync('git', ['rev-parse', '--verify', branch], { cwd: worktreePath, ignoreError: true }).catch(() => '')) !== '';
++    if (branchExists) {
++      await this.execAsync('git', ['checkout', branch], { cwd: worktreePath });
++    } else {
++      await this.execAsync('git', ['checkout', '-b', branch], { cwd: worktreePath });
++    }
++
+     return { worktreePath, branch, repoUrl, needsPark: false };
+   }
+ 

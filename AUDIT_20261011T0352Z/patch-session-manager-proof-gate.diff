@@ -1,0 +1,43 @@
+diff --git "a/C:\\factory\\ai-factory-tmp\\session-manager.cjs.bak-20261011" "b/C:\\factory\\ai-factory-tmp\\session-manager.cjs"
+index ca092e7..7d847d8 100644
+--- "a/C:\\factory\\ai-factory-tmp\\session-manager.cjs.bak-20261011"
++++ "b/C:\\factory\\ai-factory-tmp\\session-manager.cjs"
+@@ -252,7 +252,37 @@ class SessionManager {
+   completeSession(sessionId, result = {}) {
+     const session = this.sessions.get(sessionId);
+     if (!session) return null;
+-    
++
++    // --- Proof gate (fail-closed): a success claim must carry verifiable proof ---
++    // Rejects placeholder/fabricated identifiers (cf. audit 2026-10-11: events.jsonl
++    // SESSION_COMPLETED with commit_sha 'abc123def456', pr '/pull/123').
++    const proofErrors = [];
++    const SHA_RE = /^[0-9a-f]{7,40}$/
++    const PLACEHOLDER_SHA_RE = /abc123|123456|deadbeef|789ghi|abcdefg|fedcba|^0{7,}$/i
++    const PR_RE = /^https:\/\/github\.com\/[\w.-]+\/[\w.-]+\/pull\/[1-9]\d*$/
++    if (result.success) {
++      for (const key of ['commit_sha', 'merge_sha']) {
++        const v = result[key]
++        if (v !== undefined && v !== null) {
++          if (typeof v !== 'string' || !SHA_RE.test(v.trim()) || PLACEHOLDER_SHA_RE.test(v)) {
++            proofErrors.push(`invalid_${key}:${String(v).slice(0, 12)}`)
++          }
++        }
++      }
++      if (result.pr_url !== undefined && result.pr_url !== null) {
++        if (typeof result.pr_url !== 'string' || !PR_RE.test(result.pr_url.trim())) {
++          proofErrors.push(`invalid_pr_url:${String(result.pr_url).slice(0, 60)}`)
++        }
++      }
++      if (proofErrors.length) {
++        result.success = false
++        result.errors = (result.errors || []).concat(['PROOF_GATE_REJECTED:' + proofErrors.join(',')])
++        result.proof_gate = { verdict: 'REJECTED', details: proofErrors, at: new Date().toISOString() }
++      } else {
++        result.proof_gate = { verdict: 'PASSED', at: new Date().toISOString() }
++      }
++    }
++
+     session.status = result.success ? 'completed' : 'failed';
+     session.result = result;
+     session.updated_at = new Date().toISOString();
