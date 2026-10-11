@@ -1,0 +1,5 @@
+﻿JOB_ID: factory-audit-e2e-20261010-001
+AUDIT: FACTORY_V3_GLOBAL_AUDIT
+CREATED_AT: 2026-10-10T23:48:49.0063789-04:00
+COMPUTER: DESKTOP-HG0O76B
+PURPOSE: E2E correlated test - branch + PR + CI only, no merge, no deploy
