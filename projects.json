@@ -83,7 +83,7 @@
                      {
                          "project":  "botwow",
                          "repo":  "aveca/bot-wow",
-                         "local_path":  "C:/Users/user/sargagame-tmp/botwow",
+                         "local_path":  "C:/Users/user/botwow",
                          "default_branch":  "main",
                          "technology":  "wow/lua",
                          "package_manager":  "none",
