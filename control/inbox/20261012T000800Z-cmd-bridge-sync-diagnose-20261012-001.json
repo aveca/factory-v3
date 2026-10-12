@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "command_id": "cmd-bridge-sync-diagnose-20261012-001",
+  "job_id": "job-bridge-sync-diagnose-20261012-001",
+  "created_at": "2026-10-12T00:07:59.554Z",
+  "project": "Sargagame",
+  "action": "DIAGNOSE",
+  "payload": {
+    "goal": "Diagnose why the live Factory Control bridge PID 27892 still uses stale local domain config and old audit heuristics after factory-control main advanced to a735fe804c28f95637fe63cbd1b7c178676720cc.",
+    "scope": [
+      "C:/factory/control/bridge-start.cmd",
+      "C:/factory/control/canal/github-bridge.cjs",
+      "C:/factory/control/canal/config/domains.json",
+      "C:/factory/locks/bridge.lock",
+      "C:/factory/control/bridge-state.json"
+    ],
+    "expected_current_main_sha": "a735fe804c28f95637fe63cbd1b7c178676720cc",
+    "expected_tulum_domain": "https://sargazotulum.com",
+    "verify": [
+      "read-only identify which process owns bridge.lock and whether it is still active",
+      "identify the exact source path and git SHA or SHA256 of the currently loaded bridge/runtime files",
+      "compare local config Tulum URL and route-heuristic support with GitHub main",
+      "inspect the existing scheduled task and wrapper for safe sync/restart behavior",
+      "report a safe update plan with backup and rollback; do not start a second runner"
+    ],
+    "safety": [
+      "diagnosis only; do not modify files or restart the runner in this command",
+      "do not show secrets, tokens, cookies, or credentials",
+      "do not touch Sargagame production code or payment paths",
+      "do not bypass SELF_UPDATE_READY=NO without proving the documented preconditions and rollback gate"
+    ],
+    "required_report": [
+      "command_id and job_id",
+      "runtime process and lock status",
+      "current local bridge/config hash and Tulum URL",
+      "current main SHA",
+      "exact mismatch",
+      "next_action and whether safe controlled synchronization is supported"
+    ]
+  }
+}
