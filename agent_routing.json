@@ -90,6 +90,17 @@
     "deterministic": true,
     "useOmniRoute": false
   },
+  "DESKTOP_WORKFLOW": {
+    "preferredAgent": "replaypilot",
+    "fallbackAgents": [],
+    "preferredModel": null,
+    "fallbackModels": [],
+    "timeout": 120000,
+    "maxRetries": 1,
+    "useOmniRoute": false,
+    "allow_gui_input": false,
+    "notes": "Read-only verification only; GUI input refused without separate explicit human authorisation."
+  },
   "DEFAULT": {
     "preferredAgent": "opencode",
     "fallbackAgents": [
