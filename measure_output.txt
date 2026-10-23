@@ -1,8 +1,0 @@
-=== Backoff Jitter Measurement (P5.2) ===
-Simulating 50 missions with quota exhaustion...
-
-Traceback (most recent call last):
-  File "C:\factory-service\v3\measure_backoff.py", line 64, in <module>
-    65536, 4096, None, 3, 0, now_iso(), now_iso(),
-                             ^^^^^^^
-NameError: name 'now_iso' is not defined
