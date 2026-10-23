@@ -12,8 +12,8 @@ else:
 
 # Test 2: Pattern with TTL expiration
 print('Test 2: Pattern with TTL...')
-remember_pattern('expiring_pattern', {'cause': 'timeout', 'frequency': 3}, ttl_hours=0.001)  # 3.6 seconds
-time.sleep(0.01)  # Wait for expiration
+remember_pattern('expiring_pattern', {'cause': 'timeout', 'frequency': 3}, ttl_hours=0.0001)  # 0.36 seconds
+time.sleep(0.5)  # Wait for expiration
 pattern = recall_pattern('expiring_pattern')
 if pattern is None:
     print('  PASS (expired and cleaned up)')
@@ -40,4 +40,3 @@ else:
 
 print()
 print('All pattern memory tests completed.')
-"

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Factory Test — Page de validation</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .section { margin: 20px 0; padding: 10px; border: 1px solid #e0e0e0; border-radius: 4px; }
+        .error { color: #d32f2f; font-weight: bold; }
+        .ok { color: #388e3c; font-weight: bold; }
+        a { color: #1976d2; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        input, button { padding: 6px 12px; margin: 4px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Factory V3 — Validation Page</h1>
+
+        <div class="section">
+            <h2>1. Titre de la page</h2>
+            <p>La page doit s'afficher correctement.</p>
+        </div>
+
+        <div class="section">
+            <h2>2. Erreurs console</h2>
+            <p>Aucune erreur JavaScript critique ne doit apparaître.</p>
+            <ul id="console-errors"></ul>
+        </div>
+
+        <div class="section">
+            <h2>3. Lien de vérification</h2>
+            <p>Le lien ci-dessous doit être valide et mener à une page reachable.</p>
+            <a href="https://www.example.com" target="_blank">Exemple de lien externe</a>
+        </div>
+
+        <div class="section">
+            <h2>4. Formulaire simple</h2>
+            <form id="contact-form">
+                <div>
+                    <label for="name">Nom :</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div>
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" required>
+                </div>
+                <button type="submit">Envoyer</button>
+            </form>
+            <p id="form-status"></p>
+        </div>
+    </div>
+
+    <script>
+        // Log errors to the DOM
+        window.addEventListener('error', function(e) {
+            const list = document.getElementById('console-errors');
+            const li = document.createElement('li');
+            li.textContent = 'Erreur globale: ' + (e.message || 'inconnu');
+            li.className = 'error';
+            list.appendChild(li);
+        });
+
+        // Formulaire: simulation d'envoi
+        const form = document.getElementById('contact-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value || 'Utilisateur';
+            const status = document.getElementById('form-status');
+            status.textContent = 'Bonjour ' + name + ' — formulaire validé';
+            status.className = 'ok';
+        });
+
+        // Simuler une erreur console non critique
+        setTimeout(() => {
+            const li = document.createElement('li');
+            li.textContent = 'Info: chargement des ressources en cours';
+            li.className = 'ok';
+            const list = document.getElementById('console-errors');
+            list.appendChild(li);
+        }, 100);
+    </script>
+</body>
+</html>

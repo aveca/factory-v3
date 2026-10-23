@@ -3,6 +3,9 @@
 *.pyw
 __pycache__/
 
+# Ignore Node.js
+node_modules/
+
 # Ignore log files
 *.log
 *.txt
@@ -47,8 +50,13 @@ description
 # Ignore orch.py outputs
 orch.py.output.txt 2>/dev/null
 
+# Ignore test infrastructure
+read_lhci.py
+test_http_server.py
+test_lighthouse.py
+lhci_report.json
+
 # But keep the source files
 f3.py
 memory.py
 orch.py
-"
