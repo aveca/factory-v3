@@ -1,0 +1,3 @@
+[submodule "ai-factory-tmp"]
+	path = ai-factory-tmp
+	url = https://github.com/aveca/ai-factory.git
