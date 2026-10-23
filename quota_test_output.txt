@@ -1,0 +1,32 @@
+  PASS: Category 'refus_quota' found in f3.py source
+  PASS: Category 'paiement_requis' found in f3.py source
+  PASS: Category 'timeout' found in f3.py source
+  PASS: Category 'reponse_vide' found in f3.py source
+  PASS: Category 'autre' found in f3.py source
+  PASS: Old exception block replaced
+  FAIL: Marker 'Catégorisation d'erreur pour un handling contrôlé' NOT found
+  PASS: Marker 'refus_quota' found
+  PASS: Marker 'paiement_requis' found
+  PASS: Marker 'timeout' found
+  PASS: Marker 'reponse_vide' found
+
+All source code verification complete.
+
+--- Deterministic Tests ---
+
+Test A: 429 error handling
+  429 error categorized as: refus_quota - PASS
+
+Test B: 402 error handling
+  402 error categorized as: paiement_requis - PASS
+
+Test C: Timeout error handling
+  Timeout error categorized as: timeout - PASS
+
+Test D: Empty response handling
+  Empty response categorized as: reponse_vide - PASS
+
+Test E: Other error handling
+  Other error categorized as: autre - PASS
+
+--- All deterministic tests completed ---
