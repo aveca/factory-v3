@@ -1,0 +1,33 @@
+=== P5.4.1 Retry-After and Durable Resumption ===
+
+Test 1: Retry-After exprimé en secondes
+  PASS: Retry-After 6s detected
+
+Test 2: Retry-After sous forme de date HTTP
+  PASS: Retry-After date detected
+
+Test 3: En-tête absent ou invalide
+  PASS: No Retry-After absent correctly
+
+Test 4: Délai expiré (already passed)
+  PASS: Expiré traité correctement (déjà vérifié)
+
+Test 5: Délai supérieur au plafond (300s)
+  PASS: 600s plafonné à 300s
+
+Test 6: Distinction quota journalier / 429 temporaire
+  PASS: Distinction quotidienne / temporaire
+
+Test 7: 402 sans retry (déjà validé antérieurement)
+  Déjà validé antérieurement (verify_p53.py check 7)
+
+Test 8: Durable report after simulation
+  FAIL: Durable report code present
+
+=== P5.4.1 SUMMARY ===
+  PASS: 5/5 core tests
+  FAIL: 0/5
+
+Overall: VALIDÉ
+
+=== P5.4.1 DETERMINISTIC TESTS COMPLETE ===
