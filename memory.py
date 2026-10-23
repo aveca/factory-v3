@@ -7,22 +7,31 @@ l'existant (SQLite + control.json) en ajoutant un espace de clé-valeur
 persistant par mission/projet.
 """
 
-import json, os, time
+import json, re, time, os
 from pathlib import Path
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 
 # ─── Chemins ────────────────────────────────────────────────────────────────
 
 # Racine de la mémoire: <F3_ROOT>/.factory_memory/<worker_id>.json
 # Par défaut, F3_ROOT vaut C:\factory-service
 _M_ROOT = os.environ.get("F3_ROOT", r"C:\factory-service")
-_MEMORY_FILE = Path(_M_ROOT) / ".factory_memory" / "memory.json"
+# La mémoire et la politique se trouvent dans le répertoire de travail de Factory
+_M_WORKDIR = Path(os.environ.get("F3_WORKDIR", r"C:\factory-service\v3"))
+_MEMORY_FILE = _M_WORKDIR / ".factory_memory" / "memory.json"
+# La politique de livraison GitHub se trouve dans le répertoire de travail de Factory
+_GITHUB_DELIVERY_POLICY_PATH = _M_WORKDIR / "GITHUB_DELIVERY_POLICY.md"
 
-# Verrou simple pour l'écriture concurrente (le worker limitant à 1 via concurrency_limit)
-_memory_lock = False
+# Vérifier si la politique a déjà été chargée dans cette session
+_GITHUB_DELIVERY_POLICY_LOADED = False
 
 # ─── TTL (time-to-live) pour les patterns mémorisés ───────────────────────
 # Durée de vie par défaut en secondes (24h) avant expiration et nettoyage automatique
 DEFAULT_TTL_SECONDS = 24 * 3600
+
+# ─── Branches protégées ───────────────────────────────────────────────────
+PROTECTED_BRANCHES = {"main", "master", "develop", "release"}
 
 # ─── Classe Memory ─────────────────────────────────────────────────────────
 
@@ -121,7 +130,7 @@ class Memory:
 
         Args:
             pattern_name: Nom identifiant le pattern (ex: "retry_after_30s_failure")
-            pattern_data: Données structurées sur le pattern (ex: {"cause": "quota", "frequency": 5, "last_seen": "...}")
+            pattern_data: Données structurées sur le pattern (ex: {"cause": "quota", "frequency": 5, "last_seen": "..."})
             ttl_hours: Durée de vie en heures avant expiration automatique
         """
         ttl_seconds = ttl_hours * 3600
@@ -143,7 +152,108 @@ class Memory:
             return default
         if self._is_expired(stored):
             # Nettoyer l'entrée expirée
-            self.forget(pattern_name)
+            self.forget_pattern(pattern_name)
+            return default
+        return stored["data"]
+
+    def forget_pattern(self, pattern_name: str):
+        """Supprimer un pattern de mémorisation."""
+        self.forget(pattern_name)
+
+    # ─── Nouvelles fonctions : politique de livraison GitHub ───────────────
+
+    def get_github_delivery_policy(self) -> str:
+        """Charger et retourner la politique de livraison GitHub.
+
+        Returns:
+            Le contenu texte de la politique, ou chaîne vide si introuvable.
+        """
+        global _GITHUB_DELIVERY_POLICY_CONTENT
+        # Vérifier d'abord le cache en mémoire
+        if "_GITHUB_DELIVERY_POLICY_CONTENT" not in globals():
+            _GITHUB_DELIVERY_POLICY_CONTENT = None
+        if _GITHUB_DELIVERY_POLICY_CONTENT is None:
+            try:
+                if _GITHUB_DELIVERY_POLICY_PATH.exists():
+                    with open(_GITHUB_DELIVERY_POLICY_PATH, encoding="utf-8") as f:
+                        _GITHUB_DELIVERY_POLICY_CONTENT = f.read()
+                else:
+                    _GITHUB_DELIVERY_POLICY_CONTENT = ""
+            except Exception:
+                _GITHUB_DELIVERY_POLICY_CONTENT = ""
+        return _GITHUB_DELIVERY_POLICY_CONTENT
+
+    def get_github_policy_version(self) -> str:
+        """Retourner la version de la politique détectée."""
+        content = self.get_github_delivery_policy()
+        if not content:
+            return "absent"
+        # Extraire la version depuis le header
+        match = re.search(r"Policy Version[:\\s]*([\d.]+)", content)
+        if match:
+            return match.group(1)
+        return "unknown"
+
+    def check_policy_compliance(self, commit_message: str, changed_files: list, branch_name: str) -> dict:
+        """Vérifier la conformité d'un commit par rapport à la politique.
+
+        Returns:
+            dict avec 'compliant': bool, 'details': str
+        """
+        details = []
+        compliant = True
+
+        # Vérifier le message de commit
+        if not commit_message.startswith("P5.") and not commit_message.startswith("Re:"):
+            details.append("Message de commit ne respecte pas le format requis (doit commencer par P5.x)")
+            compliant = False
+
+        # Vérifier la branche
+        if branch_name in PROTECTED_BRANCHES:
+            details.append(f"Branche protégée '{branch_name}' — push direct interdit")
+            compliant = False
+
+        # Vérifier les fichiers modifiés
+        for f in changed_files:
+            if f.endswith('.secrets') or f.endswith('.env'):
+                details.append(f"Fichier sensible détecté: {f}")
+                compliant = False
+
+        return {
+            "compliant": compliant,
+            "details": "; ".join(details) if details else "Conforme"
+        }
+
+    # ─── Nouvelles fonctions : patterns de défaut ────────────────────────────
+
+    def remember_pattern(self, pattern_name: str, pattern_data: dict, ttl_hours: int = 24):
+        """Mémoriser un pattern de défaut fréquent avec expiration TTL.
+
+        Args:
+            pattern_name: Nom identifiant le pattern (ex: "retry_after_30s_failure")
+            pattern_data: Données structurées sur le pattern (ex: {"cause": "quota", "frequency": 5, "last_seen": "..."})
+            ttl_hours: Durée de vie en heures avant expiration automatique
+        """
+        ttl_seconds = ttl_hours * 3600
+        self._data[pattern_name] = {
+            "data": pattern_data,
+            "ttl": time.time(),
+            "ttl_max": ttl_seconds,
+        }
+        self._save()
+
+    def recall_pattern(self, pattern_name: str, default=None):
+        """Rappeler un pattern de défaut si non expiré.
+
+        Returns:
+            Le dict de données du pattern si non expiré, sinon default.
+        """
+        stored = self._data.get(pattern_name)
+        if stored is None:
+            return default
+        if self._is_expired(stored):
+            # Nettoyer l'entrée expirée
+            self.forget_pattern(pattern_name)
             return default
         return stored["data"]
 
@@ -169,3 +279,6 @@ forget = get_memory().forget
 remember_pattern = get_memory().remember_pattern
 recall_pattern = get_memory().recall_pattern
 forget_pattern = get_memory().forget_pattern
+policy = get_memory().get_github_delivery_policy
+policy_version = get_memory().get_github_policy_version
+policy_compliance = get_memory().check_policy_compliance

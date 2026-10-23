@@ -1,0 +1,54 @@
+# Ignore Python bytecode
+*.pyc
+*.pyw
+__pycache__/
+
+# Ignore log files
+*.log
+*.txt
+
+# Ignore backup files
+*.bak
+*.orig
+
+# Ignore policy files that are large or sensitive
+GITHUB_DELIVERY_POLICY.md
+
+# Ignore report files
+*.json
+*.txt
+
+# Ignore output files
+output.txt
+diff.txt
+
+# Ignore test results
+test_*.txt
+test_*.json
+
+# Ignore final reports
+FINAL_REPORT.md
+
+# Ignore patch files
+P5_*.md
+P51_*.md
+P52_*.md
+P53_*.md
+P54_*.md
+P55_*.md
+
+# Ignore analysis files
+REASONING.md
+
+# Ignore config files that change often
+config
+description
+
+# Ignore orch.py outputs
+orch.py.output.txt 2>/dev/null
+
+# But keep the source files
+f3.py
+memory.py
+orch.py
+"
