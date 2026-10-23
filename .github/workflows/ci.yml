@@ -1,5 +1,8 @@
 name: Factory V3 CI
 
+# Correctif issue #7 : ce workflow etait un simple `echo "CI check passed"`,
+# ce qui n'est PAS une preuve de test. Il execute desormais les verifications reelles.
+
 on:
   push:
     branches: [master, factory-e2e-002]
@@ -8,6 +11,32 @@ on:
 
 jobs:
   build:
+    name: Verifications reelles (syntaxe + tests quota guard)
     runs-on: ubuntu-latest
     steps:
-      - run: echo "CI check passed"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verification syntaxique de tous les fichiers Node
+        run: |
+          set -e
+          fail=0
+          while IFS= read -r f; do
+            if ! node --check "$f"; then
+              echo "::error file=$f::Syntaxe invalide"
+              fail=1
+            fi
+          done < <(find lib -name '*.cjs' | sort)
+          if [ "$fail" -ne 0 ]; then exit 1; fi
+          echo "Syntaxe OK sur $(find lib -name '*.cjs' | wc -l) fichier(s)"
+      - name: Tests de non-regression du quota guard (P5.7)
+        run: node lib/tests/regression-p5.7.test.cjs
+      - name: Garde-fou : jamais de fichier ':memory:' ecrit sur disque
+        run: |
+          set -e
+          node -e "
+            const fs=require('fs');const {QuotaStore}=require('./lib/quota-store.cjs');
+            new QuotaStore(':memory:').save();
+            if(fs.existsSync(':memory:')){console.error('ECHEC: fichier :memory: cree');process.exit(1);}
+            console.log('OK: aucun fichier :memory:');"
