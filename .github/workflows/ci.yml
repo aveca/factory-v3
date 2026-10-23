@@ -32,7 +32,7 @@ jobs:
           echo "Syntaxe OK sur $(find lib -name '*.cjs' | wc -l) fichier(s)"
       - name: Tests de non-regression du quota guard (P5.7)
         run: node lib/tests/regression-p5.7.test.cjs
-      - name: Garde-fou : jamais de fichier ':memory:' ecrit sur disque
+      - name: "Garde-fou - jamais de fichier ':memory:' ecrit sur disque"
         run: |
           set -e
           node -e "
