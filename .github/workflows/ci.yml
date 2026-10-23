@@ -5,7 +5,7 @@ name: Factory V3 CI
 
 on:
   push:
-    branches: [master, factory-e2e-002]
+    branches: [master, factory-e2e-002, 'feat/**']
   pull_request:
     branches: [master]
 
