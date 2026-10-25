@@ -10,7 +10,7 @@ Aucun modele payant : les modeles autorises sont limites a une allowlist stricte
 (router/* , ollama/* , openrouter-free/*). Le routeur local ne tente jamais de
 modele payant. Aucune Mission ne peut declarer un modele hors allowlist.
 """
-import os, sys, json, time, uuid, re, sqlite3, argparse, threading, subprocess, ctypes
+import os, sys, json, time, uuid, re, sqlite3, argparse, threading, subprocess, ctypes, random
 from datetime import datetime, timezone
 
 # ─── Chemins (isolables) ───────────────────────────────────────────
@@ -143,6 +143,7 @@ CREATE INDEX IF NOT EXISTS idx_m_state ON missions(state, priority DESC, created
 def db():
     con = sqlite3.connect(DB, timeout=30, isolation_level=None)
     con.execute("PRAGMA journal_mode=WAL")
+    con.row_factory = sqlite3.Row
     return con
 def init_db():
     with db() as con:
@@ -186,17 +187,40 @@ def get_mission(mid):
         r = con.execute("SELECT * FROM missions WHERE id=?", (mid,)).fetchone()
         return dict(r) if r else None
 
+def validate_acceptance(m, evidence):
+    """Valide les critères d'acceptation d'une mission.
+    Retourne (ok, why) où ok est True si tous les critères passent."""
+    if not evidence:
+        return False, "aucune preuve fournie"
+    acc = json.loads(m["acceptance"]) if isinstance(m["acceptance"], str) else m["acceptance"]
+    expect_marker = acc.get("expect_marker")
+    expect_regex = acc.get("expect_regex")
+    
+    if expect_marker:
+        import os
+        if not os.path.exists(expect_marker):
+            return False, f"marqueur attendu absent: {expect_marker}"
+    if expect_regex:
+        import re
+        if not re.search(expect_regex, str(evidence)):
+            return False, f"regex non matché: {expect_regex}"
+    return True, "ok"
+
 def set_state(mid, state, **fields):
     if "evidence" in fields and fields["evidence"] is not None and not isinstance(fields["evidence"], str):
         fields["evidence"] = json.dumps(fields["evidence"], ensure_ascii=False, default=str)
     fields = dict(fields)
     fields["state"] = state
+    # Build SET clause dynamically
+    set_clause = ", ".join(f"{k}=?" for k in fields.keys())
+    values = list(fields.values()) + [mid]
     with db() as con:
-        con.execute("UPDATE missions SET ? WHERE id=?", (fields, mid))
+        con.execute(f"UPDATE missions SET {set_clause} WHERE id=?", values)
     log(f"STATE {mid} -> {state} {({k:v for k,v in fields.items() if k in ('owner','attempts','error')}) or ''}")
 
 def counts():
     with db() as con:
+        con.row_factory = sqlite3.Row
         rows = con.execute("SELECT state, COUNT(*) n FROM missions GROUP BY state").fetchall()
         return {r["state"]: r["n"] for r in rows}
 
@@ -210,17 +234,19 @@ def claim(worker, lease_s):
         return None
     running_now = 0
     with db() as con:
+        con.row_factory = sqlite3.Row
         running_now = con.execute("SELECT COUNT(*) n FROM missions WHERE state='running'").fetchone()["n"]
     if running_now >= int(c.get("concurrency_limit", 1)):
         return None
     with db() as con:
+        con.row_factory = sqlite3.Row
         con.execute("BEGIN IMMEDIATE")
         try:
             running_in_txn = con.execute("SELECT COUNT(*) n FROM missions WHERE state='running'").fetchone()["n"]
             if running_in_txn >= int(c.get("concurrency_limit", 1)):
                 con.execute("COMMIT"); return None
             row = con.execute(
-                """SELECT id,acceptance,kind,model,worktree,attempts,timeout_s,max_retries,objective,history
+                """SELECT id,acceptance,kind,model,worktree,attempts,timeout_s,max_retries,objective,history,lease_expires_at
                    FROM missions WHERE state IN ('queued','checkpointed')
                    ORDER BY priority DESC, created_at ASC LIMIT 1""").fetchone()
             if not row:
@@ -256,6 +282,7 @@ def reclaim_stale():
     Si attempts>=max_retries -> failed (borne). Sinon -> queued (reprise)."""
     now = now_epoch()
     with db() as con:
+        con.row_factory = sqlite3.Row
         con.execute("BEGIN IMMEDIATE")
         rows = con.execute("SELECT id,attempts,max_retries FROM missions WHERE state='running' AND lease_expires_at< ?", (now,)).fetchall()
         for r in rows:
@@ -272,6 +299,7 @@ def requeue_checkpointed():
     """Les missions 'checkpointed' redeviennent reclaimables (reprise apres
     retour interactif)."""
     with db() as con:
+        con.row_factory = sqlite3.Row
         con.execute("BEGIN IMMEDIATE")
         n = con.execute("UPDATE missions SET updated_at=? WHERE state='checkpointed'", (now_iso(),)).rowcount
         con.execute("COMMIT")
@@ -571,6 +599,20 @@ def execute_one(m, worker, lease_s):
                       lease_expires_at=None, evidence=res.get("evidence"),
                       history=hist_append(m, f"acceptation {why}"))
             return "failed"
+        return "completed"
+
+    if state_out == "blocked":
+        # Handler a retourné blocked (ex: validation échouée, revue bloquante)
+        # On respecte le max_retries pour retry automatique
+        if m["attempts"] < m["max_retries"]:
+            set_state(mid, "queued", error=f"blocked: {res.get('evidence', '')}", owner=None,
+                      lease_expires_at=None, history=hist_append(m, "blocked retry"))
+            return "retry"
+        set_state(mid, "failed", error=f"blocked après {m['attempts']} essais: {res.get('evidence', '')}",
+                  owner=None, lease_expires_at=None, evidence=res.get("evidence"),
+                  history=hist_append(m, f"blocked failed after {m['attempts']}"))
+        return "failed"
+
     # etat inconnu
     set_state(mid, "blocked", error=f"state_out inconnu {state_out}")
     return "blocked"
