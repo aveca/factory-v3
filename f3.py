@@ -27,6 +27,40 @@ SUP_LOCK   = os.path.join(STATE, "f3_supervisor.lock")
 for d in (STATE, LOGDIR, WORKSPACE):
     os.makedirs(d, exist_ok=True)
 
+# ─── Convergence guards (P0/P0.1/P0.3) ─────────────────────────────
+# session_convergence et watchdog_convergence sont importes de facon optionnelle
+# pour ne pas cesser de fonctionner si les fichiers sont absents (deploiement
+# partiel, environnement restreint).
+try:
+    from session_convergence import (
+        SessionConvergence, AGENT_BUDGETS, DEFAULT_MAX_STEPS, NO_PROGRESS_STEPS
+    )
+    from watchdog_convergence import WatchdogConvergence
+    _SESSIONS = SessionConvergence(sessions_dir=os.path.join(STATE, "sessions"))
+    _WATCHDOG = WatchdogConvergence(_SESSIONS)
+except Exception:
+    _SESSIONS = None
+    _WATCHDOG = None
+
+
+def _agent_type_from_model(model):
+    """Mappe un nom de modele de mission vers un type d'agent pour le budget.
+
+    Valeurs de retour : general-fast, rbalanced, rdeep, rreview, ou general-fast par defaut.
+    """
+    if not model:
+        return "general-fast"
+    m = str(model).lower()
+    if "fast" in m:
+        return "general-fast"
+    if "balanced" in m:
+        return "rbalanced"
+    if "deep" in m or "vision" in m:
+        return "rdeep"
+    if "review" in m:
+        return "rreview"
+    return "general-fast"
+
 # ─── Politique stricte gratuite ────────────────────────────────────
 FREE_PREFIXES = ("router/", "ollama/", "openrouter-free/")
 def model_allowed(model):
@@ -531,12 +565,31 @@ def execute_one(m, worker, lease_s):
     with db() as con:  # journalise l'etat running + objectif
         con.execute("UPDATE missions SET state='running', history=?, updated_at=? WHERE id=?",
                     (hist_append(m, "running"), now_iso(), mid))
+
+    # P0.3: verification du budget de convergence avant execution du handler.
+    if _SESSIONS is not None:
+        agent_type = _agent_type_from_model(m.get("model"))
+        max_steps = AGENT_BUDGETS.get(agent_type, DEFAULT_MAX_STEPS)
+        sess = _SESSIONS.get_session(mid)
+        if sess is None:
+            _SESSIONS.create_session(mid, m["id"], agent_type=agent_type, max_steps=max_steps)
+        budget = _SESSIONS.check_budget(mid)
+        if budget["exceeded"]:
+            _SESSIONS.park_session(mid, reason=budget["reason"])
+            set_state(mid, "failed", error=f"budget_exceeded: {budget['reason']}", owner=None,
+                      lease_expires_at=None, history=hist_append(m, f"budget_exceeded: {budget['reason']}"))
+            log(f"BUDGET {mid} arret: {budget['reason']}")
+            return "failed"
+
     try:
         res = handler(m, ctx)
     except PermissionError as e:
         set_state(mid, "failed", error=str(e), history=hist_append(m, f"failed {e}"))
         return "failed"
     except Exception as e:
+        # P0.3: incrementer l'iteration sans progression sur toute erreur handler.
+        if _SESSIONS is not None:
+            _SESSIONS.increment_iteration(mid)
         err_str = str(e)
         # ------------------------------------------------------------------
         # Catégorisation d'erreur pour un handling contrôlé (quota guard)
@@ -687,6 +740,9 @@ def execute_one(m, worker, lease_s):
             return "retry" if m["attempts"] < m["max_retries"] else "failed"
 
     state_out = res.get("state_out", "completed")
+    # P0.3: enregistrer une progression reelle apres execution reussie du handler.
+    if _SESSIONS is not None:
+        _SESSIONS.record_progress(mid)
     if state_out == "checkpointed":
         set_state(mid, "checkpointed", evidence=res.get("evidence"),
                   owner=None, lease_expires_at=None, interrupt_requested=0,
@@ -769,6 +825,10 @@ def NULL():
 # ─── Boucle worker (un tick) ───────────────────────────────────────
 def worker_tick(verbose=False):
     c = load_control()
+    # P0.3: verifier les sessions actives via le watchdog avant de revendiquer
+    # une nouvelle mission, pour detecter et garer les sessions bloquees.
+    if _WATCHDOG is not None:
+        _WATCHDOG.check_all()
     # Garde-fou : arret autonome global via le marqueur C:\factory\control\STOP-Autonomie.
     # Quand le marqueur est present, aucune nouvelle mission n'est reclamee par ce
     # superviseur Factory V3, quelle que soit la valeur de f3_control.json.
