@@ -27,6 +27,40 @@ SUP_LOCK   = os.path.join(STATE, "f3_supervisor.lock")
 for d in (STATE, LOGDIR, WORKSPACE):
     os.makedirs(d, exist_ok=True)
 
+# ─── Convergence guards (P0/P0.1/P0.3) ─────────────────────────────
+# session_convergence et watchdog_convergence sont importes de facon optionnelle
+# pour ne pas cesser de fonctionner si les fichiers sont absents (deploiement
+# partiel, environnement restreint).
+try:
+    from session_convergence import (
+        SessionConvergence, AGENT_BUDGETS, DEFAULT_MAX_STEPS, NO_PROGRESS_STEPS
+    )
+    from watchdog_convergence import WatchdogConvergence
+    _SESSIONS = SessionConvergence(sessions_dir=os.path.join(STATE, "sessions"))
+    _WATCHDOG = WatchdogConvergence(_SESSIONS)
+except Exception:
+    _SESSIONS = None
+    _WATCHDOG = None
+
+
+def _agent_type_from_model(model):
+    """Mappe un nom de modele de mission vers un type d'agent pour le budget.
+
+    Valeurs de retour : general-fast, rbalanced, rdeep, rreview, ou general-fast par defaut.
+    """
+    if not model:
+        return "general-fast"
+    m = str(model).lower()
+    if "fast" in m:
+        return "general-fast"
+    if "balanced" in m:
+        return "rbalanced"
+    if "deep" in m or "vision" in m:
+        return "rdeep"
+    if "review" in m:
+        return "rreview"
+    return "general-fast"
+
 # ─── Politique stricte gratuite ────────────────────────────────────
 FREE_PREFIXES = ("router/", "ollama/", "openrouter-free/")
 def model_allowed(model):
@@ -157,7 +191,7 @@ def hist_append(m, event):
     return json.dumps(h[-200:])
 
 def enqueue(kind, model="", handler=None, repo=None, scope=None, branch=None, worktree=None,
-            objective="", expect_marker=None, expect_regex=None,
+            objective="", expect_marker=None, expect_regex=None, task=None,
             ctx_budget=65536, max_tokens=4096, timeout_s=None, max_retries=None, priority=0):
     if kind not in KINDS:
         raise ValueError(f"kind invalide: {kind}")
@@ -165,11 +199,15 @@ def enqueue(kind, model="", handler=None, repo=None, scope=None, branch=None, wo
         raise PermissionError(f"modele hors allowlist gratuite: {model}")
     if handler not in SAFE_HANDLERS:
         raise PermissionError(f"handler non autorise en autonomie: {handler}")
+    if task is not None and not isinstance(task, dict):
+        raise ValueError("task doit etre un objet JSON (dict)")
     c = load_control()
     timeout_s = int(timeout_s or c["max_mission_seconds"])
     max_retries = int(c["max_retries"] if max_retries is None else max_retries)
     mid = "m_" + datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S") + "_" + uuid.uuid4().hex[:6]
     acc = {"handler": handler, "expect_marker": expect_marker, "expect_regex": expect_regex}
+    if task is not None:
+        acc["task"] = task
     with db() as con:
         con.execute("""INSERT INTO missions(id,kind,repo,scope,branch,worktree,objective,
             acceptance,model,ctx_budget,max_tokens,timeout_s,max_retries,priority,state,
@@ -187,6 +225,36 @@ def get_mission(mid):
         r = con.execute("SELECT * FROM missions WHERE id=?", (mid,)).fetchone()
         return dict(r) if r else None
 
+def _ws(mid):
+    d = os.path.join(WORKSPACE, mid)
+    os.makedirs(d, exist_ok=True)
+    return d
+
+def resolve_marker(expect_marker, mid):
+    """Résout un marqueur d'acceptation.
+
+    Un marqueur déclaré en RELATIF (ex: ORCH_DONE_xxx) est interprété dans le
+    workspace d'exécution de la mission (WORKSPACE/<id>), conformément à ce
+    qu'écrivent les handlers (h_emit / h_orch via _ws). Un marqueur ABSOLU est
+    utilisé tel quel. Corrige le défaut qui rendait toute mission à marqueur
+    inacceptable (os.path_exists(relatif) dépendait du CWD du superviseur).
+    """
+    if not expect_marker:
+        return None
+    cands = []
+    p = str(expect_marker)
+    if os.path.isabs(p):
+        cands.append(p)
+    else:
+        if mid:
+            cands.append(os.path.join(_ws(mid), p))
+        cands.append(os.path.abspath(p))
+        cands.append(p)
+    for c in cands:
+        if os.path.exists(c):
+            return c
+    return cands[0] if cands else None
+
 def validate_acceptance(m, evidence):
     """Valide les critères d'acceptation d'une mission.
     Retourne (ok, why) où ok est True si tous les critères passent."""
@@ -195,13 +263,12 @@ def validate_acceptance(m, evidence):
     acc = json.loads(m["acceptance"]) if isinstance(m["acceptance"], str) else m["acceptance"]
     expect_marker = acc.get("expect_marker")
     expect_regex = acc.get("expect_regex")
-    
+
     if expect_marker:
-        import os
-        if not os.path.exists(expect_marker):
+        resolved = resolve_marker(expect_marker, m.get("id"))
+        if not resolved or not os.path.exists(resolved):
             return False, f"marqueur attendu absent: {expect_marker}"
     if expect_regex:
-        import re
         if not re.search(expect_regex, str(evidence)):
             return False, f"regex non matché: {expect_regex}"
     return True, "ok"
@@ -248,6 +315,7 @@ def claim(worker, lease_s):
             row = con.execute(
                 """SELECT id,acceptance,kind,model,worktree,attempts,timeout_s,max_retries,objective,history,lease_expires_at
                    FROM missions WHERE state IN ('queued','checkpointed')
+                     AND COALESCE(attempts,0) < COALESCE(max_retries,3)
                    ORDER BY priority DESC, created_at ASC LIMIT 1""").fetchone()
             if not row:
                 con.execute("COMMIT"); return None
@@ -277,15 +345,35 @@ def heartbeat(mid, lease_s, worker):
                     (now_epoch() + float(lease_s), now_iso(), mid, worker))
         con.execute("COMMIT")
 
-def reclaim_stale():
+def reclaim_stale(grace_seconds=None):
     """RECOVERING / reprise apres crash: les baux expires sont repris.
-    Si attempts>=max_retries -> failed (borne). Sinon -> queued (reprise)."""
+    Si attempts>=max_retries -> failed (borne). Sinon -> queued (reprise).
+
+    Protection anti-double-exécution: un bail n'est repris que si le heartbeat
+    de la mission est également périmé. Un handler long qui régulièrement
+    renouvelle son bail (lease heartbeat) n'est donc JAMAIS repris en vol, même
+    si `lease_expires_at` a été avalé par une horloge dérivante. Le propriétaire
+    vivant + heartbeat frais = exécution légitime en cours, on ne la tue pas.
+    """
     now = now_epoch()
+    if grace_seconds is None:
+        grace_seconds = float(os.environ.get("F3_HB_GRACE", "45"))
     with db() as con:
         con.row_factory = sqlite3.Row
         con.execute("BEGIN IMMEDIATE")
-        rows = con.execute("SELECT id,attempts,max_retries FROM missions WHERE state='running' AND lease_expires_at< ?", (now,)).fetchall()
+        rows = con.execute("SELECT id,attempts,max_retries,heartbeat_at,owner,lease_expires_at FROM missions WHERE state='running' AND lease_expires_at< ?", (now,)).fetchall()
         for r in rows:
+            hb_age = None
+            try:
+                hb = r["heartbeat_at"]
+                if hb:
+                    hb_age = now - datetime.fromisoformat(str(hb).replace("Z", "+00:00")).timestamp()
+            except Exception:
+                hb_age = None
+            # heartbeat encore frais -> le propriétaire travaille: on NE reprend PAS
+            if hb_age is not None and hb_age < grace_seconds:
+                log(f"RECOVER {r['id']} ignoree (heartbeat frais, age={hb_age:.0f}s, owner={r['owner']})")
+                continue
             if r["attempts"] >= r["max_retries"]:
                 con.execute("UPDATE missions SET state='failed', owner=NULL, lease_expires_at=NULL, error='lease-expired-max-retries', updated_at=? WHERE id=?", (now_iso(), r["id"]))
                 log(f"RECOVER {r['id']} -> failed (bail expire, retries epuises)")
@@ -307,18 +395,21 @@ def requeue_checkpointed():
 
 # ─── Handlers surs (testables, sans fenetre, sans modele payant) ───
 # Reception d'un callback pour checkpoint/arret cooperatif.
-def _ws(mid):
-    d = os.path.join(WORKSPACE, mid)
-    os.makedirs(d, exist_ok=True)
-    return d
-
 def h_emit(m, cb):
     d = _ws(m["id"])
     acc = json.loads(m["acceptance"])
     p = os.path.join(d, acc.get("expect_marker") or "MARKER")
     with open(p, "w", encoding="utf-8") as f:
         f.write(f"mission {m['id']} {m['objective']} completed at {now_iso()}\n")
-    return {"state_out": "completed", "evidence": {"marker": p}}
+    # Artefact de preuve REEL (pas simule): ce qui a ete fait, par qui, quand.
+    rep = os.path.join(d, "REPORT.txt")
+    with open(rep, "w", encoding="utf-8") as f:
+        f.write("mission: %s\nkind: %s\nobjectif: %s\nhandler: %s\n"
+                "worker: %s\nterminee_a: %s\nmodele: %s (aucun modele payant)\n"
+                % (m["id"], m["kind"], m["objective"],
+                   acc.get("handler"), getattr(cb, "worker", "-"), now_iso(),
+                   m.get("model") or "aucun (handler logique pur)"))
+    return {"state_out": "completed", "evidence": {"marker": p, "report": rep}}
 
 def h_fail_first(m, cb):
     # echoue a la 1re tentative, reussit ensuite (test 1 + 7)
@@ -385,13 +476,18 @@ def h_orch(m, cb):
     executee sous la file/verrous/bail/arbitrage deja verifies (P1). Infra only."""
     import importlib.util
     acc = json.loads(m["acceptance"]) if isinstance(m["acceptance"], str) else (m["acceptance"] or {})
-    task = acc.get("task") or {"objective": m["objective"], "acceptance": acc.get("acceptance", []),
-                               "diff_seed": acc.get("diff_seed", "contexte: correction ponctuelle; gestion d'erreur via try/except")}
+    task = acc.get("task") or {"objective": m["objective"], "acceptance": acc.get("acceptance", [])}
+    # On n'injecte AUCUN diff fictif : sans diff reel, orch.py bloque
+    # immediatement au lieu de consommer 3 appels fournisseurs sur du vide.
+    if acc.get("diff_seed"):
+        task.setdefault("diff_seed", acc["diff_seed"])
+    if acc.get("adversarial_hint"):
+        task.setdefault("adversarial_hint", acc["adversarial_hint"])
     task.setdefault("id", m["id"])
     spec = importlib.util.spec_from_file_location("orch_v3", r"C:\factory-service\v3\orch.py")
     orch = importlib.util.module_from_spec(spec); spec.loader.exec_module(orch)
     ws = os.path.join(WORKSPACE, m["id"]); os.makedirs(ws, exist_ok=True)
-    res = orch.run_chain(task, ws)
+    res = orch.run_chain(task, ws, on_tick=cb.touch)
     ev = res["evidence"]
     if res["state"] == "completed":
         marker = os.path.join(ws, acc.get("expect_marker", "ORCH_DONE"))
@@ -400,6 +496,11 @@ def h_orch(m, cb):
                 f.write(json.dumps({"state": "completed", "triage": ev.get("triage")}, ensure_ascii=False))
         except OSError: pass
         return {"state_out": "completed", "evidence": json.dumps(ev, ensure_ascii=False, default=str)}
+    # Blocage DETERMINISTE (ex: aucun diff reel fourni): rejouer ne changera
+    # rien, on ne consomme donc pas de tentatives ni d'appels fournisseurs.
+    if ev.get("blocked_reason"):
+        return {"state_out": "blocked_definitive", "why": ev.get("blocked_reason"),
+                "evidence": json.dumps(ev, ensure_ascii=False, default=str)}
     return {"state_out": "blocked", "evidence": json.dumps(ev, ensure_ascii=False, default=str)}
 
 SAFE_HANDLERS = {"emit": h_emit, "steps": h_steps, "fail_first": h_fail_first,
@@ -425,7 +526,34 @@ class Ctx:
             con.execute("UPDATE missions SET evidence=?, interrupt_requested=0, updated_at=? WHERE id=?",
                         (json.dumps(payload) if not isinstance(payload, str) else payload, now_iso(), self.mid))
 
+    def touch(self):
+        """Renouvelle explicitement le bail de la mission en cours.
+        À appeler par les handlers bloquants (ex: chaîne orch) pour qu'une
+        exécution longue et légitime ne soit jamais reprise en vol."""
+        try:
+            heartbeat(self.mid, self.lease_s, self.worker)
+        except Exception:
+            pass
+
+    def log(self, msg):
+        """Journalise une étape de la mission (attendu par h_steps).
+        Defaut corrige: 'Ctx' object has no attribute 'log' faisait echouer
+        systematiquement toute mission 'steps' (donc toute reprise)."""
+        log(f"STEP {self.mid} {msg}")
+
 # ─── Execution d'une mission (pas de completion sur code retour seul) ─
+_DAILY_QUOTA_MARKERS = ("free-models-per-day", "per-day", "per day", "daily limit",
+                        "requests per day", "requests/day", "tokens per 24h", "per 24h")
+def _is_daily_quota(low):
+    """Vrai uniquement si le message du fournisseur indique de façon FIABLE un
+    épuisement de quota JOURNALIER (pas un simple 429 temporaire)."""
+    return any(k in low for k in _DAILY_QUOTA_MARKERS)
+
+def _utc_next_midnight():
+    """Échéance de remise à zéro des quotas journaliers (minuit UTC)."""
+    n = datetime.now(timezone.utc)
+    return time.time() + (86400 - (n.hour * 3600 + n.minute * 60 + n.second))
+
 def execute_one(m, worker, lease_s):
     acc = json.loads(m["acceptance"]) if isinstance(m["acceptance"], str) else m["acceptance"]
     handler = SAFE_HANDLERS.get(acc.get("handler"))
@@ -437,17 +565,48 @@ def execute_one(m, worker, lease_s):
     with db() as con:  # journalise l'etat running + objectif
         con.execute("UPDATE missions SET state='running', history=?, updated_at=? WHERE id=?",
                     (hist_append(m, "running"), now_iso(), mid))
+
+    # P0.3: verification du budget de convergence avant execution du handler.
+    if _SESSIONS is not None:
+        agent_type = _agent_type_from_model(m.get("model"))
+        max_steps = AGENT_BUDGETS.get(agent_type, DEFAULT_MAX_STEPS)
+        sess = _SESSIONS.get_session(mid)
+        if sess is None:
+            _SESSIONS.create_session(mid, m["id"], agent_type=agent_type, max_steps=max_steps)
+        budget = _SESSIONS.check_budget(mid)
+        if budget["exceeded"]:
+            _SESSIONS.park_session(mid, reason=budget["reason"])
+            set_state(mid, "failed", error=f"budget_exceeded: {budget['reason']}", owner=None,
+                      lease_expires_at=None, history=hist_append(m, f"budget_exceeded: {budget['reason']}"))
+            log(f"BUDGET {mid} arret: {budget['reason']}")
+            return "failed"
+
     try:
         res = handler(m, ctx)
     except PermissionError as e:
         set_state(mid, "failed", error=str(e), history=hist_append(m, f"failed {e}"))
         return "failed"
     except Exception as e:
+        # P0.3: incrementer l'iteration sans progression sur toute erreur handler.
+        if _SESSIONS is not None:
+            _SESSIONS.increment_iteration(mid)
         err_str = str(e)
         # ------------------------------------------------------------------
         # Catégorisation d'erreur pour un handling contrôlé (quota guard)
         # ------------------------------------------------------------------
-        if "429" in err_str or "rate limit" in err_str.lower() or "quota" in err_str.lower():
+        low = err_str.lower()
+        if "429" in err_str or "rate limit" in low or "quota" in low:
+            if _is_daily_quota(low):
+                # Quota JOURNALIER épuisé (ex: OpenRouter free-models-per-day):
+                # politique documentée = AUCUNE relance avant la remise à zéro
+                # (minuit UTC). On ne consomme pas de tentative et on n'appelle
+                # plus le fournisseur avant l'échéance.
+                reset = _utc_next_midnight()
+                set_state(mid, "queued", error=f"quota_journalier_epuise: {err_str}",
+                          owner=None, lease_expires_at=reset,
+                          history=hist_append(m, "quota_journalier (attente reset)"))
+                log(f"QUOTA {mid} quota journalier epuise -> attente reset ({int(reset - now_epoch())}s)")
+                return "deferred"
             error_category = "refus_quota"
         elif "402" in err_str:
             error_category = "paiement_requis"
@@ -581,6 +740,9 @@ def execute_one(m, worker, lease_s):
             return "retry" if m["attempts"] < m["max_retries"] else "failed"
 
     state_out = res.get("state_out", "completed")
+    # P0.3: enregistrer une progression reelle apres execution reussie du handler.
+    if _SESSIONS is not None:
+        _SESSIONS.record_progress(mid)
     if state_out == "checkpointed":
         set_state(mid, "checkpointed", evidence=res.get("evidence"),
                   owner=None, lease_expires_at=None, interrupt_requested=0,
@@ -599,7 +761,22 @@ def execute_one(m, worker, lease_s):
                       lease_expires_at=None, evidence=res.get("evidence"),
                       history=hist_append(m, f"acceptation {why}"))
             return "failed"
+        # Acceptation REELLEMENT validee -> on persiste l'etat terminal.
+        # (defaut corrige: la mission restait 'running', donc reclamee en boucle
+        #  jusqu'a epuisement du bail, ce qui masquait tout travail termine.)
+        set_state(mid, "completed", owner=None, lease_expires_at=None,
+                  evidence=res.get("evidence"), error=None,
+                  history=hist_append(m, "completed (acceptation ok)"))
+        log(f"COMPLETE {mid} (acceptation validee)")
         return "completed"
+
+    if state_out == "blocked_definitive":
+        # Blocage deterministe (aucun diff reel): pas de relance, terme la mission.
+        set_state(mid, "failed", error=f"blocked_definitif: {res.get('why', '')}",
+                  owner=None, lease_expires_at=None, evidence=res.get("evidence"),
+                  history=hist_append(m, "blocked definitif (sans relance)"))
+        log(f"BLOCKED-DEF {mid} (sans relance: {res.get('why', '')})")
+        return "failed"
 
     if state_out == "blocked":
         # Handler a retourné blocked (ex: validation échouée, revue bloquante)
@@ -617,12 +794,48 @@ def execute_one(m, worker, lease_s):
     set_state(mid, "blocked", error=f"state_out inconnu {state_out}")
     return "blocked"
 
+def _normalize_outcome(mid, outcome):
+    """Persiste l'etat terminal correspondant au resultat d'execution.
+
+    Corrige les chemins qui retournaient 'failed' / 'completed' sans ecrire
+    l'etat en base: la mission restait 'queued' ou 'running' et etait donc
+    reclamee en boucle jusqu'a epuisement du bail (travail termine invisible,
+    bornes de reprise jamais atteintes). Idempotent: n'ecrase rien de terminal.
+    """
+    try:
+        row = get_mission(mid)
+    except Exception:
+        return
+    if not row:
+        return
+    st = row.get("state")
+    if outcome == "completed" and st != "completed":
+        set_state(mid, "completed", owner=None, lease_expires_at=None, error=None,
+                  history=hist_append(row, "completed (acceptation ok)"))
+        log(f"COMPLETE {mid} (etat persiste apres acceptation validee)")
+    elif outcome == "failed" and st not in ("failed", "completed"):
+        set_state(mid, "failed", owner=None, lease_expires_at=None,
+                  error=row.get("error") or "echec (borne de reprise atteinte)",
+                  history=hist_append(row, "failed (etat persiste)"))
+
+
 def NULL():
     return None
 
 # ─── Boucle worker (un tick) ───────────────────────────────────────
 def worker_tick(verbose=False):
     c = load_control()
+    # P0.3: verifier les sessions actives via le watchdog avant de revendiquer
+    # une nouvelle mission, pour detecter et garer les sessions bloquees.
+    if _WATCHDOG is not None:
+        _WATCHDOG.check_all()
+    # Garde-fou : arret autonome global via le marqueur C:\factory\control\STOP-Autonomie.
+    # Quand le marqueur est present, aucune nouvelle mission n'est reclamee par ce
+    # superviseur Factory V3, quelle que soit la valeur de f3_control.json.
+    if os.path.exists(r"C:\factory\control\STOP-Autonomie"):
+        if verbose:
+            log("TICK idle: arret autonome demande (STOP-Autonomie)")
+        return "idle"
     if c.get("mode") == "RECOVERING":
         reclaim_stale()
         c2 = dict(c); c2["mode"] = "AUTONOMOUS" if not is_interactive(c) else "INTERACTIVE"
@@ -638,7 +851,9 @@ def worker_tick(verbose=False):
         if verbose: log("TICK idle: file vide ou concurrence saturee")
         return "idle"
     log(f"CLAIM {m['id']} par {WORKER} (attempt {m['attempts']})")
-    return execute_one(m, WORKER, c["lease_seconds"])
+    outcome = execute_one(m, WORKER, c["lease_seconds"])
+    _normalize_outcome(m["id"], outcome)
+    return outcome
 
 def worker_loop(interval=None, once=False):
     c = load_control(); iv = float(interval or c["poll_seconds"])
@@ -767,16 +982,34 @@ def cmd_logs(args):
     with open(LOG, encoding="utf-8", errors="ignore") as f:
         print("".join(f.readlines()[-args.n:]))
 
+def _load_task_arg(raw):
+    """Charge une tache de codage depuis du JSON inline ou un fichier (@chemin)."""
+    if not raw:
+        return None
+    txt = raw
+    if raw.startswith("@"):
+        path = raw[1:].strip().strip('"')
+        with open(path, encoding="utf-8") as f:
+            txt = f.read()
+    return json.loads(txt)
+
+
 def cmd_enqueue(args):
     try:
+        task = _load_task_arg(args.task)
         mid = enqueue(kind=args.kind, model=args.model, handler=args.handler,
                       repo=args.repo, scope=args.scope, branch=args.branch, worktree=args.worktree,
                       objective=args.o or "", expect_marker=args.marker, expect_regex=args.regex,
+                      task=task,
                       ctx_budget=args.ctx, max_tokens=args.max_tokens, timeout_s=args.timeout,
                       max_retries=args.retries, priority=args.priority)
-        _print_json({"enqueued": mid})
+        _print_json({"enqueued": mid, "handler": args.handler,
+                     "task_files": (task or {}).get("patch", "")[:0] or
+                                   len((task or {}).get("patch", "") or "")})
     except (PermissionError, ValueError) as e:
         print("REFUSE: " + str(e)); sys.exit(2)
+    except (OSError, json.JSONDecodeError) as e:
+        print("REFUSE: tache illisible: " + str(e)); sys.exit(2)
 
 def cmd_run(args):   worker_loop(args.interval, once=args.once)
 def cmd_supervise(args): supervisor_loop(args.interval)
@@ -802,6 +1035,8 @@ def build_parser():
     en.add_argument("--repo", default=None); en.add_argument("--scope", default=None)
     en.add_argument("--branch", default=None); en.add_argument("--worktree", default=None)
     en.add_argument("--o", dest="o", default="")
+    en.add_argument("--task", dest="task", default=None,
+                    help="tache de codage: JSON inline ou @chemin (repo, base_ref, patch, validation)")
     r = sub.add_parser("run"); r.add_argument("--interval", type=float, default=None); r.add_argument("--once", action="store_true")
     s = sub.add_parser("supervise"); s.add_argument("--interval", type=float, default=None)
     sub.add_parser("reclaim")
