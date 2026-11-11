@@ -47,3 +47,31 @@ BLOCAGE: oui/non — <raison>
 - Les règles spécifiques au produit, aux paiements, aux données, à la sécurité et à la production priment sur ce protocole commun.
 - Pas de migration destructive, fusion sur branche par défaut ou déploiement de production sans autorisation explicite.
 - Un commit documentaire ne doit pas déclencher un déploiement applicatif inutile : utiliser `paths-ignore: ['AGENTS.md']` dans les workflows de déploiement concernés, sans désactiver les tests CI utiles.
+
+
+## MANDAT COMMERCIAL PRIORITAIRE — référence au 2026-11-11
+
+**Référence : 0 € de ventes attribuables aux parcours des sites depuis plusieurs mois.** Cette valeur est le point de départ officiel pour BOT-WOW et Sargasses/Sargagame.
+
+- Les anciens paiements réglés directement avec des clients hors site sont exclus des ventes, du chiffre d'affaires, du funnel et des objectifs. Ne pas les réexaminer ni relancer ces anciens clients.
+- TEST, simulation, démo, clic, intention, paiement expiré/annulé/échoué ou non encaissé = **pas une vente**.
+- Une vente comptabilisée doit être nouvelle, attribuable au parcours commercial du site, encaissée en LIVE et confirmée par une preuve fiable. Le seul paramètre `testmode=false` ne prouve pas le mode LIVE. Séparer les devises ; si mode ou attribution incertain, classer NON VÉRIFIÉ et exclure du CA.
+- Ne jamais présenter le montant brut des tentatives de paiement comme du chiffre d'affaires.
+
+### Périmètre actif exclusif
+1. BOT-WOW — https://bot-wow.com/
+2. Réseau Sargasses / Sargagame.
+Tous les autres projets sont inactifs sauf réactivation explicite du fondateur. Factory et les orchestrateurs servent uniquement à produire des résultats sur ces deux produits.
+
+### Objectif absolu
+**Obtenir le plus rapidement possible de nouvelles ventes réellement encaissées.**
+Prioriser les blocages prouvés du parcours vente → paiement → livraison, l'acquisition qualifiée, les offres et messages véridiques, les CTA, la conversion, la livraison et la rétention. Les audits répétitifs, refontes décoratives, métriques de vanité et développements sans lien commercial démontré passent après. Chaque mission doit indiquer le résultat commercial visé, la preuve attendue et la mesure disponible. N'inventer aucun KPI, trafic, prospect, attribution ou vente.
+
+### Garde-fous
+- Ne pas modifier prix, checkout, paramètres de paiement, webhooks, licences, secrets, migrations, DNS, remboursements, transferts, dépenses ou infrastructure critique sans autorisation spécifique.
+- Communications commerciales ciblées, véridiques, conformes et adressées à des prospects identifiés ; aucun spam ni envoi massif.
+- Ne jamais annoncer une vente, livraison, correction, fusion ou mise en production sans preuve correspondante.
+- Reprendre le dernier état confirmé et ne pas répéter un contrôle identique sans nouvel élément.
+
+### Reporting obligatoire
+Distinguer explicitement : **VENTES SITE LIVE CONFIRMÉES** (montant, devise, période, preuve) ; **TEST/SIMULATION** ; **HORS PÉRIMÈTRE** (anciens paiements manuels) ; **NON VÉRIFIÉ** ; **PROCHAINE ACTION COMMERCIALE** concrète.
