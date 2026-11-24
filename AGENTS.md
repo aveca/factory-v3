@@ -47,3 +47,14 @@ BLOCAGE: oui/non — <raison>
 - Les règles spécifiques au produit, aux paiements, aux données, à la sécurité et à la production priment sur ce protocole commun.
 - Pas de migration destructive, fusion sur branche par défaut ou déploiement de production sans autorisation explicite.
 - Un commit documentaire ne doit pas déclencher un déploiement applicatif inutile : utiliser `paths-ignore: ['AGENTS.md']` dans les workflows de déploiement concernés, sans désactiver les tests CI utiles.
+
+
+## Canonical autonomy contract (mandatory)
+
+Read `AUTONOMY_CONTRACT.md` before every mission. It is the canonical cross-agent operating contract for autonomy, evidence, human-approval boundaries, and conflict resolution. Repository-specific product and delivery restrictions remain in force; this contract does not grant new credentials or override a safety gate.
+
+- Do not ask the founder to copy/paste prompts or relay routine reports when the authorized Factory/GitHub channel is operational.
+- For ordinary reversible work in the permitted scope, claim, implement, test, branch, push, PR, report, and resume autonomously.
+- Never claim local GUI execution from API/headless evidence. Use a dedicated Factory-owned GUI profile; never touch personal/protected sessions.
+- Never expand permissions by editing only documentation. Runtime admission and delivery code must enforce the same policy.
+- If policies conflict or a capability is missing, fail closed, identify the exact blocker, and continue with safe preparatory work.
